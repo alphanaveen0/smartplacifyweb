@@ -1,0 +1,141 @@
+CREATE TABLE IF NOT EXISTS students (
+  id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+  full_name VARCHAR(160) NOT NULL,
+  email VARCHAR(190) NOT NULL UNIQUE,
+  college_roll_no VARCHAR(80) UNIQUE,
+  phone VARCHAR(40),
+  college VARCHAR(160) DEFAULT 'Gurugram University',
+  course VARCHAR(100),
+  branch VARCHAR(120),
+  graduation_year INT,
+  cgpa DECIMAL(4,2) DEFAULT 0,
+  percentage DECIMAL(5,2) DEFAULT 0,
+  backlogs INT DEFAULT 0,
+  skills TEXT,
+  certifications TEXT,
+  projects TEXT,
+  experience VARCHAR(255),
+  placement_status VARCHAR(40) DEFAULT 'PROFILE_PENDING',
+  resume_name VARCHAR(255),
+  resume_path VARCHAR(500),
+  resume_updated_at DATE,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  INDEX idx_students_branch (branch),
+  INDEX idx_students_roll_no (college_roll_no),
+  INDEX idx_students_status (placement_status)
+);
+
+CREATE TABLE IF NOT EXISTS companies (
+  id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+  name VARCHAR(180) NOT NULL,
+  email VARCHAR(190) NOT NULL UNIQUE,
+  phone VARCHAR(40),
+  website VARCHAR(255),
+  industry VARCHAR(120),
+  location VARCHAR(160),
+  description TEXT,
+  logo VARCHAR(20),
+  verified BOOLEAN DEFAULT FALSE,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  INDEX idx_companies_verified (verified),
+  INDEX idx_companies_industry (industry)
+);
+
+CREATE TABLE IF NOT EXISTS users (
+  id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+  name VARCHAR(160) NOT NULL,
+  email VARCHAR(190) NOT NULL UNIQUE,
+  password_hash VARCHAR(255) NOT NULL,
+  role ENUM('student','company','tpo') NOT NULL,
+  student_id BIGINT UNSIGNED NULL,
+  company_id BIGINT UNSIGNED NULL,
+  is_active BOOLEAN DEFAULT TRUE,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  CONSTRAINT fk_users_student FOREIGN KEY (student_id) REFERENCES students(id) ON DELETE SET NULL,
+  CONSTRAINT fk_users_company FOREIGN KEY (company_id) REFERENCES companies(id) ON DELETE SET NULL,
+  INDEX idx_users_role (role)
+);
+
+CREATE TABLE IF NOT EXISTS jobs (
+  id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+  company_id BIGINT UNSIGNED NOT NULL,
+  title VARCHAR(180) NOT NULL,
+  description TEXT NOT NULL,
+  location VARCHAR(160),
+  job_type VARCHAR(80) DEFAULT 'Full-time',
+  salary_package VARCHAR(80),
+  experience VARCHAR(160),
+  experience_years INT DEFAULT 0,
+  required_skills TEXT,
+  minimum_cgpa DECIMAL(4,2) DEFAULT 0,
+  maximum_backlogs INT DEFAULT 0,
+  eligible_branches TEXT,
+  graduation_year INT,
+  application_deadline DATE,
+  openings INT DEFAULT 1,
+  status ENUM('ACTIVE','CLOSED','DRAFT') DEFAULT 'ACTIVE',
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  CONSTRAINT fk_jobs_company FOREIGN KEY (company_id) REFERENCES companies(id) ON DELETE CASCADE,
+  UNIQUE KEY uq_jobs_company_title (company_id, title),
+  INDEX idx_jobs_company_status (company_id, status),
+  INDEX idx_jobs_deadline (application_deadline)
+);
+
+CREATE TABLE IF NOT EXISTS applications (
+  id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+  student_id BIGINT UNSIGNED NOT NULL,
+  job_id BIGINT UNSIGNED NOT NULL,
+  status ENUM('APPLIED','SHORTLISTED','INTERVIEW_SCHEDULED','SELECTED','REJECTED','ON_HOLD') DEFAULT 'APPLIED',
+  eligibility_score INT DEFAULT 0,
+  applied_at DATE NOT NULL,
+  result VARCHAR(80),
+  package_offered VARCHAR(80),
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  CONSTRAINT fk_applications_student FOREIGN KEY (student_id) REFERENCES students(id) ON DELETE CASCADE,
+  CONSTRAINT fk_applications_job FOREIGN KEY (job_id) REFERENCES jobs(id) ON DELETE CASCADE,
+  UNIQUE KEY uq_application_student_job (student_id, job_id),
+  INDEX idx_applications_status (status),
+  INDEX idx_applications_applied_at (applied_at)
+);
+
+CREATE TABLE IF NOT EXISTS interviews (
+  id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+  application_id BIGINT UNSIGNED NOT NULL,
+  student_id BIGINT UNSIGNED NOT NULL,
+  company_id BIGINT UNSIGNED NOT NULL,
+  job_id BIGINT UNSIGNED NOT NULL,
+  interview_date DATE NOT NULL,
+  interview_time TIME NOT NULL,
+  mode ENUM('Online','Offline','Hybrid') DEFAULT 'Online',
+  location_or_link VARCHAR(500),
+  round_name VARCHAR(160),
+  status ENUM('SCHEDULED','COMPLETED','CANCELLED') DEFAULT 'SCHEDULED',
+  notes TEXT,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  CONSTRAINT fk_interviews_application FOREIGN KEY (application_id) REFERENCES applications(id) ON DELETE CASCADE,
+  CONSTRAINT fk_interviews_student FOREIGN KEY (student_id) REFERENCES students(id) ON DELETE CASCADE,
+  CONSTRAINT fk_interviews_company FOREIGN KEY (company_id) REFERENCES companies(id) ON DELETE CASCADE,
+  CONSTRAINT fk_interviews_job FOREIGN KEY (job_id) REFERENCES jobs(id) ON DELETE CASCADE,
+  UNIQUE KEY uq_interviews_application_round (application_id, round_name),
+  INDEX idx_interviews_status_date (status, interview_date)
+);
+
+CREATE TABLE IF NOT EXISTS notifications (
+  id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+  role ENUM('all','student','company','tpo') DEFAULT 'all',
+  user_id BIGINT UNSIGNED NULL,
+  title VARCHAR(180) NOT NULL,
+  message TEXT NOT NULL,
+  type VARCHAR(80) DEFAULT 'Announcement',
+  is_read BOOLEAN DEFAULT FALSE,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  CONSTRAINT fk_notifications_user FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+  INDEX idx_notifications_role_read (role, is_read),
+  INDEX idx_notifications_created_at (created_at)
+);

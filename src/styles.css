@@ -6974,3 +6974,614 @@ body {
   max-width: 100%;
   line-height: 1;
 }
+
+/* Mobile responsiveness fix: desktop styles above remain unchanged */
+@media (max-width: 768px) {
+  html,
+  body,
+  #root {
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  .app-shell {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100dvh;
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  .sidebar {
+    position: relative;
+    z-index: 30;
+    flex: 0 0 auto;
+    width: 100%;
+    min-width: 0;
+    height: auto;
+    max-height: none;
+    padding: 0.72rem 0.82rem 0.64rem;
+    overflow: hidden;
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .brand {
+    justify-content: flex-start;
+    gap: 0.65rem;
+    min-height: 2.55rem;
+  }
+
+  .brand-mark {
+    width: 2.35rem;
+    height: 2.35rem;
+    border-radius: 0.8rem;
+    font-size: 1rem;
+  }
+
+  .brand strong {
+    font-size: 0.94rem;
+    line-height: 1.05;
+  }
+
+  .brand small {
+    max-width: 13rem;
+    overflow: hidden;
+    font-size: 0.68rem;
+    line-height: 1.2;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .sidebar-nav {
+    display: flex;
+    flex: 0 0 auto;
+    gap: 0.42rem;
+    width: 100%;
+    margin-top: 0.62rem;
+    padding: 0 0 0.08rem;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .sidebar-nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .nav-list a,
+  .nav-list button,
+  .sidebar-nav button {
+    flex: 0 0 auto;
+    justify-content: center;
+    gap: 0.4rem;
+    min-width: max-content;
+    min-height: 2.5rem;
+    padding: 0 0.78rem;
+    border-radius: 999px;
+    font-size: 0.82rem;
+    font-weight: 800;
+    white-space: nowrap;
+  }
+
+  .nav-list span,
+  .sidebar-nav span {
+    width: auto;
+    min-width: 1rem;
+    font-size: 0.78rem;
+  }
+
+  .side-card,
+  .readiness-side-card,
+  .profile-card {
+    display: none !important;
+  }
+
+  .main-area {
+    flex: 1 1 auto;
+    width: 100%;
+    height: auto;
+    min-width: 0;
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  .dashboard-header {
+    flex: 0 0 auto;
+    width: 100%;
+    min-width: 0;
+    padding: 0.75rem 0.82rem 0;
+  }
+
+  .topbar {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.65rem;
+    width: 100%;
+    min-width: 0;
+    margin: 0;
+  }
+
+  .search {
+    order: 2;
+    width: 100%;
+    max-width: 100%;
+    min-height: 2.75rem;
+    padding: 0 0.75rem;
+    border-radius: 0.9rem;
+  }
+
+  .search input {
+    min-width: 0;
+    font-size: 0.9rem;
+  }
+
+  .search kbd {
+    display: none;
+  }
+
+  .search button {
+    min-height: 2rem;
+    padding: 0 0.5rem;
+    font-size: 0.72rem;
+  }
+
+  .top-actions {
+    order: 1;
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    min-width: 0;
+    gap: 0.45rem;
+  }
+
+  .top-action,
+  .theme-icon-toggle,
+  .notification-action,
+  .profile-trigger {
+    min-height: 2.65rem;
+    border-radius: 0.9rem;
+  }
+
+  .theme-icon-toggle {
+    flex: 0 0 auto;
+    padding: 0 0.62rem;
+  }
+
+  .theme-label {
+    display: none;
+  }
+
+  .notification-action {
+    flex: 0 0 2.65rem;
+    width: 2.65rem;
+    min-width: 2.65rem;
+    padding: 0;
+  }
+
+  .profile-menu {
+    min-width: 0;
+  }
+
+  .profile-trigger {
+    max-width: 10.5rem;
+    padding: 0.25rem 0.55rem;
+  }
+
+  .profile-dp {
+    width: 2.1rem;
+    height: 2.1rem;
+    flex-basis: 2.1rem;
+  }
+
+  .profile-copy {
+    min-width: 0;
+  }
+
+  .profile-copy strong,
+  .profile-copy small {
+    max-width: 5.6rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .profile-copy strong {
+    font-size: 0.78rem;
+  }
+
+  .profile-copy small {
+    font-size: 0.64rem;
+  }
+
+  .profile-dropdown {
+    right: 0;
+    max-width: calc(100vw - 1.5rem);
+  }
+
+  .dashboard,
+  .dashboard-scroll {
+    flex: 1 1 auto;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    min-height: 0;
+    padding: 0.85rem 0.82rem 7rem;
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .dashboard > *,
+  .dashboard-scroll > *,
+  .panel,
+  .hero-panel,
+  .student-ai-insight,
+  .dashboard-actions,
+  .smart-ai-strip,
+  .content-grid,
+  .kpi-grid {
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .hero-panel {
+    display: grid;
+    min-height: auto;
+    gap: 1rem;
+    padding: 1.05rem;
+    border-radius: 1.25rem;
+  }
+
+  .hero-panel h1 {
+    font-size: clamp(1.38rem, 7vw, 1.75rem);
+    line-height: 1.12;
+    overflow-wrap: anywhere;
+  }
+
+  .hero-panel p {
+    margin-top: 0.48rem;
+    font-size: 0.9rem;
+    line-height: 1.45;
+  }
+
+  .season-card {
+    width: 100%;
+    min-width: 0;
+    padding: 0.82rem;
+  }
+
+  .kpi-grid,
+  .content-grid,
+  .profile-summary,
+  .settings-grid,
+  .job-eligibility-groups,
+  .smart-ai-workspace {
+    display: grid;
+    grid-template-columns: 1fr !important;
+    gap: 0.82rem;
+  }
+
+  .kpi-card,
+  .panel,
+  .dashboard-actions,
+  .smart-ai-strip {
+    width: 100%;
+    padding: 0.9rem;
+    border-radius: 1rem;
+  }
+
+  .kpi-card {
+    min-height: 5.4rem;
+  }
+
+  .kpi-card .icon {
+    width: 2.65rem;
+    height: 2.65rem;
+    border-radius: 0.75rem;
+  }
+
+  .kpi-card strong {
+    font-size: 1.35rem;
+  }
+
+  .page-header {
+    display: grid;
+    gap: 0.85rem;
+    padding: 0.95rem;
+    border-radius: 1rem;
+  }
+
+  .page-header h1 {
+    font-size: 1.45rem;
+    line-height: 1.15;
+  }
+
+  .page-header p,
+  .panel p,
+  .dashboard-actions p {
+    font-size: 0.9rem;
+    line-height: 1.45;
+  }
+
+  .header-actions,
+  .modal-actions,
+  .filter-bar,
+  .smart-ai-actions,
+  .smart-ai-strip-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+    width: 100%;
+    gap: 0.55rem;
+  }
+
+  .header-actions button,
+  .header-actions a,
+  .filter-bar button,
+  .modal-actions button,
+  .primary-action,
+  .link-button {
+    justify-content: center;
+    width: 100%;
+    min-height: 2.75rem;
+    padding-inline: 0.8rem;
+    font-size: 0.86rem;
+  }
+
+  .filter-bar {
+    align-items: stretch;
+    padding-bottom: 0.85rem;
+  }
+
+  .filter-bar label,
+  .settings-form label,
+  .field {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .filter-bar select,
+  .settings-form input,
+  .settings-form select,
+  .field input,
+  .field select,
+  .field textarea,
+  .form-grid input,
+  .form-grid select,
+  .form-grid textarea {
+    width: 100%;
+    min-height: 2.8rem;
+    font-size: 0.95rem;
+  }
+
+  .placement-chart-shell {
+    width: 100%;
+    height: auto;
+    min-height: 16rem;
+    overflow: hidden;
+  }
+
+  .smart-chart-frame {
+    grid-template-columns: 1.8rem minmax(0, 1fr);
+    height: 15.5rem;
+  }
+
+  .placement-series-chart {
+    padding: 0.55rem 0.45rem 0.4rem;
+  }
+
+  .placement-bars {
+    height: 10.8rem;
+    gap: 0.28rem;
+  }
+
+  .placement-month {
+    min-width: 0;
+  }
+
+  .placement-chart-legend {
+    justify-content: flex-start;
+    gap: 0.5rem;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  .table-shell,
+  .smart-table,
+  .ai-table {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .smart-row {
+    min-width: 44rem;
+    padding: 0.72rem;
+    gap: 0.6rem;
+    font-size: 0.84rem;
+  }
+
+  .row-actions {
+    gap: 0.4rem;
+  }
+
+  .row-actions button {
+    min-height: 2.25rem;
+    padding-inline: 0.62rem;
+  }
+
+  .table-meta,
+  .pagination {
+    gap: 0.55rem;
+    font-size: 0.76rem;
+  }
+
+  .modal-backdrop {
+    align-items: stretch;
+    justify-content: center;
+    padding: 0.75rem;
+    overflow: auto;
+  }
+
+  .modal-card,
+  .confirm-card {
+    width: min(100%, 31rem);
+    max-height: calc(100dvh - 1.5rem);
+    padding: 1rem;
+    border-radius: 1rem;
+    overflow-y: auto;
+  }
+
+  .form-grid,
+  .details-grid,
+  .readiness-mini-grid,
+  .ai-fact-grid,
+  .ai-mini-metrics {
+    grid-template-columns: 1fr !important;
+  }
+
+  .smart-ai-fab {
+    right: calc(0.9rem + env(safe-area-inset-right));
+    bottom: calc(1rem + env(safe-area-inset-bottom));
+    min-height: 3rem;
+    padding: 0 0.9rem;
+    border-radius: 999px;
+  }
+
+  .smart-ai-fab span {
+    width: 1.85rem;
+    height: 1.85rem;
+  }
+
+  .smart-ai-fab strong {
+    font-size: 0.82rem;
+  }
+
+  .smart-ai-drawer {
+    width: 100vw;
+    max-width: 100vw;
+    height: 100dvh;
+    padding: 0.95rem;
+    border-left: 0;
+  }
+
+  .smart-ai-drawer-head {
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .smart-ai-suggestions,
+  .smart-ai-card-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .dashboard-header,
+  .dashboard,
+  .dashboard-scroll {
+    padding-inline: 0.7rem;
+  }
+
+  .sidebar {
+    padding-inline: 0.7rem;
+  }
+
+  .brand small {
+    max-width: 10.5rem;
+  }
+
+  .profile-trigger {
+    max-width: 3.3rem;
+    padding-inline: 0.45rem;
+  }
+
+  .profile-copy {
+    display: none;
+  }
+
+  .profile-arrow {
+    font-size: 0.9rem;
+  }
+
+  .top-actions {
+    justify-content: flex-end;
+  }
+
+  .theme-icon-toggle {
+    min-width: 4.9rem;
+  }
+
+  .hero-panel,
+  .panel,
+  .page-header,
+  .kpi-card,
+  .dashboard-actions,
+  .smart-ai-strip {
+    border-radius: 0.92rem;
+  }
+
+  .smart-row {
+    min-width: 38rem;
+  }
+
+  .placement-chart-legend {
+    font-size: 0.68rem;
+  }
+
+  .smart-ai-fab {
+    width: 3.35rem;
+    height: 3.35rem;
+    min-height: 3.35rem;
+    justify-content: center;
+    padding: 0;
+  }
+
+  .smart-ai-fab strong {
+    display: none;
+  }
+}
+
+@media (max-width: 360px) {
+  .dashboard-header,
+  .dashboard,
+  .dashboard-scroll,
+  .sidebar {
+    padding-inline: 0.6rem;
+  }
+
+  .brand strong {
+    font-size: 0.86rem;
+  }
+
+  .brand small {
+    max-width: 8.5rem;
+  }
+
+  .nav-list a,
+  .nav-list button,
+  .sidebar-nav button {
+    min-height: 2.35rem;
+    padding-inline: 0.66rem;
+    font-size: 0.76rem;
+  }
+
+  .top-action,
+  .theme-icon-toggle,
+  .notification-action,
+  .profile-trigger {
+    min-height: 2.45rem;
+  }
+}

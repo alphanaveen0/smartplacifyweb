@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useAuth } from "../context/AuthContext.jsx";
 
 function roleCard(user) {
@@ -39,21 +39,41 @@ function roleCard(user) {
 
 export function Layout({ navItems, activeRoute, onNavigate, header, children }) {
   const { user, logout } = useAuth();
+  const [mobileNavOpen, setMobileNavOpen] = useState(false);
   const card = roleCard(user);
+  const activeLabel = navItems.find((item) => item.id === activeRoute)?.label || "Dashboard";
+
+  function navigateTo(routeId) {
+    setMobileNavOpen(false);
+    onNavigate(routeId);
+  }
 
   return (
     <div className="app-shell">
       <aside className="sidebar">
-        <button className="brand brand-button" type="button" onClick={() => onNavigate("dashboard")}>
-          <span className="brand-mark">S</span>
-          <span>
-            <strong>SmartPlacify</strong>
-            <small>Smarter Placements. Brighter Futures.</small>
-          </span>
-        </button>
-        <nav className="nav-list sidebar-nav">
+        <div className="mobile-sidebar-head">
+          <button className="brand brand-button" type="button" onClick={() => navigateTo("dashboard")}>
+            <span className="brand-mark">S</span>
+            <span>
+              <strong>SmartPlacify</strong>
+              <small>Smarter Placements. Brighter Futures.</small>
+            </span>
+          </button>
+          <button
+            className="mobile-menu-toggle"
+            type="button"
+            aria-label={mobileNavOpen ? "Close navigation menu" : "Open navigation menu"}
+            aria-expanded={mobileNavOpen}
+            onClick={() => setMobileNavOpen((current) => !current)}
+          >
+            <span aria-hidden="true">{mobileNavOpen ? "×" : "☰"}</span>
+            <small>{activeLabel}</small>
+          </button>
+        </div>
+        {mobileNavOpen ? <button className="mobile-nav-backdrop" type="button" aria-label="Close navigation menu" onClick={() => setMobileNavOpen(false)} /> : null}
+        <nav className={`nav-list sidebar-nav${mobileNavOpen ? " mobile-open" : ""}`} aria-label="Primary navigation">
           {navItems.map((item) => (
-            <button key={item.id} className={activeRoute === item.id ? "active" : ""} onClick={() => onNavigate(item.id)} type="button">
+            <button key={item.id} className={activeRoute === item.id ? "active" : ""} onClick={() => navigateTo(item.id)} type="button">
               <span>{item.icon}</span> {item.label}
             </button>
           ))}
@@ -67,7 +87,7 @@ export function Layout({ navItems, activeRoute, onNavigate, header, children }) 
             <strong>{card.title}</strong>
             <small>{card.description}</small>
           </div>
-          <button type="button" onClick={() => onNavigate(card.route)}>{card.action}</button>
+          <button type="button" onClick={() => navigateTo(card.route)}>{card.action}</button>
         </section>
         <section className="profile-card">
           <span className="avatar">{user?.name?.slice(0, 2).toUpperCase() || "SP"}</span>

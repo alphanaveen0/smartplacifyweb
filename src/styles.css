@@ -7585,3 +7585,206 @@ body {
     min-height: 2.45rem;
   }
 }
+
+.mobile-sidebar-head {
+  display: contents;
+}
+
+.mobile-menu-toggle,
+.mobile-nav-backdrop {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .auth-page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 100dvh;
+    padding: max(1rem, env(safe-area-inset-top)) 1rem max(1rem, env(safe-area-inset-bottom));
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  .auth-card {
+    width: min(100%, 26.25rem);
+    max-width: calc(100vw - 2rem);
+    margin: auto;
+    gap: 0.9rem;
+    padding: clamp(1.2rem, 5vw, 1.65rem);
+    overflow: visible;
+  }
+
+  .auth-card h1 {
+    font-size: clamp(1.65rem, 7vw, 2rem);
+    line-height: 1.08;
+  }
+
+  .auth-card input,
+  .auth-card select,
+  .password-field button,
+  .demo-grid button {
+    min-height: 2.75rem;
+  }
+
+  .password-field {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .demo-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .mobile-sidebar-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    width: 100%;
+    min-width: 0;
+  }
+
+  .mobile-menu-toggle {
+    position: relative;
+    z-index: 120;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.45rem;
+    min-width: 3rem;
+    min-height: 2.6rem;
+    padding: 0 0.72rem;
+    border: 1px solid var(--line);
+    border-radius: 0.85rem;
+    color: var(--text);
+    background: var(--card);
+    box-shadow: 0 12px 28px rgba(15, 23, 42, 0.1);
+    font-weight: 900;
+  }
+
+  .mobile-menu-toggle span {
+    font-size: 1.1rem;
+    line-height: 1;
+  }
+
+  .mobile-menu-toggle small {
+    max-width: 4.8rem;
+    overflow: hidden;
+    color: var(--muted);
+    font-size: 0.68rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .mobile-nav-backdrop {
+    position: fixed;
+    z-index: 90;
+    inset: 0;
+    display: block;
+    width: 100%;
+    min-height: 100dvh;
+    border: 0;
+    background: rgba(2, 6, 23, 0.42);
+  }
+
+  .sidebar .sidebar-nav {
+    position: fixed;
+    z-index: 110;
+    top: calc(4.05rem + env(safe-area-inset-top));
+    right: 0.85rem;
+    left: 0.85rem;
+    display: none;
+    grid-template-columns: 1fr;
+    max-height: min(74dvh, 34rem);
+    margin: 0;
+    padding: 0.75rem;
+    overflow-x: hidden;
+    overflow-y: auto;
+    border: 1px solid var(--line);
+    border-radius: 1rem;
+    background: var(--card);
+    box-shadow: 0 24px 70px rgba(2, 6, 23, 0.34);
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .sidebar .sidebar-nav.mobile-open {
+    display: grid;
+  }
+
+  .sidebar .sidebar-nav button {
+    justify-content: flex-start;
+    width: 100%;
+    min-height: 2.8rem;
+    padding: 0 0.85rem;
+    border-radius: 0.8rem;
+    font-size: 0.9rem;
+  }
+
+  .sidebar .sidebar-nav span {
+    display: inline-grid;
+    width: 1.7rem;
+    min-width: 1.7rem;
+    place-items: center;
+  }
+
+  .topbar,
+  .top-actions,
+  .profile-menu,
+  .dashboard-header {
+    overflow: visible;
+  }
+
+  .dashboard-header {
+    z-index: 70;
+  }
+
+  .profile-menu {
+    position: relative;
+    z-index: 130;
+  }
+
+  .profile-trigger {
+    min-width: 2.85rem;
+    min-height: 2.85rem;
+    touch-action: manipulation;
+  }
+
+  .profile-dropdown {
+    position: fixed;
+    top: calc(7rem + env(safe-area-inset-top));
+    right: max(0.8rem, env(safe-area-inset-right));
+    left: auto;
+    z-index: 1000;
+    width: min(15rem, calc(100vw - 1.6rem));
+    max-width: calc(100vw - 1.6rem);
+    min-width: 0;
+    border-radius: 1rem;
+  }
+
+  .profile-dropdown button {
+    min-height: 2.75rem;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 768px) and (max-height: 680px) {
+  .auth-page {
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 430px) {
+  .mobile-menu-toggle small {
+    display: none;
+  }
+
+  .mobile-menu-toggle {
+    padding-inline: 0.8rem;
+  }
+
+  .auth-page {
+    padding-inline: 1rem;
+  }
+}

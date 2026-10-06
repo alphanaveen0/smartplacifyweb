@@ -1,3 +1,5 @@
+import React from "react";
+
 export function Button({ className = "", variant = "primary", ...props }) {
   return <button className={`btn ${variant} ${className}`.trim()} type={props.type || "button"} {...props} />;
 }
@@ -83,4 +85,3 @@ export function FileUpload({ label, error, ...props }) {
     </label>
   );
 }
-

@@ -1,3 +1,5 @@
+import React from "react";
+
 export function ConfirmDialogView({ confirm, onCancel, onConfirm }) {
   if (!confirm) return null;
 
@@ -14,4 +16,3 @@ export function ConfirmDialogView({ confirm, onCancel, onConfirm }) {
     </div>
   );
 }
-

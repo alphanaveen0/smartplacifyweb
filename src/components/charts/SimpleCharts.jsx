@@ -1,3 +1,5 @@
+import React from "react";
+
 export function BarChart({ items = [] }) {
   const rawMax = Math.max(1, ...items.map((item) => Number(item.applications || item.value || 0)));
   const roughStep = rawMax / 4;

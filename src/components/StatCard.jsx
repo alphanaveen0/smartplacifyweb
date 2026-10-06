@@ -1,3 +1,5 @@
+import React from "react";
+
 export function StatCard({ label, value, icon, tone = "purple", trend }) {
   const isTextValue = typeof value === "string" && value.length > 6;
 

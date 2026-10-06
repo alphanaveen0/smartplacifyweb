@@ -1,3 +1,5 @@
+import React from "react";
+
 export function LoadingState({ label = "Loading..." }) {
   return <div className="empty-state loading-state">{label}</div>;
 }
@@ -25,4 +27,3 @@ export function Toast({ toast, onClose }) {
     </div>
   );
 }
-

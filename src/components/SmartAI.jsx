@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { smartAIService } from "../services/smartAIService.js";
 
 function roleLabel(role) {

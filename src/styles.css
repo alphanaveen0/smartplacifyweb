@@ -7041,7 +7041,8 @@ body {
     width: 100%;
     min-height: 100dvh;
     padding: max(1rem, env(safe-area-inset-top)) 1rem max(1rem, env(safe-area-inset-bottom));
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: auto;
     background:
       radial-gradient(circle at 24% 6%, rgba(16, 185, 129, 0.14), transparent 14rem),
       radial-gradient(circle at 84% 92%, rgba(45, 212, 191, 0.08), transparent 14rem),
@@ -7139,6 +7140,73 @@ body {
 
   .auth-link {
     color: #34d399;
+  }
+
+  @media (max-height: 760px) {
+    .auth-page {
+      align-items: flex-start;
+      padding-block: max(0.65rem, env(safe-area-inset-top)) max(0.65rem, env(safe-area-inset-bottom));
+    }
+
+    .auth-card {
+      gap: 0.52rem;
+      padding: 0.95rem;
+      border-radius: 1.1rem;
+    }
+
+    .auth-card .brand-mark {
+      width: 2.35rem;
+      height: 2.35rem;
+      margin-bottom: 0.28rem;
+      border-radius: 0.72rem;
+      font-size: 1.05rem;
+    }
+
+    .auth-card h1 {
+      font-size: 1.32rem;
+      line-height: 1.04;
+    }
+
+    .auth-card p {
+      font-size: 0.78rem;
+      line-height: 1.2;
+    }
+
+    .auth-card input,
+    .auth-card select,
+    .password-field input,
+    .password-field button,
+    .auth-card .primary-action {
+      min-height: 2.5rem;
+      border-radius: 0.72rem;
+      font-size: 0.82rem;
+      padding: 0.58rem 0.75rem;
+    }
+
+    .password-field {
+      gap: 0.42rem;
+    }
+
+    .demo-grid {
+      gap: 0.32rem;
+    }
+
+    .demo-grid button,
+    .auth-card .link-button {
+      min-height: 2.28rem;
+      border-radius: 0.7rem;
+      font-size: 0.78rem;
+    }
+
+    .auth-link {
+      min-height: 1.35rem;
+      font-size: 0.86rem;
+    }
+
+    .auth-card > small {
+      font-size: 0.72rem;
+      line-height: 1.15;
+    }
   }
 
   /* App shell and mobile header */

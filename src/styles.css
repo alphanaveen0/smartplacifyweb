@@ -7591,7 +7591,7 @@ body {
 }
 
 .mobile-menu-toggle,
-.mobile-back-button,
+.mobile-back-row,
 .mobile-nav-backdrop {
   display: none;
 }
@@ -7792,8 +7792,6 @@ body {
 
 @media (max-width: 768px) {
   .sidebar {
-    position: sticky;
-    top: 0;
     z-index: 120;
     overflow: visible;
     padding-top: calc(0.72rem + env(safe-area-inset-top));
@@ -7804,51 +7802,48 @@ body {
     overflow: visible;
   }
 
-  .sidebar.has-mobile-back .brand-button {
-    display: none;
+  .mobile-menu-toggle {
+    flex: 0 0 auto;
   }
 
-  .sidebar.has-mobile-back .mobile-back-button {
-    display: inline-flex;
-  }
-
-  .mobile-back-button {
-    align-items: center;
-    flex: 1 1 auto;
-    gap: 0.55rem;
+  .mobile-back-row {
+    display: block;
+    width: 100%;
+    max-width: 100%;
     min-width: 0;
-    min-height: 2.7rem;
-    padding: 0 0.15rem;
+    margin: 0 0 0.75rem;
+    overflow: hidden;
+  }
+
+  .mobile-back-row button {
+    display: inline-flex;
+    align-items: center;
+    max-width: 100%;
+    min-width: 0;
+    min-height: 2.75rem;
+    gap: 0.55rem;
+    padding: 0 0.8rem;
+    border: 1px solid var(--line);
+    border-radius: 0.9rem;
     color: var(--text);
-    background: transparent;
+    background: var(--card);
+    box-shadow: 0 10px 26px rgba(15, 23, 42, 0.08);
     text-align: left;
   }
 
-  .mobile-back-button span {
-    display: inline-grid;
-    flex: 0 0 2.35rem;
-    width: 2.35rem;
-    height: 2.35rem;
-    place-items: center;
-    border: 1px solid var(--line);
-    border-radius: 0.75rem;
-    background: var(--card);
-    font-size: 1.05rem;
+  .mobile-back-row span {
+    flex: 0 0 auto;
+    font-size: 1.08rem;
     font-weight: 900;
   }
 
-  .mobile-back-button strong {
+  .mobile-back-row strong {
     min-width: 0;
     overflow: hidden;
-    font-size: 1rem;
+    font-size: 0.94rem;
     font-weight: 900;
-    line-height: 1.1;
     text-overflow: ellipsis;
     white-space: nowrap;
-  }
-
-  .mobile-menu-toggle {
-    flex: 0 0 auto;
   }
 
   .dashboard-header,

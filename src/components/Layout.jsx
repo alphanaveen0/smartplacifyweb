@@ -83,14 +83,8 @@ export function Layout({ navItems, activeRoute, onNavigate, header, children }) 
 
   return (
     <div className="app-shell">
-      <aside className={`sidebar${showMobileBack ? " has-mobile-back" : ""}`}>
+      <aside className="sidebar">
         <div className="mobile-sidebar-head">
-          {showMobileBack ? (
-            <button className="mobile-back-button" type="button" onClick={goBack} aria-label={`Back from ${mobileTitle}`}>
-              <span aria-hidden="true">←</span>
-              <strong>{mobileTitle}</strong>
-            </button>
-          ) : null}
           <button className="brand brand-button" type="button" onClick={() => navigateTo("dashboard")}>
             <span className="brand-mark">S</span>
             <span>
@@ -139,7 +133,17 @@ export function Layout({ navItems, activeRoute, onNavigate, header, children }) 
       </aside>
       <main className="main-area">
         {header ? <div className="dashboard-header">{header}</div> : null}
-        <div className="dashboard dashboard-scroll">{children}</div>
+        <div className="dashboard dashboard-scroll">
+          {showMobileBack ? (
+            <nav className="mobile-back-row" aria-label="Mobile back navigation">
+              <button type="button" onClick={goBack} aria-label={`Back from ${mobileTitle}`}>
+                <span aria-hidden="true">←</span>
+                <strong>{mobileTitle}</strong>
+              </button>
+            </nav>
+          ) : null}
+          {children}
+        </div>
       </main>
     </div>
   );

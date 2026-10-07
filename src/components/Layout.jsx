@@ -95,9 +95,9 @@ export function Layout({ navItems, activeRoute, onNavigate, header, mobileAction
     <div className={`app-shell${mobileNavOpen ? " mobile-nav-open" : ""}`}>
       <aside className="sidebar">
         <button className="brand brand-button desktop-sidebar-brand" type="button" onClick={() => navigateTo("dashboard")}>
-          <span className="brand-mark">S</span>
+          <span className="brand-mark" aria-hidden="true">S</span>
           <span>
-            <strong>SmartPlacify</strong>
+            <strong><span>Smart</span><span>Placify</span></strong>
             <small>Smarter Placements. Brighter Futures.</small>
           </span>
         </button>
@@ -112,9 +112,9 @@ export function Layout({ navItems, activeRoute, onNavigate, header, mobileAction
             <span aria-hidden="true">☰</span>
           </button>
           <button className="brand brand-button" type="button" onClick={() => navigateTo("dashboard")}>
-            <span className="brand-mark">S</span>
+            <span className="brand-mark" aria-hidden="true">S</span>
             <span>
-              <strong>SmartPlacify</strong>
+              <strong><span>Smart</span><span>Placify</span></strong>
               <small>Smarter Placements. Brighter Futures.</small>
             </span>
           </button>

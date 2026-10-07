@@ -92,11 +92,13 @@ export function MobileNavDrawer({ user, navItems, activeRoute, isOpen, onClose, 
       {isOpen ? <button className="mobile-nav-backdrop" type="button" aria-label="Close navigation menu" onClick={onClose} /> : null}
       <nav className={`mobile-nav-drawer${isOpen ? " open" : ""}`} aria-label="Mobile navigation" aria-hidden={!isOpen}>
         <div className="mobile-drawer-head">
-          <span className="brand-mark">S</span>
-          <span>
-            <strong>SmartPlacify</strong>
-            <small>Smarter Placements. Brighter Futures.</small>
-          </span>
+          <div className="brand drawer-brand-card">
+            <span className="brand-mark" aria-hidden="true">S</span>
+            <span>
+              <strong><span>Smart</span><span>Placify</span></strong>
+              <small>Smarter Placements. Brighter Futures.</small>
+            </span>
+          </div>
           <button type="button" aria-label="Close navigation menu" onClick={onClose}>×</button>
         </div>
 

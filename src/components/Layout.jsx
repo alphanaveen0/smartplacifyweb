@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext.jsx";
 
 function roleCard(user) {
@@ -37,21 +38,59 @@ function roleCard(user) {
   };
 }
 
+function singularLabel(label) {
+  const labels = {
+    Companies: "Company",
+    Applications: "Application",
+    Interviews: "Interview",
+    Reports: "Report",
+    Students: "Student",
+    Jobs: "Job"
+  };
+  return labels[label] || label.replace(/s$/, "");
+}
+
 export function Layout({ navItems, activeRoute, onNavigate, header, children }) {
   const { user, logout } = useAuth();
+  const routerNavigate = useNavigate();
+  const location = useLocation();
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
   const card = roleCard(user);
   const activeLabel = navItems.find((item) => item.id === activeRoute)?.label || "Dashboard";
+  const pathParts = location.pathname.split("/").filter(Boolean);
+  const isRootDashboard = pathParts[1] === "dashboard" && pathParts.length === 2;
+  const showMobileBack = !isRootDashboard;
+  const mobileTitle = pathParts[2] === "create"
+    ? `Create ${singularLabel(activeLabel)}`
+    : pathParts.length > 2
+      ? `${singularLabel(activeLabel)} Details`
+      : activeLabel;
 
   function navigateTo(routeId) {
     setMobileNavOpen(false);
     onNavigate(routeId);
   }
 
+  function goBack() {
+    setMobileNavOpen(false);
+    const fallback = `/${user?.role || "tpo"}/dashboard`;
+    if (window.history.state?.idx > 0) {
+      routerNavigate(-1);
+    } else {
+      routerNavigate(fallback, { replace: true });
+    }
+  }
+
   return (
     <div className="app-shell">
-      <aside className="sidebar">
+      <aside className={`sidebar${showMobileBack ? " has-mobile-back" : ""}`}>
         <div className="mobile-sidebar-head">
+          {showMobileBack ? (
+            <button className="mobile-back-button" type="button" onClick={goBack} aria-label={`Back from ${mobileTitle}`}>
+              <span aria-hidden="true">←</span>
+              <strong>{mobileTitle}</strong>
+            </button>
+          ) : null}
           <button className="brand brand-button" type="button" onClick={() => navigateTo("dashboard")}>
             <span className="brand-mark">S</span>
             <span>

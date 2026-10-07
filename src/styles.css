@@ -7591,6 +7591,7 @@ body {
 }
 
 .mobile-menu-toggle,
+.mobile-back-button,
 .mobile-nav-backdrop {
   display: none;
 }
@@ -7786,5 +7787,91 @@ body {
 
   .auth-page {
     padding-inline: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    position: sticky;
+    top: 0;
+    z-index: 120;
+    overflow: visible;
+    padding-top: calc(0.72rem + env(safe-area-inset-top));
+  }
+
+  .mobile-sidebar-head {
+    max-width: 100%;
+    overflow: visible;
+  }
+
+  .sidebar.has-mobile-back .brand-button {
+    display: none;
+  }
+
+  .sidebar.has-mobile-back .mobile-back-button {
+    display: inline-flex;
+  }
+
+  .mobile-back-button {
+    align-items: center;
+    flex: 1 1 auto;
+    gap: 0.55rem;
+    min-width: 0;
+    min-height: 2.7rem;
+    padding: 0 0.15rem;
+    color: var(--text);
+    background: transparent;
+    text-align: left;
+  }
+
+  .mobile-back-button span {
+    display: inline-grid;
+    flex: 0 0 2.35rem;
+    width: 2.35rem;
+    height: 2.35rem;
+    place-items: center;
+    border: 1px solid var(--line);
+    border-radius: 0.75rem;
+    background: var(--card);
+    font-size: 1.05rem;
+    font-weight: 900;
+  }
+
+  .mobile-back-button strong {
+    min-width: 0;
+    overflow: hidden;
+    font-size: 1rem;
+    font-weight: 900;
+    line-height: 1.1;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .mobile-menu-toggle {
+    flex: 0 0 auto;
+  }
+
+  .dashboard-header,
+  .topbar,
+  .top-actions,
+  .profile-menu {
+    overflow: visible;
+  }
+
+  .dashboard-header {
+    position: relative;
+    z-index: 80;
+  }
+
+  .profile-menu {
+    z-index: 130;
+  }
+
+  .profile-dropdown {
+    z-index: 1000;
+  }
+
+  .sidebar .sidebar-nav {
+    top: calc(4.05rem + env(safe-area-inset-top));
   }
 }

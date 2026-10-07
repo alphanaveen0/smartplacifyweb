@@ -6897,7 +6897,7 @@ body {
     min-height: 1.85rem;
     padding: 0.35rem 0.7rem;
     border-radius: 999px;
-    background: rgba(99, 102, 241, 0.14);
+    background: rgba(16, 185, 129, 0.12);
   }
 }
 
@@ -6937,7 +6937,7 @@ body {
   min-height: 1.65rem;
   padding: 0.3rem 0.62rem;
   border-radius: 999px;
-  background: rgba(99, 102, 241, 0.14);
+  background: rgba(16, 185, 129, 0.12);
   font-size: 0.74rem;
   line-height: 1;
 }
@@ -6970,7 +6970,7 @@ body {
   min-height: 2.1rem;
   padding: 0.4rem 0.7rem;
   border-radius: 999px;
-  background: rgba(99, 102, 241, 0.14);
+  background: rgba(16, 185, 129, 0.12);
 }
 
 .readiness-side-card .readiness-ring strong,
@@ -7024,17 +7024,22 @@ body {
   }
 
   [data-theme="light"] body {
-    --mobile-bg: #f7f8fc;
+    --blue: #0f766e;
+    --cyan: #059669;
+    --green: #059669;
+    --purple: #0f766e;
+    --violet: #0f766e;
+    --mobile-bg: #f7f7f2;
     --mobile-surface: #ffffff;
     --mobile-card: #ffffff;
-    --mobile-card-2: #f1f5ff;
-    --mobile-line: #e2e8f0;
-    --mobile-text: #0f172a;
-    --mobile-muted: #64748b;
+    --mobile-card-2: #f0fdfa;
+    --mobile-line: rgba(15, 118, 110, 0.14);
+    --mobile-text: #111827;
+    --mobile-muted: #52645e;
     background:
-      radial-gradient(circle at 16% -6%, rgba(99, 102, 241, 0.12), transparent 15rem),
-      radial-gradient(circle at 92% 2%, rgba(236, 72, 153, 0.08), transparent 12rem),
-      #f7f8fc;
+      radial-gradient(circle at 16% -6%, rgba(15, 118, 110, 0.1), transparent 15rem),
+      radial-gradient(circle at 92% 2%, rgba(217, 154, 43, 0.1), transparent 12rem),
+      #f7f7f2;
     color: var(--mobile-text);
   }
 
@@ -7056,9 +7061,8 @@ body {
 
   [data-theme="light"] .auth-page {
     background:
-      radial-gradient(circle at 24% 6%, rgba(99, 102, 241, 0.12), transparent 14rem),
-      radial-gradient(circle at 84% 92%, rgba(236, 72, 153, 0.08), transparent 14rem),
-      #f7f8fc;
+      radial-gradient(circle at 24% 6%, rgba(15, 118, 110, 0.12), transparent 14rem),
+      #f7f7f2;
   }
 
   .auth-card {
@@ -7069,7 +7073,7 @@ body {
     padding: 1.45rem;
     border: 1px solid var(--mobile-line);
     border-radius: 1.35rem;
-    background: linear-gradient(180deg, rgba(8, 32, 28, 0.97), rgba(4, 23, 19, 0.97));
+    background: #15121f;
     box-shadow: 0 22px 68px rgba(0, 0, 0, 0.28);
   }
 
@@ -7129,6 +7133,10 @@ body {
     border-radius: 0.9rem;
     background: linear-gradient(135deg, #6366f1, #8b5cf6);
     font-size: 0.98rem;
+  }
+
+  [data-theme="light"] .auth-card .primary-action {
+    background: linear-gradient(135deg, #059669, #10b981);
   }
 
   .demo-grid {
@@ -7493,7 +7501,7 @@ body {
     width: 1.85rem;
     height: 1.85rem;
     flex-basis: 1.85rem;
-    border-color: rgba(99, 102, 241, 0.32);
+    border-color: rgba(45, 212, 191, 0.32);
   }
 
   .profile-dropdown {
@@ -7647,7 +7655,7 @@ body {
     width: 2.65rem;
     height: 2.65rem;
     place-items: center;
-    border: 1px solid rgba(99, 102, 241, 0.16);
+    border: 1px solid rgba(45, 212, 191, 0.14);
     border-radius: 999px;
     color: #f4f7f6;
     background: rgba(255, 255, 255, 0.05);
@@ -7662,11 +7670,11 @@ body {
     min-height: 4.5rem;
     margin: 1rem 0 0.95rem;
     padding: 0.86rem;
-    border: 1px solid rgba(99, 102, 241, 0.16);
+    border: 1px solid rgba(45, 212, 191, 0.14);
     border-radius: 1.08rem;
     background:
-      radial-gradient(circle at 8% 20%, rgba(99, 102, 241, 0.16), transparent 7rem),
-      rgba(139, 92, 246, 0.08);
+      radial-gradient(circle at 8% 20%, rgba(52, 211, 153, 0.16), transparent 7rem),
+      rgba(16, 185, 129, 0.08);
     text-align: left;
   }
 
@@ -7707,8 +7715,8 @@ body {
 
   .mobile-drawer-nav button.active {
     color: #ecfdf5;
-    border-color: rgba(99, 102, 241, 0.22);
-    background: linear-gradient(135deg, rgba(79, 70, 229, 0.98), rgba(139, 92, 246, 0.9));
+    border-color: rgba(45, 212, 191, 0.18);
+    background: linear-gradient(135deg, rgba(4, 120, 87, 0.98), rgba(16, 185, 129, 0.9));
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
   }
 
@@ -7932,8 +7940,8 @@ body {
     min-height: 2.35rem;
     padding: 0 0.82rem;
     border-radius: 999px;
-    color: var(--mobile-primary);
-    background: rgba(99, 102, 241, 0.14);
+    color: #7fffd4;
+    background: rgba(16, 185, 129, 0.1);
   }
 
   /* Charts */
@@ -8181,7 +8189,7 @@ body {
     justify-content: center;
     padding: 0;
     border-radius: 999px;
-    box-shadow: 0 18px 42px rgba(99, 102, 241, 0.26);
+    box-shadow: 0 18px 42px rgba(16, 185, 129, 0.24);
   }
 
   .smart-ai-fab span {
@@ -8199,360 +8207,6 @@ body {
     height: 100dvh;
     padding: 1rem;
     border-left: 0;
-  }
-}
-
-/* Mobile-only Indigo/Purple visual theme. Desktop styles remain untouched. */
-@media (max-width: 768px) {
-  :root {
-    --mobile-bg: #081220;
-    --mobile-surface: #0f1f2f;
-    --mobile-card: #0f1f2f;
-    --mobile-card-2: #13283d;
-    --mobile-card-3: #172e46;
-    --mobile-line: rgba(148, 163, 184, 0.16);
-    --mobile-text: #f8fafc;
-    --mobile-muted: #94a3b8;
-    --mobile-primary: #818cf8;
-    --mobile-primary-deep: #6366f1;
-    --mobile-secondary: #a855f7;
-    --mobile-accent: #a855f7;
-    --mobile-success: #3b82f6;
-    --mobile-warning: #f59e0b;
-    --mobile-error: #f87171;
-    --mobile-gradient: linear-gradient(135deg, #4f46e5 0%, #6366f1 45%, #8b5cf6 100%);
-    --mobile-soft-gradient: linear-gradient(135deg, rgba(79, 70, 229, 0.32), rgba(139, 92, 246, 0.22));
-    --mobile-shadow: 0 16px 42px rgba(0, 0, 0, 0.22);
-  }
-
-  [data-theme="light"] body,
-  [data-theme="light"] {
-    --mobile-bg: #f7f8fc;
-    --mobile-surface: #ffffff;
-    --mobile-card: #ffffff;
-    --mobile-card-2: #f1f5ff;
-    --mobile-card-3: #eef2ff;
-    --mobile-line: #e2e8f0;
-    --mobile-text: #0f172a;
-    --mobile-muted: #64748b;
-    --mobile-primary: #6366f1;
-    --mobile-primary-deep: #4f46e5;
-    --mobile-secondary: #8b5cf6;
-    --mobile-accent: #ec4899;
-    --mobile-success: #3882f6;
-    --mobile-warning: #f59e0b;
-    --mobile-error: #ef4444;
-    --mobile-soft-gradient: linear-gradient(135deg, rgba(99, 102, 241, 0.12), rgba(139, 92, 246, 0.08));
-    --mobile-shadow: 0 14px 34px rgba(15, 23, 42, 0.08);
-  }
-
-  body {
-    background:
-      radial-gradient(circle at 16% -6%, rgba(99, 102, 241, 0.18), transparent 15rem),
-      radial-gradient(circle at 92% 2%, rgba(168, 85, 247, 0.12), transparent 12rem),
-      var(--mobile-bg);
-    color: var(--mobile-text);
-  }
-
-  [data-theme="light"] body {
-    background:
-      radial-gradient(circle at 16% -6%, rgba(99, 102, 241, 0.12), transparent 15rem),
-      radial-gradient(circle at 92% 2%, rgba(236, 72, 153, 0.08), transparent 12rem),
-      var(--mobile-bg);
-  }
-
-  .auth-page {
-    background:
-      radial-gradient(circle at 24% 6%, rgba(99, 102, 241, 0.18), transparent 14rem),
-      radial-gradient(circle at 84% 92%, rgba(168, 85, 247, 0.12), transparent 14rem),
-      var(--mobile-bg);
-  }
-
-  [data-theme="light"] .auth-page {
-    background:
-      radial-gradient(circle at 24% 6%, rgba(99, 102, 241, 0.12), transparent 14rem),
-      radial-gradient(circle at 84% 92%, rgba(236, 72, 153, 0.08), transparent 14rem),
-      var(--mobile-bg);
-  }
-
-  .auth-card,
-  [data-theme="light"] .auth-card {
-    border-color: var(--mobile-line);
-    background: var(--mobile-card);
-    box-shadow: var(--mobile-shadow);
-  }
-
-  .auth-card .brand-mark,
-  .brand-mark,
-  .mobile-drawer-user .avatar,
-  .profile-dp,
-  .avatar,
-  .smart-ai-fab,
-  .smart-ai-fab span {
-    background: var(--mobile-gradient);
-    color: #ffffff;
-  }
-
-  .auth-card input,
-  .auth-card select,
-  .password-field input,
-  .password-field button,
-  .filter-bar select,
-  .field input,
-  .field select,
-  .field textarea,
-  .form-grid input,
-  .form-grid select,
-  .form-grid textarea,
-  .settings-form input,
-  .settings-form select,
-  .panel select {
-    border-color: var(--mobile-line);
-    background: var(--mobile-surface);
-    color: var(--mobile-text);
-  }
-
-  .auth-card input:focus,
-  .auth-card select:focus,
-  .password-field input:focus,
-  .search:focus-within,
-  .field input:focus,
-  .field select:focus,
-  .field textarea:focus,
-  .form-grid input:focus,
-  .form-grid select:focus,
-  .form-grid textarea:focus {
-    border-color: var(--mobile-primary);
-    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.16);
-  }
-
-  .auth-card .primary-action,
-  .primary-action,
-  .smart-row .row-actions button.primary-action,
-  .dashboard-actions .primary-action {
-    background: var(--mobile-gradient);
-    color: #ffffff;
-    border-color: transparent;
-    box-shadow: 0 12px 28px rgba(99, 102, 241, 0.22);
-  }
-
-  .demo-grid button,
-  .auth-card .link-button,
-  .link-button,
-  .btn,
-  .filter-bar button,
-  .modal-actions button,
-  .row-actions button,
-  .panel-head button,
-  .panel-head a,
-  .mobile-back-row button {
-    border-color: var(--mobile-line);
-    background: var(--mobile-card-2);
-    color: var(--mobile-primary);
-  }
-
-  .auth-link,
-  .panel-head button,
-  .panel-head a {
-    color: var(--mobile-primary);
-  }
-
-  .sidebar,
-  [data-theme="light"] .sidebar {
-    background: color-mix(in srgb, var(--mobile-surface) 92%, transparent);
-    border-color: var(--mobile-line);
-  }
-
-  .mobile-menu-toggle,
-  .mobile-theme-toggle,
-  .notification-action,
-  .profile-trigger,
-  [data-theme="light"] .mobile-menu-toggle,
-  [data-theme="light"] .mobile-theme-toggle,
-  [data-theme="light"] .notification-action,
-  [data-theme="light"] .profile-trigger {
-    border-color: var(--mobile-line);
-    background: var(--mobile-surface);
-    color: var(--mobile-text);
-    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
-  }
-
-  .mobile-theme-toggle span.active,
-  .theme-emoji.active {
-    background: rgba(99, 102, 241, 0.16);
-    color: var(--mobile-primary);
-  }
-
-  .notification-action sup,
-  .mobile-header-actions sup {
-    background: var(--mobile-accent);
-    color: #ffffff;
-    border-color: var(--mobile-bg);
-  }
-
-  .search,
-  [data-theme="light"] .search {
-    border-color: var(--mobile-line);
-    background: var(--mobile-surface);
-    color: var(--mobile-text);
-  }
-
-  .mobile-nav-backdrop {
-    background: rgba(2, 6, 23, 0.58);
-  }
-
-  .mobile-nav-drawer {
-    border-color: var(--mobile-line);
-    background:
-      radial-gradient(circle at 18% 8%, rgba(99, 102, 241, 0.18), transparent 10.5rem),
-      radial-gradient(circle at 94% 18%, rgba(139, 92, 246, 0.12), transparent 9rem),
-      var(--mobile-bg);
-    box-shadow: 28px 0 80px rgba(2, 6, 23, 0.42);
-  }
-
-  [data-theme="light"] .mobile-nav-drawer {
-    background:
-      radial-gradient(circle at 18% 8%, rgba(99, 102, 241, 0.1), transparent 10.5rem),
-      #ffffff;
-  }
-
-  .mobile-drawer-head {
-    border-color: var(--mobile-line);
-  }
-
-  .mobile-drawer-head strong,
-  .mobile-drawer-user strong,
-  .mobile-drawer-nav button,
-  .mobile-drawer-actions button {
-    color: var(--mobile-text);
-  }
-
-  .mobile-drawer-head small,
-  .mobile-drawer-user small {
-    color: var(--mobile-muted);
-  }
-
-  .mobile-drawer-head button {
-    border-color: var(--mobile-line);
-    background: var(--mobile-card-2);
-    color: var(--mobile-text);
-  }
-
-  .mobile-drawer-user {
-    border-color: rgba(99, 102, 241, 0.18);
-    background: rgba(99, 102, 241, 0.1);
-  }
-
-  .mobile-drawer-nav button.active {
-    color: #ffffff;
-    border-color: transparent;
-    background: var(--mobile-gradient);
-  }
-
-  [data-theme="light"] .mobile-drawer-nav button.active {
-    color: #4f46e5;
-    border-color: rgba(99, 102, 241, 0.16);
-    background: rgba(99, 102, 241, 0.1);
-  }
-
-  .mobile-drawer-logout {
-    color: var(--mobile-error) !important;
-  }
-
-  .hero-panel,
-  .panel,
-  .dashboard-actions,
-  .smart-ai-strip,
-  .kpi-card,
-  .job-eligibility-groups > section,
-  .page-header,
-  [data-theme="light"] .hero-panel,
-  [data-theme="light"] .panel,
-  [data-theme="light"] .dashboard-actions,
-  [data-theme="light"] .smart-ai-strip,
-  [data-theme="light"] .kpi-card,
-  [data-theme="light"] .job-eligibility-groups > section,
-  [data-theme="light"] .page-header {
-    border-color: var(--mobile-line);
-    background: var(--mobile-card);
-    box-shadow: var(--mobile-shadow);
-  }
-
-  .hero-panel,
-  [data-theme="light"] .hero-panel {
-    background: var(--mobile-soft-gradient), var(--mobile-card);
-  }
-
-  .kpi-card .icon,
-  .ai-insight-main .ai-icon,
-  .student-ai-insight .ai-insight-main > span:first-child {
-    background: rgba(99, 102, 241, 0.14);
-    color: var(--mobile-primary);
-  }
-
-  .readiness-mini-grid button,
-  .smart-row,
-  [data-theme="light"] .smart-row,
-  .application-card-row,
-  .interview-card,
-  .activity-list li,
-  .activity-mini,
-  .season-card {
-    border-color: var(--mobile-line);
-    background: var(--mobile-card-2);
-  }
-
-  .readiness-mini-grid span,
-  .kpi-card strong,
-  .panel-head h2,
-  .page-header h1,
-  .hero-panel h1,
-  .smart-row > span,
-  .search input {
-    color: var(--mobile-text);
-  }
-
-  .readiness-mini-grid span {
-    color: var(--mobile-primary);
-  }
-
-  .placement-series-chart,
-  [data-theme="light"] .placement-series-chart {
-    border-color: var(--mobile-line);
-    background-color: var(--mobile-surface);
-  }
-
-  .smart-ai-fab {
-    box-shadow: 0 16px 38px rgba(99, 102, 241, 0.3);
-  }
-
-  .smart-ai-drawer,
-  .modal-card,
-  .confirm-card {
-    border-color: var(--mobile-line);
-    background: var(--mobile-card);
-    color: var(--mobile-text);
-  }
-
-  .badge.success,
-  .status.success,
-  .status.selected {
-    color: var(--mobile-success);
-    background: rgba(59, 130, 246, 0.12);
-  }
-
-  .badge.warning,
-  .status.warning,
-  .status.pending {
-    color: var(--mobile-warning);
-    background: rgba(245, 158, 11, 0.12);
-  }
-
-  .badge.danger,
-  .status.danger,
-  .status.rejected {
-    color: var(--mobile-error);
-    background: rgba(239, 68, 68, 0.12);
   }
 }
 
@@ -8750,275 +8404,403 @@ body {
   }
 }
 
-/* Final mobile/tablet theme lock: Indigo + Purple only below 768px. */
+/* Mobile dark only: Obsidian Plum + Tangerine */
 @media (max-width: 768px) {
-  :root {
-    --mobile-bg: #081220;
-    --mobile-surface: #0f1f2f;
-    --mobile-card: #0f1f2f;
-    --mobile-card-2: #13283d;
-    --mobile-card-3: #172e46;
-    --mobile-line: rgba(148, 163, 184, 0.16);
-    --mobile-text: #f8fafc;
-    --mobile-muted: #94a3b8;
-    --mobile-primary: #818cf8;
-    --mobile-primary-deep: #6366f1;
-    --mobile-secondary: #a855f7;
-    --mobile-accent: #a855f7;
-    --mobile-success: #3b82f6;
-    --mobile-warning: #f59e0b;
-    --mobile-error: #f87171;
-    --mobile-gradient: linear-gradient(135deg, #4f46e5 0%, #6366f1 45%, #8b5cf6 100%);
-    --mobile-soft-gradient: linear-gradient(135deg, rgba(79, 70, 229, 0.32), rgba(139, 92, 246, 0.22));
-    --mobile-shadow: 0 16px 42px rgba(0, 0, 0, 0.22);
-  }
-
-  [data-theme="light"],
-  [data-theme="light"] body {
-    --blue: #6366f1;
-    --cyan: #8b5cf6;
-    --green: #6366f1;
+  :root:not([data-theme="light"]),
+  [data-theme="dark"] {
+    --blue: #8b5cf6;
+    --cyan: #a78bfa;
+    --green: #4ade80;
     --purple: #8b5cf6;
-    --violet: #8b5cf6;
-    --mobile-bg: #f7f8fc;
-    --mobile-surface: #ffffff;
-    --mobile-card: #ffffff;
-    --mobile-card-2: #f1f5ff;
-    --mobile-card-3: #eef2ff;
-    --mobile-line: #e2e8f0;
-    --mobile-text: #0f172a;
-    --mobile-muted: #64748b;
-    --mobile-primary: #6366f1;
-    --mobile-primary-deep: #4f46e5;
-    --mobile-secondary: #8b5cf6;
-    --mobile-accent: #ec4899;
-    --mobile-success: #3882f6;
+    --violet: #7c3aed;
+    --mobile-bg: #0b0912;
+    --mobile-sidebar: #100d18;
+    --mobile-surface: #15121f;
+    --mobile-card: #15121f;
+    --mobile-card-2: #1b1726;
+    --mobile-card-3: #211b2f;
+    --mobile-line: #282238;
+    --mobile-text: #f5f3fa;
+    --mobile-muted: #a9a3b5;
+    --mobile-subtle: #777184;
+    --mobile-primary: #8b5cf6;
+    --mobile-primary-deep: #7c3aed;
+    --mobile-primary-light: #a78bfa;
+    --mobile-accent: #ff8a3d;
+    --mobile-accent-strong: #f97316;
+    --mobile-success: #4ade80;
     --mobile-warning: #f59e0b;
-    --mobile-error: #ef4444;
-    --mobile-soft-gradient: linear-gradient(135deg, rgba(99, 102, 241, 0.12), rgba(139, 92, 246, 0.08));
-    --mobile-shadow: 0 14px 34px rgba(15, 23, 42, 0.08);
+    --mobile-error: #fb7185;
+    --mobile-gradient: linear-gradient(135deg, #7c3aed 0%, #8b5cf6 100%);
+    --mobile-orange-gradient: linear-gradient(135deg, #ff8a3d 0%, #f97316 100%);
+    --mobile-hero-gradient: linear-gradient(135deg, #171226 0%, #21133a 60%, #321449 100%);
+    --mobile-shadow: 0 8px 24px rgba(0, 0, 0, 0.22);
   }
 
-  body,
-  .auth-page {
+  :root:not([data-theme="light"]) body,
+  [data-theme="dark"] body,
+  :root:not([data-theme="light"]) .auth-page,
+  [data-theme="dark"] .auth-page {
     background:
-      radial-gradient(circle at 16% -6%, rgba(99, 102, 241, 0.18), transparent 15rem),
-      radial-gradient(circle at 92% 2%, rgba(168, 85, 247, 0.12), transparent 12rem),
-      var(--mobile-bg) !important;
-    color: var(--mobile-text) !important;
+      radial-gradient(circle at 92% 8%, rgba(255, 138, 61, 0.08), transparent 13rem),
+      #0b0912;
+    color: var(--mobile-text);
   }
 
-  [data-theme="light"] body,
-  [data-theme="light"] .auth-page {
+  :root:not([data-theme="light"]) .sidebar,
+  [data-theme="dark"] .sidebar,
+  :root:not([data-theme="light"]) .mobile-nav-drawer,
+  [data-theme="dark"] .mobile-nav-drawer {
+    background: var(--mobile-sidebar);
+    border-color: var(--mobile-line);
+    color: var(--mobile-text);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.24);
+  }
+
+  :root:not([data-theme="light"]) .mobile-nav-drawer,
+  [data-theme="dark"] .mobile-nav-drawer {
     background:
-      radial-gradient(circle at 16% -6%, rgba(99, 102, 241, 0.12), transparent 15rem),
-      radial-gradient(circle at 92% 2%, rgba(236, 72, 153, 0.08), transparent 12rem),
-      var(--mobile-bg) !important;
+      radial-gradient(circle at 90% 14%, rgba(139, 92, 246, 0.12), transparent 9rem),
+      var(--mobile-sidebar);
   }
 
-  .sidebar,
-  .mobile-nav-drawer,
-  .auth-card,
-  .hero-panel,
-  .panel,
-  .dashboard-actions,
-  .smart-ai-strip,
-  .kpi-card,
-  .page-header,
-  .modal-card,
-  .confirm-card,
-  .smart-ai-drawer {
-    border-color: var(--mobile-line) !important;
-    background: var(--mobile-card) !important;
-    color: var(--mobile-text) !important;
-    box-shadow: var(--mobile-shadow) !important;
+  :root:not([data-theme="light"]) .mobile-sidebar-head,
+  [data-theme="dark"] .mobile-sidebar-head {
+    color: var(--mobile-text);
   }
 
-  [data-theme="light"] .sidebar,
-  [data-theme="light"] .mobile-nav-drawer,
-  [data-theme="light"] .auth-card,
-  [data-theme="light"] .hero-panel,
-  [data-theme="light"] .panel,
-  [data-theme="light"] .dashboard-actions,
-  [data-theme="light"] .smart-ai-strip,
-  [data-theme="light"] .kpi-card,
-  [data-theme="light"] .page-header,
-  [data-theme="light"] .modal-card,
-  [data-theme="light"] .confirm-card,
-  [data-theme="light"] .smart-ai-drawer {
-    background: var(--mobile-card) !important;
+  :root:not([data-theme="light"]) .brand strong,
+  [data-theme="dark"] .brand strong,
+  :root:not([data-theme="light"]) .mobile-drawer-head strong,
+  [data-theme="dark"] .mobile-drawer-head strong,
+  :root:not([data-theme="light"]) .mobile-drawer-user strong,
+  [data-theme="dark"] .mobile-drawer-user strong {
+    color: var(--mobile-text);
   }
 
-  .hero-panel,
-  [data-theme="light"] .hero-panel {
-    background: var(--mobile-soft-gradient), var(--mobile-card) !important;
+  :root:not([data-theme="light"]) .brand small,
+  [data-theme="dark"] .brand small,
+  :root:not([data-theme="light"]) .mobile-drawer-head small,
+  [data-theme="dark"] .mobile-drawer-head small,
+  :root:not([data-theme="light"]) .mobile-drawer-user small {
+    color: var(--mobile-muted);
   }
 
-  .brand-mark,
-  .auth-card .brand-mark,
-  .avatar,
-  .profile-dp,
-  .mobile-drawer-user .avatar,
-  .kpi-card .icon,
-  .kpi-card.green .icon,
-  .kpi-card.blue .icon,
-  .kpi-card.cyan .icon,
-  .qa,
-  .qa.green,
-  .qa.blue,
-  .qa.cyan,
-  .ai-icon,
-  .readiness-ring,
-  .readiness-side-card .readiness-ring,
-  .smart-ai-fab,
-  .smart-ai-fab span,
-  .primary-action,
-  .auth-card .primary-action,
-  .mobile-drawer-nav button.active {
-    background: var(--mobile-gradient) !important;
-    color: #ffffff !important;
-    border-color: transparent !important;
+  :root:not([data-theme="light"]) .brand-mark,
+  [data-theme="dark"] .brand-mark,
+  :root:not([data-theme="light"]) .auth-card .brand-mark,
+  [data-theme="dark"] .auth-card .brand-mark,
+  :root:not([data-theme="light"]) .avatar,
+  [data-theme="dark"] .avatar,
+  :root:not([data-theme="light"]) .profile-dp,
+  [data-theme="dark"] .profile-dp,
+  :root:not([data-theme="light"]) .mobile-drawer-user .avatar,
+  [data-theme="dark"] .mobile-drawer-user .avatar {
+    background: var(--mobile-gradient);
+    color: #ffffff;
+    border-color: rgba(139, 92, 246, 0.24);
   }
 
-  .mobile-menu-toggle,
-  .mobile-theme-toggle,
-  .notification-action,
-  .profile-trigger,
-  .search,
-  .mobile-back-row button,
-  .demo-grid button,
-  .link-button,
-  .btn,
-  .panel-head button,
-  .panel-head a,
-  .row-actions button,
-  .readiness-mini-grid button,
-  .smart-row,
-  .application-card-row,
-  .interview-card,
-  .activity-list li,
-  .activity-mini,
-  .season-card,
-  .placement-series-chart {
-    border-color: var(--mobile-line) !important;
-    background: var(--mobile-card-2) !important;
-    color: var(--mobile-text) !important;
+  :root:not([data-theme="light"]) .mobile-menu-toggle,
+  [data-theme="dark"] .mobile-menu-toggle,
+  :root:not([data-theme="light"]) .mobile-theme-toggle,
+  [data-theme="dark"] .mobile-theme-toggle,
+  :root:not([data-theme="light"]) .notification-action,
+  [data-theme="dark"] .notification-action,
+  :root:not([data-theme="light"]) .profile-trigger,
+  [data-theme="dark"] .profile-trigger,
+  :root:not([data-theme="light"]) .mobile-drawer-head button,
+  [data-theme="dark"] .mobile-drawer-head button {
+    background: var(--mobile-card);
+    border-color: var(--mobile-line);
+    color: var(--mobile-text);
+    box-shadow: none;
   }
 
-  [data-theme="light"] .mobile-menu-toggle,
-  [data-theme="light"] .mobile-theme-toggle,
-  [data-theme="light"] .notification-action,
-  [data-theme="light"] .profile-trigger,
-  [data-theme="light"] .search,
-  [data-theme="light"] .mobile-back-row button,
-  [data-theme="light"] .demo-grid button,
-  [data-theme="light"] .link-button,
-  [data-theme="light"] .btn,
-  [data-theme="light"] .panel-head button,
-  [data-theme="light"] .panel-head a,
-  [data-theme="light"] .row-actions button,
-  [data-theme="light"] .readiness-mini-grid button,
-  [data-theme="light"] .smart-row,
-  [data-theme="light"] .application-card-row,
-  [data-theme="light"] .interview-card,
-  [data-theme="light"] .activity-list li,
-  [data-theme="light"] .activity-mini,
-  [data-theme="light"] .season-card,
-  [data-theme="light"] .placement-series-chart {
-    background: var(--mobile-surface) !important;
-    color: var(--mobile-text) !important;
+  :root:not([data-theme="light"]) .mobile-theme-toggle span.active,
+  [data-theme="dark"] .mobile-theme-toggle span.active,
+  :root:not([data-theme="light"]) .theme-emoji.active,
+  [data-theme="dark"] .theme-emoji.active {
+    background: rgba(139, 92, 246, 0.2);
+    color: var(--mobile-primary-light);
   }
 
-  .auth-card input,
-  .auth-card select,
-  .password-field input,
-  .password-field button,
-  .field input,
-  .field select,
-  .field textarea,
-  .form-grid input,
-  .form-grid select,
-  .form-grid textarea,
-  .settings-form input,
-  .settings-form select,
-  .filter-bar select,
-  .panel select {
-    border-color: var(--mobile-line) !important;
-    background: var(--mobile-surface) !important;
-    color: var(--mobile-text) !important;
+  :root:not([data-theme="light"]) .notification-action sup,
+  [data-theme="dark"] .notification-action sup,
+  :root:not([data-theme="light"]) .mobile-header-actions sup,
+  [data-theme="dark"] .mobile-header-actions sup {
+    background: var(--mobile-error);
+    color: #ffffff;
+    border-color: var(--mobile-bg);
   }
 
-  .mobile-theme-toggle span.active,
-  .theme-emoji.active {
-    background: rgba(99, 102, 241, 0.16) !important;
-    color: var(--mobile-primary) !important;
+  :root:not([data-theme="light"]) .search,
+  [data-theme="dark"] .search,
+  :root:not([data-theme="light"]) .field input,
+  [data-theme="dark"] .field input,
+  :root:not([data-theme="light"]) .field select,
+  [data-theme="dark"] .field select,
+  :root:not([data-theme="light"]) .field textarea,
+  [data-theme="dark"] .field textarea,
+  :root:not([data-theme="light"]) .form-grid input,
+  [data-theme="dark"] .form-grid input,
+  :root:not([data-theme="light"]) .form-grid select,
+  [data-theme="dark"] .form-grid select,
+  :root:not([data-theme="light"]) .form-grid textarea,
+  [data-theme="dark"] .form-grid textarea,
+  :root:not([data-theme="light"]) .auth-card input,
+  [data-theme="dark"] .auth-card input,
+  :root:not([data-theme="light"]) .auth-card select,
+  [data-theme="dark"] .auth-card select,
+  :root:not([data-theme="light"]) .password-field input,
+  [data-theme="dark"] .password-field input,
+  :root:not([data-theme="light"]) .password-field button,
+  [data-theme="dark"] .password-field button,
+  :root:not([data-theme="light"]) .filter-bar select,
+  [data-theme="dark"] .filter-bar select,
+  :root:not([data-theme="light"]) .panel select,
+  [data-theme="dark"] .panel select {
+    background: var(--mobile-surface);
+    border-color: var(--mobile-line);
+    color: var(--mobile-text);
   }
 
-  .auth-link,
-  .panel-head button,
-  .panel-head a,
-  .readiness-mini-grid span,
-  .green-dot,
-  .kpi-card.green strong,
-  .kpi-card.green em,
-  .kpi-card em,
-  .smart-table strong,
-  .metric-positive,
-  .trend-up,
-  .status.shortlisted,
-  .status.applied,
-  .badge.info,
-  .badge.success,
-  .mobile-drawer-nav button.active strong,
-  .mobile-drawer-nav button.active span {
-    color: var(--mobile-primary) !important;
+  :root:not([data-theme="light"]) .search:focus-within,
+  [data-theme="dark"] .search:focus-within,
+  :root:not([data-theme="light"]) input:focus,
+  [data-theme="dark"] input:focus,
+  :root:not([data-theme="light"]) select:focus,
+  [data-theme="dark"] select:focus,
+  :root:not([data-theme="light"]) textarea:focus,
+  [data-theme="dark"] textarea:focus {
+    border-color: rgba(139, 92, 246, 0.65);
+    box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.12);
   }
 
-  .notification-action sup,
-  .mobile-header-actions sup {
-    background: var(--mobile-accent) !important;
-    color: #ffffff !important;
-    border-color: var(--mobile-bg) !important;
+  :root:not([data-theme="light"]) .search input::placeholder,
+  [data-theme="dark"] .search input::placeholder {
+    color: var(--mobile-subtle);
   }
 
-  .mobile-drawer-user {
-    border-color: rgba(99, 102, 241, 0.2) !important;
-    background: rgba(99, 102, 241, 0.1) !important;
+  :root:not([data-theme="light"]) .auth-card,
+  [data-theme="dark"] .auth-card,
+  :root:not([data-theme="light"]) .panel,
+  [data-theme="dark"] .panel,
+  :root:not([data-theme="light"]) .dashboard-actions,
+  [data-theme="dark"] .dashboard-actions,
+  :root:not([data-theme="light"]) .smart-ai-strip,
+  [data-theme="dark"] .smart-ai-strip,
+  :root:not([data-theme="light"]) .kpi-card,
+  [data-theme="dark"] .kpi-card,
+  :root:not([data-theme="light"]) .page-header,
+  [data-theme="dark"] .page-header,
+  :root:not([data-theme="light"]) .smart-row,
+  [data-theme="dark"] .smart-row,
+  :root:not([data-theme="light"]) .application-card-row,
+  [data-theme="dark"] .application-card-row,
+  :root:not([data-theme="light"]) .interview-card,
+  [data-theme="dark"] .interview-card,
+  :root:not([data-theme="light"]) .activity-list li,
+  [data-theme="dark"] .activity-list li,
+  :root:not([data-theme="light"]) .activity-mini,
+  [data-theme="dark"] .activity-mini,
+  :root:not([data-theme="light"]) .modal-card,
+  [data-theme="dark"] .modal-card,
+  :root:not([data-theme="light"]) .confirm-card,
+  [data-theme="dark"] .confirm-card,
+  :root:not([data-theme="light"]) .smart-ai-drawer,
+  [data-theme="dark"] .smart-ai-drawer {
+    background: var(--mobile-surface);
+    border-color: var(--mobile-line);
+    color: var(--mobile-text);
+    box-shadow: var(--mobile-shadow);
   }
 
-  .student-ai-insight .ai-insight-main > strong,
-  .readiness-side-card .readiness-ring,
-  .readiness-ring,
-  .status.shortlisted,
-  .status.applied,
-  .badge.info,
-  .badge.success,
-  .green-dot,
-  .skill-bar,
-  .skill-fill,
-  .progress-fill,
-  .match-fill,
-  .bar-fill {
-    background: rgba(99, 102, 241, 0.14) !important;
-    border-color: rgba(99, 102, 241, 0.22) !important;
+  :root:not([data-theme="light"]) .hero-panel,
+  [data-theme="dark"] .hero-panel {
+    background:
+      radial-gradient(circle at 100% 74%, rgba(255, 138, 61, 0.2), transparent 7rem),
+      var(--mobile-hero-gradient);
+    border-color: rgba(139, 92, 246, 0.28);
+    box-shadow: 0 8px 28px rgba(139, 92, 246, 0.12);
   }
 
-  .skill-fill,
-  .progress-fill,
-  .match-fill,
-  .bar-fill {
-    background: linear-gradient(90deg, #6366f1, #8b5cf6) !important;
+  :root:not([data-theme="light"]) .season-card,
+  [data-theme="dark"] .season-card,
+  :root:not([data-theme="light"]) .readiness-mini-grid button,
+  [data-theme="dark"] .readiness-mini-grid button,
+  :root:not([data-theme="light"]) .demo-grid button,
+  [data-theme="dark"] .demo-grid button,
+  :root:not([data-theme="light"]) .link-button,
+  [data-theme="dark"] .link-button,
+  :root:not([data-theme="light"]) .btn,
+  [data-theme="dark"] .btn,
+  :root:not([data-theme="light"]) .panel-head button,
+  [data-theme="dark"] .panel-head button,
+  :root:not([data-theme="light"]) .panel-head a,
+  [data-theme="dark"] .panel-head a,
+  :root:not([data-theme="light"]) .mobile-back-row button,
+  [data-theme="dark"] .mobile-back-row button,
+  :root:not([data-theme="light"]) .placement-series-chart,
+  [data-theme="dark"] .placement-series-chart {
+    background: var(--mobile-card-2);
+    border-color: var(--mobile-line);
+    color: var(--mobile-text);
+    box-shadow: none;
   }
 
-  .hero-panel::after,
-  .page-header::after,
-  .smart-ai-strip::after {
-    background: linear-gradient(135deg, rgba(99, 102, 241, 0.18), rgba(139, 92, 246, 0.14)) !important;
+  :root:not([data-theme="light"]) .primary-action,
+  [data-theme="dark"] .primary-action,
+  :root:not([data-theme="light"]) .auth-card .primary-action,
+  [data-theme="dark"] .auth-card .primary-action,
+  :root:not([data-theme="light"]) .mobile-drawer-nav button.active,
+  [data-theme="dark"] .mobile-drawer-nav button.active,
+  :root:not([data-theme="light"]) .filter-chip.active,
+  [data-theme="dark"] .filter-chip.active,
+  :root:not([data-theme="light"]) .tab.active,
+  [data-theme="dark"] .tab.active {
+    background: var(--mobile-gradient);
+    border-color: rgba(139, 92, 246, 0.34);
+    color: #ffffff;
+    box-shadow: 0 8px 28px rgba(139, 92, 246, 0.12);
   }
 
-  .mobile-drawer-logout,
-  .mobile-drawer-logout strong,
-  .mobile-drawer-logout span {
+  :root:not([data-theme="light"]) .profile-page .primary-action,
+  [data-theme="dark"] .profile-page .primary-action,
+  :root:not([data-theme="light"]) .profile-panel .primary-action,
+  [data-theme="dark"] .profile-panel .primary-action,
+  :root:not([data-theme="light"]) .profile-summary .primary-action,
+  [data-theme="dark"] .profile-summary .primary-action {
+    background: var(--mobile-orange-gradient);
+    border-color: rgba(255, 138, 61, 0.35);
+    color: #ffffff;
+    box-shadow: 0 8px 28px rgba(255, 138, 61, 0.12);
+  }
+
+  :root:not([data-theme="light"]) .kpi-card .icon,
+  [data-theme="dark"] .kpi-card .icon,
+  :root:not([data-theme="light"]) .qa,
+  [data-theme="dark"] .qa,
+  :root:not([data-theme="light"]) .ai-icon,
+  [data-theme="dark"] .ai-icon,
+  :root:not([data-theme="light"]) .readiness-ring,
+  [data-theme="dark"] .readiness-ring,
+  :root:not([data-theme="light"]) .smart-ai-fab,
+  [data-theme="dark"] .smart-ai-fab,
+  :root:not([data-theme="light"]) .smart-ai-fab span,
+  [data-theme="dark"] .smart-ai-fab span {
+    background: var(--mobile-gradient);
+    color: #ffffff;
+    border-color: rgba(139, 92, 246, 0.28);
+  }
+
+  :root:not([data-theme="light"]) .smart-ai-fab,
+  [data-theme="dark"] .smart-ai-fab {
+    box-shadow: 0 8px 28px rgba(139, 92, 246, 0.18), 0 0 0 2px rgba(255, 138, 61, 0.12);
+  }
+
+  :root:not([data-theme="light"]) .mobile-drawer-user,
+  [data-theme="dark"] .mobile-drawer-user {
+    background: var(--mobile-surface);
+    border-color: var(--mobile-line);
+  }
+
+  :root:not([data-theme="light"]) .mobile-drawer-nav button,
+  [data-theme="dark"] .mobile-drawer-nav button,
+  :root:not([data-theme="light"]) .mobile-drawer-actions button,
+  [data-theme="dark"] .mobile-drawer-actions button {
+    color: var(--mobile-text);
+  }
+
+  :root:not([data-theme="light"]) .mobile-drawer-logout,
+  [data-theme="dark"] .mobile-drawer-logout,
+  :root:not([data-theme="light"]) .mobile-drawer-logout strong,
+  [data-theme="dark"] .mobile-drawer-logout strong,
+  :root:not([data-theme="light"]) .mobile-drawer-logout span,
+  [data-theme="dark"] .mobile-drawer-logout span {
     color: var(--mobile-error) !important;
+  }
+
+  :root:not([data-theme="light"]) .hero-panel h1,
+  [data-theme="dark"] .hero-panel h1,
+  :root:not([data-theme="light"]) .panel-head h2,
+  [data-theme="dark"] .panel-head h2,
+  :root:not([data-theme="light"]) .page-header h1,
+  [data-theme="dark"] .page-header h1,
+  :root:not([data-theme="light"]) .kpi-card strong,
+  [data-theme="dark"] .kpi-card strong,
+  :root:not([data-theme="light"]) .smart-row > span,
+  [data-theme="dark"] .smart-row > span,
+  :root:not([data-theme="light"]) .search input,
+  [data-theme="dark"] .search input {
+    color: var(--mobile-text);
+  }
+
+  :root:not([data-theme="light"]) .hero-panel p,
+  [data-theme="dark"] .hero-panel p,
+  :root:not([data-theme="light"]) .panel-head small,
+  [data-theme="dark"] .panel-head small,
+  :root:not([data-theme="light"]) .page-header p,
+  [data-theme="dark"] .page-header p,
+  :root:not([data-theme="light"]) .panel p,
+  [data-theme="dark"] .panel p,
+  :root:not([data-theme="light"]) .kpi-card small,
+  [data-theme="dark"] .kpi-card small,
+  :root:not([data-theme="light"]) .kpi-card em,
+  [data-theme="dark"] .kpi-card em,
+  :root:not([data-theme="light"]) .smart-row > span::before,
+  [data-theme="dark"] .smart-row > span::before {
+    color: var(--mobile-muted);
+  }
+
+  :root:not([data-theme="light"]) .skill-chip,
+  [data-theme="dark"] .skill-chip,
+  :root:not([data-theme="light"]) .chip,
+  [data-theme="dark"] .chip,
+  :root:not([data-theme="light"]) .badge.info,
+  [data-theme="dark"] .badge.info {
+    background: rgba(139, 92, 246, 0.14);
+    color: var(--mobile-primary-light);
+    border-color: rgba(139, 92, 246, 0.18);
+  }
+
+  :root:not([data-theme="light"]) .status.success,
+  [data-theme="dark"] .status.success,
+  :root:not([data-theme="light"]) .badge.success,
+  [data-theme="dark"] .badge.success,
+  :root:not([data-theme="light"]) .status.eligible,
+  [data-theme="dark"] .status.eligible {
+    background: rgba(74, 222, 128, 0.12);
+    color: var(--mobile-success);
+    border-color: rgba(74, 222, 128, 0.18);
+  }
+
+  :root:not([data-theme="light"]) .status.warning,
+  [data-theme="dark"] .status.warning,
+  :root:not([data-theme="light"]) .badge.warning,
+  [data-theme="dark"] .badge.warning,
+  :root:not([data-theme="light"]) .status.pending,
+  [data-theme="dark"] .status.pending {
+    background: rgba(245, 158, 11, 0.12);
+    color: var(--mobile-warning);
+    border-color: rgba(245, 158, 11, 0.18);
+  }
+
+  :root:not([data-theme="light"]) .status.danger,
+  [data-theme="dark"] .status.danger,
+  :root:not([data-theme="light"]) .badge.danger,
+  [data-theme="dark"] .badge.danger,
+  :root:not([data-theme="light"]) .status.rejected,
+  [data-theme="dark"] .status.rejected {
+    background: rgba(251, 113, 133, 0.12);
+    color: var(--mobile-error);
+    border-color: rgba(251, 113, 133, 0.18);
+  }
+
+  :root:not([data-theme="light"]) .bookmark.active,
+  [data-theme="dark"] .bookmark.active,
+  :root:not([data-theme="light"]) .job-bookmark.active,
+  [data-theme="dark"] .job-bookmark.active {
+    color: var(--mobile-accent);
   }
 }

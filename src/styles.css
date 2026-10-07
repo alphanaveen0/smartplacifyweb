@@ -7487,7 +7487,7 @@ body {
   /* Drawer */
   .mobile-nav-backdrop {
     position: fixed;
-    z-index: 900;
+    z-index: 1250;
     inset: 0;
     display: block;
     width: 100%;
@@ -7499,7 +7499,7 @@ body {
 
   .mobile-nav-drawer {
     position: fixed;
-    z-index: 920;
+    z-index: 1300;
     inset: 0 auto 0 0;
     display: flex;
     flex-direction: column;

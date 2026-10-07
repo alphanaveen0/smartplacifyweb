@@ -8743,3 +8743,225 @@ body {
     display: none;
   }
 }
+
+/* Final mobile/tablet theme lock: Indigo + Purple only below 768px. */
+@media (max-width: 768px) {
+  :root {
+    --mobile-bg: #081220;
+    --mobile-surface: #0f1f2f;
+    --mobile-card: #0f1f2f;
+    --mobile-card-2: #13283d;
+    --mobile-card-3: #172e46;
+    --mobile-line: rgba(148, 163, 184, 0.16);
+    --mobile-text: #f8fafc;
+    --mobile-muted: #94a3b8;
+    --mobile-primary: #818cf8;
+    --mobile-primary-deep: #6366f1;
+    --mobile-secondary: #a855f7;
+    --mobile-accent: #a855f7;
+    --mobile-success: #3b82f6;
+    --mobile-warning: #f59e0b;
+    --mobile-error: #f87171;
+    --mobile-gradient: linear-gradient(135deg, #4f46e5 0%, #6366f1 45%, #8b5cf6 100%);
+    --mobile-soft-gradient: linear-gradient(135deg, rgba(79, 70, 229, 0.32), rgba(139, 92, 246, 0.22));
+    --mobile-shadow: 0 16px 42px rgba(0, 0, 0, 0.22);
+  }
+
+  [data-theme="light"],
+  [data-theme="light"] body {
+    --mobile-bg: #f7f8fc;
+    --mobile-surface: #ffffff;
+    --mobile-card: #ffffff;
+    --mobile-card-2: #f1f5ff;
+    --mobile-card-3: #eef2ff;
+    --mobile-line: #e2e8f0;
+    --mobile-text: #0f172a;
+    --mobile-muted: #64748b;
+    --mobile-primary: #6366f1;
+    --mobile-primary-deep: #4f46e5;
+    --mobile-secondary: #8b5cf6;
+    --mobile-accent: #ec4899;
+    --mobile-success: #3882f6;
+    --mobile-warning: #f59e0b;
+    --mobile-error: #ef4444;
+    --mobile-soft-gradient: linear-gradient(135deg, rgba(99, 102, 241, 0.12), rgba(139, 92, 246, 0.08));
+    --mobile-shadow: 0 14px 34px rgba(15, 23, 42, 0.08);
+  }
+
+  body,
+  .auth-page {
+    background:
+      radial-gradient(circle at 16% -6%, rgba(99, 102, 241, 0.18), transparent 15rem),
+      radial-gradient(circle at 92% 2%, rgba(168, 85, 247, 0.12), transparent 12rem),
+      var(--mobile-bg) !important;
+    color: var(--mobile-text) !important;
+  }
+
+  [data-theme="light"] body,
+  [data-theme="light"] .auth-page {
+    background:
+      radial-gradient(circle at 16% -6%, rgba(99, 102, 241, 0.12), transparent 15rem),
+      radial-gradient(circle at 92% 2%, rgba(236, 72, 153, 0.08), transparent 12rem),
+      var(--mobile-bg) !important;
+  }
+
+  .sidebar,
+  .mobile-nav-drawer,
+  .auth-card,
+  .hero-panel,
+  .panel,
+  .dashboard-actions,
+  .smart-ai-strip,
+  .kpi-card,
+  .page-header,
+  .modal-card,
+  .confirm-card,
+  .smart-ai-drawer {
+    border-color: var(--mobile-line) !important;
+    background: var(--mobile-card) !important;
+    color: var(--mobile-text) !important;
+    box-shadow: var(--mobile-shadow) !important;
+  }
+
+  [data-theme="light"] .sidebar,
+  [data-theme="light"] .mobile-nav-drawer,
+  [data-theme="light"] .auth-card,
+  [data-theme="light"] .hero-panel,
+  [data-theme="light"] .panel,
+  [data-theme="light"] .dashboard-actions,
+  [data-theme="light"] .smart-ai-strip,
+  [data-theme="light"] .kpi-card,
+  [data-theme="light"] .page-header,
+  [data-theme="light"] .modal-card,
+  [data-theme="light"] .confirm-card,
+  [data-theme="light"] .smart-ai-drawer {
+    background: var(--mobile-card) !important;
+  }
+
+  .hero-panel,
+  [data-theme="light"] .hero-panel {
+    background: var(--mobile-soft-gradient), var(--mobile-card) !important;
+  }
+
+  .brand-mark,
+  .auth-card .brand-mark,
+  .avatar,
+  .profile-dp,
+  .mobile-drawer-user .avatar,
+  .kpi-card .icon,
+  .qa,
+  .qa.green,
+  .smart-ai-fab,
+  .smart-ai-fab span,
+  .primary-action,
+  .auth-card .primary-action,
+  .mobile-drawer-nav button.active {
+    background: var(--mobile-gradient) !important;
+    color: #ffffff !important;
+    border-color: transparent !important;
+  }
+
+  .mobile-menu-toggle,
+  .mobile-theme-toggle,
+  .notification-action,
+  .profile-trigger,
+  .search,
+  .mobile-back-row button,
+  .demo-grid button,
+  .link-button,
+  .btn,
+  .panel-head button,
+  .panel-head a,
+  .row-actions button,
+  .readiness-mini-grid button,
+  .smart-row,
+  .application-card-row,
+  .interview-card,
+  .activity-list li,
+  .activity-mini,
+  .season-card,
+  .placement-series-chart {
+    border-color: var(--mobile-line) !important;
+    background: var(--mobile-card-2) !important;
+    color: var(--mobile-text) !important;
+  }
+
+  [data-theme="light"] .mobile-menu-toggle,
+  [data-theme="light"] .mobile-theme-toggle,
+  [data-theme="light"] .notification-action,
+  [data-theme="light"] .profile-trigger,
+  [data-theme="light"] .search,
+  [data-theme="light"] .mobile-back-row button,
+  [data-theme="light"] .demo-grid button,
+  [data-theme="light"] .link-button,
+  [data-theme="light"] .btn,
+  [data-theme="light"] .panel-head button,
+  [data-theme="light"] .panel-head a,
+  [data-theme="light"] .row-actions button,
+  [data-theme="light"] .readiness-mini-grid button,
+  [data-theme="light"] .smart-row,
+  [data-theme="light"] .application-card-row,
+  [data-theme="light"] .interview-card,
+  [data-theme="light"] .activity-list li,
+  [data-theme="light"] .activity-mini,
+  [data-theme="light"] .season-card,
+  [data-theme="light"] .placement-series-chart {
+    background: var(--mobile-surface) !important;
+    color: var(--mobile-text) !important;
+  }
+
+  .auth-card input,
+  .auth-card select,
+  .password-field input,
+  .password-field button,
+  .field input,
+  .field select,
+  .field textarea,
+  .form-grid input,
+  .form-grid select,
+  .form-grid textarea,
+  .settings-form input,
+  .settings-form select,
+  .filter-bar select,
+  .panel select {
+    border-color: var(--mobile-line) !important;
+    background: var(--mobile-surface) !important;
+    color: var(--mobile-text) !important;
+  }
+
+  .mobile-theme-toggle span.active,
+  .theme-emoji.active {
+    background: rgba(99, 102, 241, 0.16) !important;
+    color: var(--mobile-primary) !important;
+  }
+
+  .auth-link,
+  .panel-head button,
+  .panel-head a,
+  .readiness-mini-grid span,
+  .green-dot,
+  .kpi-card em,
+  .smart-table strong,
+  .mobile-drawer-nav button.active strong,
+  .mobile-drawer-nav button.active span {
+    color: var(--mobile-primary) !important;
+  }
+
+  .notification-action sup,
+  .mobile-header-actions sup {
+    background: var(--mobile-accent) !important;
+    color: #ffffff !important;
+    border-color: var(--mobile-bg) !important;
+  }
+
+  .mobile-drawer-user {
+    border-color: rgba(99, 102, 241, 0.2) !important;
+    background: rgba(99, 102, 241, 0.1) !important;
+  }
+
+  .mobile-drawer-logout,
+  .mobile-drawer-logout strong,
+  .mobile-drawer-logout span {
+    color: var(--mobile-error) !important;
+  }
+}

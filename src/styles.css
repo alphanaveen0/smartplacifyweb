@@ -7211,6 +7211,13 @@ body {
     margin-left: 0;
     min-width: max-content;
     transform: none;
+    transition: opacity 160ms ease, visibility 160ms ease;
+  }
+
+  .app-shell.mobile-nav-open .mobile-header-actions {
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
   }
 
   .mobile-theme-toggle {
@@ -8162,8 +8169,8 @@ body {
   }
 
   .mobile-header-actions {
-    right: auto;
-    left: min(14rem, calc(100vw - 10.25rem));
+    right: max(0.85rem, env(safe-area-inset-right));
+    left: auto;
   }
 }
 

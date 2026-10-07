@@ -92,7 +92,7 @@ export function Layout({ navItems, activeRoute, onNavigate, header, mobileAction
   }
 
   return (
-    <div className="app-shell">
+    <div className={`app-shell${mobileNavOpen ? " mobile-nav-open" : ""}`}>
       <aside className="sidebar">
         <button className="brand brand-button desktop-sidebar-brand" type="button" onClick={() => navigateTo("dashboard")}>
           <span className="brand-mark">S</span>

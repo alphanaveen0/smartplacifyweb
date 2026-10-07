@@ -9362,3 +9362,50 @@ body {
     font-size: 0.48rem !important;
   }
 }
+
+/* Real SmartPlacify SVG logo fit */
+.brand-button,
+.drawer-brand-card {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.brand-logo-img {
+  display: block;
+  width: 100%;
+  max-width: 13.2rem;
+  height: auto;
+  aspect-ratio: 3.5 / 1;
+  object-fit: contain;
+  border-radius: 1rem;
+}
+
+.desktop-sidebar-brand .brand-logo-img {
+  max-width: 100%;
+}
+
+.mobile-sidebar-head .brand-logo-img {
+  max-width: 7.7rem;
+  border-radius: 0.74rem;
+}
+
+.mobile-drawer-head .drawer-brand-card {
+  justify-content: flex-start !important;
+  min-width: 0 !important;
+}
+
+.mobile-drawer-head .brand-logo-img {
+  max-width: 10.7rem;
+  border-radius: 0.9rem;
+}
+
+@media (max-width: 390px) {
+  .mobile-sidebar-head .brand-logo-img {
+    max-width: 6.85rem;
+  }
+}

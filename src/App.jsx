@@ -2512,6 +2512,10 @@ function RoleShell({ children }) {
 
   const mobileActions = (
     <>
+      <button className="mobile-theme-toggle" type="button" aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} theme`} onClick={() => setTheme((current) => (current === "dark" ? "light" : "dark"))}>
+        <span className={theme === "light" ? "active" : ""} aria-hidden="true">☀️</span>
+        <span className={theme === "dark" ? "active" : ""} aria-hidden="true">🌙</span>
+      </button>
       <button className="top-action notification-action" type="button" aria-label="Notifications" onClick={() => navigate("notifications")}>
         <span className="bell-icon" aria-hidden="true">🔔</span>
         {unreadCount > 0 ? <sup>{unreadCount}</sup> : null}

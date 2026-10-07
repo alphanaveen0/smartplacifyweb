@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext.jsx";
 
@@ -73,12 +73,23 @@ function mobileIcon(routeId) {
   return icons[routeId] || "•";
 }
 
+function drawerLabel(item) {
+  if (item.id === "profile") return "My Profile";
+  return item.label;
+}
+
+function drawerOrder(navItems) {
+  const priority = ["dashboard", "students", "companies", "jobs", "applications", "interviews", "reports", "profile", "ai", "notifications", "settings"];
+  return [...navItems].sort((first, second) => priority.indexOf(first.id) - priority.indexOf(second.id));
+}
+
 export function Layout({ navItems, activeRoute, onNavigate, header, children }) {
   const { user, logout } = useAuth();
   const routerNavigate = useNavigate();
   const location = useLocation();
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
   const card = roleCard(user);
+  const drawerItems = drawerOrder(navItems);
   const activeLabel = navItems.find((item) => item.id === activeRoute)?.label || "Dashboard";
   const pathParts = location.pathname.split("/").filter(Boolean);
   const isRootDashboard = pathParts[1] === "dashboard" && pathParts.length === 2;
@@ -107,6 +118,32 @@ export function Layout({ navItems, activeRoute, onNavigate, header, children }) 
   function navigateProfileRoute() {
     navigateTo(user?.role === "tpo" ? "settings" : "profile");
   }
+
+  function logoutFromDrawer() {
+    setMobileNavOpen(false);
+    logout();
+    routerNavigate("/login", { replace: true });
+  }
+
+  useEffect(() => {
+    if (!mobileNavOpen) return undefined;
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    function closeOnEscape(event) {
+      if (event.key === "Escape") {
+        setMobileNavOpen(false);
+      }
+    }
+
+    document.addEventListener("keydown", closeOnEscape);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      document.removeEventListener("keydown", closeOnEscape);
+    };
+  }, [mobileNavOpen]);
 
   return (
     <div className="app-shell">
@@ -147,14 +184,14 @@ export function Layout({ navItems, activeRoute, onNavigate, header, children }) 
               <small>{roleLabel(user?.role)}</small>
             </span>
           </button>
-          {navItems.map((item) => (
+          {drawerItems.map((item) => (
             <button key={item.id} data-route={item.id} className={activeRoute === item.id ? "active" : ""} onClick={() => navigateTo(item.id)} type="button">
-              <span>{mobileIcon(item.id)}</span> {item.label}
+              <span>{mobileIcon(item.id)}</span> {drawerLabel(item)}
             </button>
           ))}
           <div className="mobile-drawer-actions">
             <button type="button" onClick={() => navigateTo("settings")}><span>⚙</span> Settings</button>
-            <button className="mobile-drawer-logout" type="button" onClick={logout}><span>↪</span> Logout</button>
+            <button className="mobile-drawer-logout" type="button" onClick={logoutFromDrawer}><span>↪</span> Logout</button>
           </div>
         </nav>
         <section className="side-card readiness-side-card">

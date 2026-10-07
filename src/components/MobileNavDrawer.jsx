@@ -1,5 +1,4 @@
 import React, { useEffect, useMemo } from "react";
-import smartPlacifyLogo from "../assets/smartplacify-logo.svg";
 
 function roleLabel(role) {
   if (role === "tpo") return "TPO";
@@ -94,7 +93,11 @@ export function MobileNavDrawer({ user, navItems, activeRoute, isOpen, onClose, 
       <nav className={`mobile-nav-drawer${isOpen ? " open" : ""}`} aria-label="Mobile navigation" aria-hidden={!isOpen}>
         <div className="mobile-drawer-head">
           <div className="brand drawer-brand-card">
-            <img className="brand-logo-img" src={smartPlacifyLogo} alt="SmartPlacify" />
+            <span className="brand-mark" aria-hidden="true">S</span>
+            <span>
+              <strong><span>Smart</span><span>Placify</span></strong>
+              <small>Smarter Placements. Brighter Futures.</small>
+            </span>
           </div>
           <button type="button" aria-label="Close navigation menu" onClick={onClose}>×</button>
         </div>

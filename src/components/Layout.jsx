@@ -2,7 +2,6 @@ import React, { useCallback, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext.jsx";
 import { MobileNavDrawer } from "./MobileNavDrawer.jsx";
-import smartPlacifyLogo from "../assets/smartplacify-logo.svg";
 
 function roleCard(user) {
   if (user?.role === "tpo") {
@@ -96,7 +95,11 @@ export function Layout({ navItems, activeRoute, onNavigate, header, mobileAction
     <div className={`app-shell${mobileNavOpen ? " mobile-nav-open" : ""}`}>
       <aside className="sidebar">
         <button className="brand brand-button desktop-sidebar-brand" type="button" onClick={() => navigateTo("dashboard")}>
-          <img className="brand-logo-img" src={smartPlacifyLogo} alt="SmartPlacify" />
+          <span className="brand-mark" aria-hidden="true">S</span>
+          <span>
+            <strong><span>Smart</span><span>Placify</span></strong>
+            <small>Smarter Placements. Brighter Futures.</small>
+          </span>
         </button>
         <div className="mobile-sidebar-head">
           <button
@@ -109,7 +112,11 @@ export function Layout({ navItems, activeRoute, onNavigate, header, mobileAction
             <span aria-hidden="true">☰</span>
           </button>
           <button className="brand brand-button" type="button" onClick={() => navigateTo("dashboard")}>
-            <img className="brand-logo-img" src={smartPlacifyLogo} alt="SmartPlacify" />
+            <span className="brand-mark" aria-hidden="true">S</span>
+            <span>
+              <strong><span>Smart</span><span>Placify</span></strong>
+              <small>Smarter Placements. Brighter Futures.</small>
+            </span>
           </button>
           {mobileActions ? <div className="mobile-header-actions">{mobileActions}</div> : null}
         </div>

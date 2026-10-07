@@ -50,6 +50,12 @@ function singularLabel(label) {
   return labels[label] || label.replace(/s$/, "");
 }
 
+function roleLabel(role) {
+  if (role === "tpo") return "Placement Officer";
+  if (role === "company") return "Recruiter";
+  return "Student";
+}
+
 export function Layout({ navItems, activeRoute, onNavigate, header, children }) {
   const { user, logout } = useAuth();
   const routerNavigate = useNavigate();
@@ -81,6 +87,10 @@ export function Layout({ navItems, activeRoute, onNavigate, header, children }) 
     }
   }
 
+  function navigateProfileRoute() {
+    navigateTo(user?.role === "tpo" ? "settings" : "profile");
+  }
+
   return (
     <div className="app-shell">
       <aside className="sidebar">
@@ -105,11 +115,30 @@ export function Layout({ navItems, activeRoute, onNavigate, header, children }) 
         </div>
         {mobileNavOpen ? <button className="mobile-nav-backdrop" type="button" aria-label="Close navigation menu" onClick={() => setMobileNavOpen(false)} /> : null}
         <nav className={`nav-list sidebar-nav${mobileNavOpen ? " mobile-open" : ""}`} aria-label="Primary navigation">
+          <div className="mobile-drawer-head">
+            <span className="brand-mark">S</span>
+            <span>
+              <strong>SmartPlacify</strong>
+              <small>Smarter Placements. Brighter Futures.</small>
+            </span>
+            <button type="button" aria-label="Close navigation menu" onClick={() => setMobileNavOpen(false)}>×</button>
+          </div>
+          <button className="mobile-drawer-user" type="button" onClick={navigateProfileRoute}>
+            <span className="avatar">{user?.name?.slice(0, 2).toUpperCase() || "SP"}</span>
+            <span>
+              <strong>{user?.name}</strong>
+              <small>{roleLabel(user?.role)}</small>
+            </span>
+          </button>
           {navItems.map((item) => (
             <button key={item.id} className={activeRoute === item.id ? "active" : ""} onClick={() => navigateTo(item.id)} type="button">
               <span>{item.icon}</span> {item.label}
             </button>
           ))}
+          <div className="mobile-drawer-actions">
+            <button type="button" onClick={() => navigateTo("settings")}><span>⚙</span> Settings</button>
+            <button className="mobile-drawer-logout" type="button" onClick={logout}><span>↪</span> Logout</button>
+          </div>
         </nav>
         <section className="side-card readiness-side-card">
           <div className="readiness-ring" aria-label={card.aria}>

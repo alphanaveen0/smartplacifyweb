@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext.jsx";
+import { MobileNavDrawer } from "./MobileNavDrawer.jsx";
 
 function roleCard(user) {
   if (user?.role === "tpo") {
@@ -50,46 +51,12 @@ function singularLabel(label) {
   return labels[label] || label.replace(/s$/, "");
 }
 
-function roleLabel(role) {
-  if (role === "tpo") return "Placement Officer";
-  if (role === "company") return "Recruiter";
-  return "Student";
-}
-
-function mobileIcon(routeId) {
-  const icons = {
-    dashboard: "▦",
-    profile: "○",
-    students: "👥",
-    companies: "▥",
-    jobs: "▣",
-    applications: "▤",
-    interviews: "▱",
-    reports: "▧",
-    ai: "AI",
-    notifications: "◌",
-    settings: "⚙"
-  };
-  return icons[routeId] || "•";
-}
-
-function drawerLabel(item) {
-  if (item.id === "profile") return "My Profile";
-  return item.label;
-}
-
-function drawerOrder(navItems) {
-  const priority = ["dashboard", "students", "companies", "jobs", "applications", "interviews", "reports", "profile", "ai", "notifications", "settings"];
-  return [...navItems].sort((first, second) => priority.indexOf(first.id) - priority.indexOf(second.id));
-}
-
 export function Layout({ navItems, activeRoute, onNavigate, header, children }) {
   const { user, logout } = useAuth();
   const routerNavigate = useNavigate();
   const location = useLocation();
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
   const card = roleCard(user);
-  const drawerItems = drawerOrder(navItems);
   const activeLabel = navItems.find((item) => item.id === activeRoute)?.label || "Dashboard";
   const pathParts = location.pathname.split("/").filter(Boolean);
   const isRootDashboard = pathParts[1] === "dashboard" && pathParts.length === 2;
@@ -99,6 +66,10 @@ export function Layout({ navItems, activeRoute, onNavigate, header, children }) 
     : pathParts.length > 2
       ? `${singularLabel(activeLabel)} Details`
       : activeLabel;
+
+  const closeMobileNav = useCallback(() => {
+    setMobileNavOpen(false);
+  }, []);
 
   function navigateTo(routeId) {
     setMobileNavOpen(false);
@@ -115,40 +86,31 @@ export function Layout({ navItems, activeRoute, onNavigate, header, children }) 
     }
   }
 
-  function navigateProfileRoute() {
-    navigateTo(user?.role === "tpo" ? "settings" : "profile");
-  }
-
-  function logoutFromDrawer() {
-    setMobileNavOpen(false);
+  function logoutAndRedirect() {
     logout();
     routerNavigate("/login", { replace: true });
   }
 
-  useEffect(() => {
-    if (!mobileNavOpen) return undefined;
-
-    const previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-
-    function closeOnEscape(event) {
-      if (event.key === "Escape") {
-        setMobileNavOpen(false);
-      }
-    }
-
-    document.addEventListener("keydown", closeOnEscape);
-
-    return () => {
-      document.body.style.overflow = previousOverflow;
-      document.removeEventListener("keydown", closeOnEscape);
-    };
-  }, [mobileNavOpen]);
-
   return (
     <div className="app-shell">
       <aside className="sidebar">
+        <button className="brand brand-button desktop-sidebar-brand" type="button" onClick={() => navigateTo("dashboard")}>
+          <span className="brand-mark">S</span>
+          <span>
+            <strong>SmartPlacify</strong>
+            <small>Smarter Placements. Brighter Futures.</small>
+          </span>
+        </button>
         <div className="mobile-sidebar-head">
+          <button
+            className="mobile-menu-toggle"
+            type="button"
+            aria-label="Open navigation menu"
+            aria-expanded={mobileNavOpen}
+            onClick={() => setMobileNavOpen(true)}
+          >
+            <span aria-hidden="true">☰</span>
+          </button>
           <button className="brand brand-button" type="button" onClick={() => navigateTo("dashboard")}>
             <span className="brand-mark">S</span>
             <span>
@@ -156,43 +118,22 @@ export function Layout({ navItems, activeRoute, onNavigate, header, children }) 
               <small>Smarter Placements. Brighter Futures.</small>
             </span>
           </button>
-          <button
-            className="mobile-menu-toggle"
-            type="button"
-            aria-label={mobileNavOpen ? "Close navigation menu" : "Open navigation menu"}
-            aria-expanded={mobileNavOpen}
-            onClick={() => setMobileNavOpen((current) => !current)}
-          >
-            <span aria-hidden="true">{mobileNavOpen ? "×" : "☰"}</span>
-            <small>{activeLabel}</small>
-          </button>
         </div>
-        {mobileNavOpen ? <button className="mobile-nav-backdrop" type="button" aria-label="Close navigation menu" onClick={() => setMobileNavOpen(false)} /> : null}
-        <nav className={`nav-list sidebar-nav${mobileNavOpen ? " mobile-open" : ""}`} aria-label="Primary navigation">
-          <div className="mobile-drawer-head">
-            <span className="brand-mark">S</span>
-            <span>
-              <strong>SmartPlacify</strong>
-              <small>Smarter Placements. Brighter Futures.</small>
-            </span>
-            <button type="button" aria-label="Close navigation menu" onClick={() => setMobileNavOpen(false)}>×</button>
-          </div>
-          <button className="mobile-drawer-user" type="button" onClick={navigateProfileRoute}>
-            <span className="avatar">{user?.name?.slice(0, 2).toUpperCase() || "SP"}</span>
-            <span>
-              <strong>{user?.name}</strong>
-              <small>{roleLabel(user?.role)}</small>
-            </span>
-          </button>
-          {drawerItems.map((item) => (
-            <button key={item.id} data-route={item.id} className={activeRoute === item.id ? "active" : ""} onClick={() => navigateTo(item.id)} type="button">
-              <span>{mobileIcon(item.id)}</span> {drawerLabel(item)}
+        <MobileNavDrawer
+          user={user}
+          navItems={navItems}
+          activeRoute={activeRoute}
+          isOpen={mobileNavOpen}
+          onClose={closeMobileNav}
+          onNavigate={onNavigate}
+          onLogout={logoutAndRedirect}
+        />
+        <nav className="nav-list sidebar-nav" aria-label="Primary navigation">
+          {navItems.map((item) => (
+            <button key={item.id} className={activeRoute === item.id ? "active" : ""} onClick={() => navigateTo(item.id)} type="button">
+              <span>{item.icon}</span> {item.label}
             </button>
           ))}
-          <div className="mobile-drawer-actions">
-            <button type="button" onClick={() => navigateTo("settings")}><span>⚙</span> Settings</button>
-            <button className="mobile-drawer-logout" type="button" onClick={logoutFromDrawer}><span>↪</span> Logout</button>
-          </div>
         </nav>
         <section className="side-card readiness-side-card">
           <div className="readiness-ring" aria-label={card.aria}>

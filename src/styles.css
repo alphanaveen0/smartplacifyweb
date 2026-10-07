@@ -96,6 +96,12 @@ button {
   align-items: center;
 }
 
+.mobile-sidebar-head,
+.mobile-nav-backdrop,
+.mobile-nav-drawer {
+  display: none;
+}
+
 .brand {
   gap: 0.85rem;
   color: var(--text);
@@ -7168,9 +7174,21 @@ body {
   .mobile-sidebar-head {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 0.65rem;
+    justify-content: flex-start;
+    gap: 0.62rem;
     min-height: 2.75rem;
+    padding-right: 8.7rem;
+  }
+
+  .desktop-sidebar-brand {
+    display: none;
+  }
+
+  .mobile-sidebar-head .brand-button {
+    width: auto;
+    min-width: 0;
+    max-width: 11.4rem;
+    padding: 0;
   }
 
   .brand {
@@ -7405,7 +7423,7 @@ body {
   /* Drawer */
   .mobile-nav-backdrop {
     position: fixed;
-    z-index: 300;
+    z-index: 900;
     inset: 0;
     display: block;
     width: 100%;
@@ -7415,13 +7433,13 @@ body {
     backdrop-filter: blur(4px);
   }
 
-  .sidebar .sidebar-nav {
+  .mobile-nav-drawer {
     position: fixed;
-    z-index: 340;
+    z-index: 920;
     inset: 0 auto 0 0;
     display: flex;
     flex-direction: column;
-    width: min(89vw, 360px);
+    width: min(85vw, 340px);
     height: 100dvh;
     max-height: none;
     margin: 0;
@@ -7440,8 +7458,12 @@ body {
     transition: transform 220ms cubic-bezier(0.2, 0.8, 0.2, 1);
   }
 
-  .sidebar .sidebar-nav.mobile-open {
+  .mobile-nav-drawer.open {
     transform: translateX(0);
+  }
+
+  .sidebar .sidebar-nav {
+    display: none;
   }
 
   .mobile-drawer-head {
@@ -7510,8 +7532,16 @@ body {
     font-size: 1rem;
   }
 
-  .sidebar .sidebar-nav > button:not(.mobile-drawer-user),
+  .mobile-drawer-nav {
+    display: grid;
+    gap: 0.36rem;
+  }
+
+  .mobile-drawer-nav button,
   .mobile-drawer-actions button {
+    display: flex;
+    align-items: center;
+    gap: 0.62rem;
     justify-content: flex-start;
     width: 100%;
     min-height: 3.25rem;
@@ -7525,18 +7555,19 @@ body {
     letter-spacing: -0.01em;
   }
 
-  .sidebar .sidebar-nav > button[data-route="settings"] {
+  .mobile-drawer-nav button[data-route="settings"] {
     display: none;
   }
 
-  .sidebar .sidebar-nav button.active {
+  .mobile-drawer-nav button.active {
     color: #ecfdf5;
     border-color: rgba(45, 212, 191, 0.18);
     background: linear-gradient(135deg, rgba(4, 120, 87, 0.98), rgba(16, 185, 129, 0.9));
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
   }
 
-  .sidebar .sidebar-nav span {
+  .mobile-drawer-nav span,
+  .mobile-drawer-actions span {
     display: inline-grid;
     width: 1.95rem;
     min-width: 1.95rem;

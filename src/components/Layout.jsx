@@ -51,7 +51,7 @@ function singularLabel(label) {
   return labels[label] || label.replace(/s$/, "");
 }
 
-export function Layout({ navItems, activeRoute, onNavigate, header, children }) {
+export function Layout({ navItems, activeRoute, onNavigate, header, mobileActions, children }) {
   const { user, logout } = useAuth();
   const routerNavigate = useNavigate();
   const location = useLocation();
@@ -118,6 +118,7 @@ export function Layout({ navItems, activeRoute, onNavigate, header, children }) 
               <small>Smarter Placements. Brighter Futures.</small>
             </span>
           </button>
+          {mobileActions ? <div className="mobile-header-actions">{mobileActions}</div> : null}
         </div>
         <MobileNavDrawer
           user={user}

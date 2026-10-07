@@ -7154,7 +7154,7 @@ body {
 
   .sidebar {
     position: relative;
-    z-index: 300;
+    z-index: 1000;
     flex: 0 0 auto;
     width: 100%;
     min-width: 0;
@@ -7189,6 +7189,13 @@ body {
     min-width: 0;
     max-width: 11.4rem;
     padding: 0;
+  }
+
+  .mobile-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.36rem;
+    margin-left: auto;
   }
 
   .brand {
@@ -7262,6 +7269,7 @@ body {
   }
 
   .topbar {
+    position: relative;
     display: grid;
     grid-template-columns: 1fr;
     gap: 0.72rem;
@@ -7271,11 +7279,7 @@ body {
   }
 
   .top-actions {
-    position: fixed;
-    top: calc(0.72rem + env(safe-area-inset-top));
-    right: 1rem;
-    z-index: 260;
-    display: flex;
+    display: none;
     align-items: center;
     justify-content: flex-end;
     width: auto;
@@ -7303,6 +7307,7 @@ body {
     width: 4.35rem;
     min-width: 4.35rem;
     padding: 0.18rem 0.26rem;
+    display: none;
   }
 
   .theme-emoji {
@@ -7326,6 +7331,8 @@ body {
     display: none;
   }
 
+  .mobile-header-actions .notification-action,
+  .mobile-header-actions .profile-trigger,
   .notification-action,
   .profile-trigger {
     width: 2.38rem;
@@ -8140,6 +8147,10 @@ body {
 
   .top-actions {
     right: 0;
+  }
+
+  .theme-icon-toggle {
+    display: none;
   }
 }
 

@@ -157,6 +157,16 @@ function activeRouteFromPath(pathname) {
   return pathname.split("/")[2] || "dashboard";
 }
 
+function compactInitials(name = "SmartPlacify User") {
+  return name
+    .split(" ")
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((part) => part[0])
+    .join("")
+    .toUpperCase() || "SP";
+}
+
 function useToast() {
   const [toast, setToast] = useState(null);
 
@@ -2500,8 +2510,20 @@ function RoleShell({ children }) {
     />
   );
 
+  const mobileActions = (
+    <>
+      <button className="top-action notification-action" type="button" aria-label="Notifications" onClick={() => navigate("notifications")}>
+        <span className="bell-icon" aria-hidden="true">🔔</span>
+        {unreadCount > 0 ? <sup>{unreadCount}</sup> : null}
+      </button>
+      <button className="profile-trigger" type="button" aria-label="Open profile" onClick={navigateProfile}>
+        <span className="profile-dp initials-avatar">{compactInitials(user?.name || user?.email)}</span>
+      </button>
+    </>
+  );
+
   return (
-    <Layout navItems={navItems} activeRoute={activeRoute} onNavigate={navigate} header={header}>
+    <Layout navItems={navItems} activeRoute={activeRoute} onNavigate={navigate} header={header} mobileActions={mobileActions}>
       {view}
       <SmartAIButton onClick={() => openSmartAI()} />
       <SmartAIDrawer

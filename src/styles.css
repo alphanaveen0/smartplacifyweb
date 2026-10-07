@@ -6990,15 +6990,15 @@ body {
 
 @media (max-width: 820px) {
   :root {
-    --mobile-bg: #031411;
-    --mobile-surface: #061b17;
-    --mobile-card: #08201c;
-    --mobile-card-2: #0a2a24;
-    --mobile-line: rgba(45, 212, 191, 0.18);
-    --mobile-text: #f4f7f6;
-    --mobile-muted: #a7b8b3;
-    --mobile-primary: #10b981;
-    --mobile-primary-deep: #047857;
+    --mobile-bg: #081220;
+    --mobile-surface: #0f1f2f;
+    --mobile-card: #0f1f2f;
+    --mobile-card-2: #13283d;
+    --mobile-line: rgba(148, 163, 184, 0.16);
+    --mobile-text: #f8fafc;
+    --mobile-muted: #94a3b8;
+    --mobile-primary: #818cf8;
+    --mobile-primary-deep: #6366f1;
     --mobile-amber: #f59e0b;
   }
 
@@ -7012,24 +7012,24 @@ body {
 
   body {
     background:
-      radial-gradient(circle at 16% -6%, rgba(16, 185, 129, 0.16), transparent 15rem),
-      radial-gradient(circle at 92% 2%, rgba(56, 189, 248, 0.08), transparent 12rem),
-      linear-gradient(155deg, #02110f 0%, #031411 48%, #06111f 100%);
+      radial-gradient(circle at 16% -6%, rgba(99, 102, 241, 0.18), transparent 15rem),
+      radial-gradient(circle at 92% 2%, rgba(168, 85, 247, 0.12), transparent 12rem),
+      #081220;
     color: var(--mobile-text);
   }
 
   [data-theme="light"] body {
-    --mobile-bg: #f7f7f2;
+    --mobile-bg: #f7f8fc;
     --mobile-surface: #ffffff;
     --mobile-card: #ffffff;
-    --mobile-card-2: #f0fdfa;
-    --mobile-line: rgba(15, 118, 110, 0.14);
-    --mobile-text: #111827;
-    --mobile-muted: #52645e;
+    --mobile-card-2: #f1f5ff;
+    --mobile-line: #e2e8f0;
+    --mobile-text: #0f172a;
+    --mobile-muted: #64748b;
     background:
-      radial-gradient(circle at 16% -6%, rgba(15, 118, 110, 0.1), transparent 15rem),
-      radial-gradient(circle at 92% 2%, rgba(217, 154, 43, 0.1), transparent 12rem),
-      #f7f7f2;
+      radial-gradient(circle at 16% -6%, rgba(99, 102, 241, 0.12), transparent 15rem),
+      radial-gradient(circle at 92% 2%, rgba(236, 72, 153, 0.08), transparent 12rem),
+      #f7f8fc;
     color: var(--mobile-text);
   }
 
@@ -7044,15 +7044,16 @@ body {
     overflow-x: hidden;
     overflow-y: auto;
     background:
-      radial-gradient(circle at 24% 6%, rgba(16, 185, 129, 0.14), transparent 14rem),
-      radial-gradient(circle at 84% 92%, rgba(45, 212, 191, 0.08), transparent 14rem),
-      linear-gradient(155deg, #02110f, #06111f);
+      radial-gradient(circle at 24% 6%, rgba(99, 102, 241, 0.18), transparent 14rem),
+      radial-gradient(circle at 84% 92%, rgba(168, 85, 247, 0.12), transparent 14rem),
+      #081220;
   }
 
   [data-theme="light"] .auth-page {
     background:
-      radial-gradient(circle at 24% 6%, rgba(15, 118, 110, 0.12), transparent 14rem),
-      #f7f7f2;
+      radial-gradient(circle at 24% 6%, rgba(99, 102, 241, 0.12), transparent 14rem),
+      radial-gradient(circle at 84% 92%, rgba(236, 72, 153, 0.08), transparent 14rem),
+      #f7f8fc;
   }
 
   .auth-card {
@@ -7121,7 +7122,7 @@ body {
   .auth-card .primary-action {
     min-height: 3.15rem;
     border-radius: 0.9rem;
-    background: linear-gradient(135deg, #059669, #10b981);
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
     font-size: 0.98rem;
   }
 
@@ -7139,7 +7140,7 @@ body {
   }
 
   .auth-link {
-    color: #34d399;
+    color: var(--mobile-primary);
   }
 
   @media (max-height: 760px) {
@@ -7590,9 +7591,9 @@ body {
     border-right: 1px solid var(--mobile-line);
     border-radius: 0 1.45rem 1.45rem 0;
     background:
-      radial-gradient(circle at 18% 8%, rgba(16, 185, 129, 0.18), transparent 10.5rem),
-      radial-gradient(circle at 94% 18%, rgba(45, 212, 191, 0.08), transparent 9rem),
-      linear-gradient(180deg, #08201c 0%, #061b17 42%, #031411 100%);
+      radial-gradient(circle at 18% 8%, rgba(99, 102, 241, 0.18), transparent 10.5rem),
+      radial-gradient(circle at 94% 18%, rgba(139, 92, 246, 0.12), transparent 9rem),
+      linear-gradient(180deg, #0f1f2f 0%, #081220 100%);
     box-shadow: 30px 0 90px rgba(0, 0, 0, 0.48);
     transform: translateX(-105%);
     transition: transform 220ms cubic-bezier(0.2, 0.8, 0.2, 1);
@@ -7668,7 +7669,7 @@ body {
     width: 2.9rem;
     height: 2.9rem;
     flex: 0 0 2.9rem;
-    background: linear-gradient(135deg, #047857, #34d399);
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
     font-size: 1rem;
   }
 
@@ -7838,7 +7839,7 @@ body {
   }
 
   .readiness-mini-grid span {
-    color: #34d399;
+    color: var(--mobile-primary);
     font-size: 1rem;
   }
 

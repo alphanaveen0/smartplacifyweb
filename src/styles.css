@@ -8627,6 +8627,16 @@ body {
 
   :root:not([data-theme="light"]) .season-card,
   [data-theme="dark"] .season-card,
+  :root:not([data-theme="light"]) .job-card,
+  [data-theme="dark"] .job-card,
+  :root:not([data-theme="light"]) .student-card,
+  [data-theme="dark"] .student-card,
+  :root:not([data-theme="light"]) .company-card,
+  [data-theme="dark"] .company-card,
+  :root:not([data-theme="light"]) .detail-card,
+  [data-theme="dark"] .detail-card,
+  :root:not([data-theme="light"]) .profile-card,
+  [data-theme="dark"] .profile-card,
   :root:not([data-theme="light"]) .readiness-mini-grid button,
   [data-theme="dark"] .readiness-mini-grid button,
   :root:not([data-theme="light"]) .demo-grid button,
@@ -8649,6 +8659,14 @@ body {
     box-shadow: none;
   }
 
+  :root:not([data-theme="light"]) .season-card,
+  [data-theme="dark"] .season-card {
+    background:
+      radial-gradient(circle at 100% 0%, rgba(255, 138, 61, 0.16), transparent 6rem),
+      rgba(27, 23, 38, 0.92);
+    border-color: rgba(255, 138, 61, 0.24);
+  }
+
   :root:not([data-theme="light"]) .primary-action,
   [data-theme="dark"] .primary-action,
   :root:not([data-theme="light"]) .auth-card .primary-action,
@@ -8663,6 +8681,17 @@ body {
     border-color: rgba(139, 92, 246, 0.34);
     color: #ffffff;
     box-shadow: 0 8px 28px rgba(139, 92, 246, 0.12);
+  }
+
+  :root:not([data-theme="light"]) .link-button,
+  [data-theme="dark"] .link-button,
+  :root:not([data-theme="light"]) .panel-head button,
+  [data-theme="dark"] .panel-head button,
+  :root:not([data-theme="light"]) .panel-head a,
+  [data-theme="dark"] .panel-head a {
+    color: var(--mobile-primary-light);
+    background: rgba(139, 92, 246, 0.12);
+    border-color: rgba(139, 92, 246, 0.2);
   }
 
   :root:not([data-theme="light"]) .profile-page .primary-action,
@@ -8692,6 +8721,25 @@ body {
     background: var(--mobile-gradient);
     color: #ffffff;
     border-color: rgba(139, 92, 246, 0.28);
+  }
+
+  :root:not([data-theme="light"]) .kpi-card.blue .icon,
+  [data-theme="dark"] .kpi-card.blue .icon,
+  :root:not([data-theme="light"]) .kpi-card.green .icon,
+  [data-theme="dark"] .kpi-card.green .icon,
+  :root:not([data-theme="light"]) .kpi-card.purple .icon,
+  [data-theme="dark"] .kpi-card.purple .icon,
+  :root:not([data-theme="light"]) .kpi-card.violet .icon,
+  [data-theme="dark"] .kpi-card.violet .icon {
+    background: var(--mobile-gradient);
+  }
+
+  :root:not([data-theme="light"]) .kpi-card.orange .icon,
+  [data-theme="dark"] .kpi-card.orange .icon,
+  :root:not([data-theme="light"]) .season-card span,
+  [data-theme="dark"] .season-card span {
+    background: var(--mobile-orange-gradient);
+    color: #ffffff;
   }
 
   :root:not([data-theme="light"]) .smart-ai-fab,
@@ -8757,11 +8805,25 @@ body {
   [data-theme="dark"] .skill-chip,
   :root:not([data-theme="light"]) .chip,
   [data-theme="dark"] .chip,
+  :root:not([data-theme="light"]) .filter-chip,
+  [data-theme="dark"] .filter-chip,
+  :root:not([data-theme="light"]) .tab,
+  [data-theme="dark"] .tab,
   :root:not([data-theme="light"]) .badge.info,
   [data-theme="dark"] .badge.info {
     background: rgba(139, 92, 246, 0.14);
     color: var(--mobile-primary-light);
     border-color: rgba(139, 92, 246, 0.18);
+  }
+
+  :root:not([data-theme="light"]) .company-mark,
+  [data-theme="dark"] .company-mark,
+  :root:not([data-theme="light"]) .student-avatar,
+  [data-theme="dark"] .student-avatar,
+  :root:not([data-theme="light"]) .profile-avatar,
+  [data-theme="dark"] .profile-avatar {
+    background: var(--mobile-gradient);
+    color: #ffffff;
   }
 
   :root:not([data-theme="light"]) .status.success,

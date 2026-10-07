@@ -56,6 +56,23 @@ function roleLabel(role) {
   return "Student";
 }
 
+function mobileIcon(routeId) {
+  const icons = {
+    dashboard: "▦",
+    profile: "○",
+    students: "👥",
+    companies: "▥",
+    jobs: "▣",
+    applications: "▤",
+    interviews: "▱",
+    reports: "▧",
+    ai: "AI",
+    notifications: "◌",
+    settings: "⚙"
+  };
+  return icons[routeId] || "•";
+}
+
 export function Layout({ navItems, activeRoute, onNavigate, header, children }) {
   const { user, logout } = useAuth();
   const routerNavigate = useNavigate();
@@ -131,8 +148,8 @@ export function Layout({ navItems, activeRoute, onNavigate, header, children }) 
             </span>
           </button>
           {navItems.map((item) => (
-            <button key={item.id} className={activeRoute === item.id ? "active" : ""} onClick={() => navigateTo(item.id)} type="button">
-              <span>{item.icon}</span> {item.label}
+            <button key={item.id} data-route={item.id} className={activeRoute === item.id ? "active" : ""} onClick={() => navigateTo(item.id)} type="button">
+              <span>{mobileIcon(item.id)}</span> {item.label}
             </button>
           ))}
           <div className="mobile-drawer-actions">

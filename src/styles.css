@@ -8619,10 +8619,23 @@ body {
   :root:not([data-theme="light"]) .hero-panel,
   [data-theme="dark"] .hero-panel {
     background:
-      radial-gradient(circle at 100% 74%, rgba(255, 138, 61, 0.2), transparent 7rem),
-      var(--mobile-hero-gradient);
-    border-color: rgba(139, 92, 246, 0.28);
-    box-shadow: 0 8px 28px rgba(139, 92, 246, 0.12);
+      radial-gradient(circle at 92% 18%, rgba(255, 138, 61, 0.42), transparent 4.8rem),
+      radial-gradient(circle at 78% 52%, rgba(139, 92, 246, 0.34), transparent 7rem),
+      linear-gradient(135deg, #15121f 0%, #21143c 58%, #3b1551 100%);
+    border-color: rgba(139, 92, 246, 0.46);
+    box-shadow: 0 0 0 1px rgba(167, 139, 250, 0.08), 0 12px 34px rgba(139, 92, 246, 0.2);
+  }
+
+  :root:not([data-theme="light"]) .hero-panel::after,
+  [data-theme="dark"] .hero-panel::after {
+    inset: auto -2rem -4.2rem 28%;
+    width: 13.5rem;
+    height: 13.5rem;
+    border-radius: 42%;
+    background:
+      linear-gradient(135deg, transparent 10%, rgba(139, 92, 246, 0.72) 35%, rgba(255, 138, 61, 0.86) 72%, transparent 73%);
+    filter: blur(0.5px);
+    opacity: 0.9;
   }
 
   :root:not([data-theme="light"]) .season-card,
@@ -8724,14 +8737,20 @@ body {
   }
 
   :root:not([data-theme="light"]) .kpi-card.blue .icon,
-  [data-theme="dark"] .kpi-card.blue .icon,
-  :root:not([data-theme="light"]) .kpi-card.green .icon,
-  [data-theme="dark"] .kpi-card.green .icon,
+  [data-theme="dark"] .kpi-card.blue .icon {
+    background: linear-gradient(135deg, #2563eb, #38bdf8);
+  }
+
   :root:not([data-theme="light"]) .kpi-card.purple .icon,
   [data-theme="dark"] .kpi-card.purple .icon,
   :root:not([data-theme="light"]) .kpi-card.violet .icon,
   [data-theme="dark"] .kpi-card.violet .icon {
     background: var(--mobile-gradient);
+  }
+
+  :root:not([data-theme="light"]) .kpi-card.green .icon,
+  [data-theme="dark"] .kpi-card.green .icon {
+    background: linear-gradient(135deg, #16a34a, #4ade80);
   }
 
   :root:not([data-theme="light"]) .kpi-card.orange .icon,
@@ -8740,6 +8759,17 @@ body {
   [data-theme="dark"] .season-card span {
     background: var(--mobile-orange-gradient);
     color: #ffffff;
+  }
+
+  :root:not([data-theme="light"]) .skill-track,
+  [data-theme="dark"] .skill-track {
+    background: rgba(40, 34, 56, 0.94);
+  }
+
+  :root:not([data-theme="light"]) .skill-track b,
+  [data-theme="dark"] .skill-track b {
+    background: linear-gradient(90deg, #8b5cf6 0%, #a78bfa 74%, #ff8a3d 100%);
+    box-shadow: none;
   }
 
   :root:not([data-theme="light"]) .smart-ai-fab,

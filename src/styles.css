@@ -9102,3 +9102,80 @@ body {
     color: #ffffff !important;
   }
 }
+
+/* Absolute mobile-dark Smart AI green removal */
+@media (max-width: 768px) {
+  html[data-theme="dark"] .smart-ai-strip,
+  html[data-theme="dark"] .smart-ai-card,
+  html[data-theme="dark"] .student-ai-insight,
+  html[data-theme="dark"] .dashboard-actions,
+  body[data-theme="dark"] .smart-ai-strip,
+  body[data-theme="dark"] .smart-ai-card,
+  body[data-theme="dark"] .student-ai-insight,
+  body[data-theme="dark"] .dashboard-actions,
+  :root[data-theme="dark"] .smart-ai-strip,
+  :root[data-theme="dark"] .smart-ai-card,
+  :root[data-theme="dark"] .student-ai-insight,
+  :root[data-theme="dark"] .dashboard-actions {
+    border-color: rgba(139, 92, 246, 0.32) !important;
+    background: linear-gradient(135deg, #15121f 0%, #1b1726 62%, #21143a 100%) !important;
+  }
+
+  html[data-theme="dark"] .smart-ai-strip h2,
+  html[data-theme="dark"] .smart-ai-card h3,
+  html[data-theme="dark"] .student-ai-insight h2,
+  html[data-theme="dark"] .dashboard-actions h2,
+  body[data-theme="dark"] .smart-ai-strip h2,
+  body[data-theme="dark"] .smart-ai-card h3,
+  body[data-theme="dark"] .student-ai-insight h2,
+  body[data-theme="dark"] .dashboard-actions h2,
+  :root[data-theme="dark"] .smart-ai-strip h2,
+  :root[data-theme="dark"] .smart-ai-card h3,
+  :root[data-theme="dark"] .student-ai-insight h2,
+  :root[data-theme="dark"] .dashboard-actions h2 {
+    color: #f5f3fa !important;
+  }
+
+  html[data-theme="dark"] .smart-ai-strip p,
+  html[data-theme="dark"] .smart-ai-card p,
+  html[data-theme="dark"] .student-ai-insight p,
+  html[data-theme="dark"] .dashboard-actions p,
+  body[data-theme="dark"] .smart-ai-strip p,
+  body[data-theme="dark"] .smart-ai-card p,
+  body[data-theme="dark"] .student-ai-insight p,
+  body[data-theme="dark"] .dashboard-actions p,
+  :root[data-theme="dark"] .smart-ai-strip p,
+  :root[data-theme="dark"] .smart-ai-card p,
+  :root[data-theme="dark"] .student-ai-insight p,
+  :root[data-theme="dark"] .dashboard-actions p {
+    color: #a9a3b5 !important;
+  }
+
+  html[data-theme="dark"] .smart-ai-strip-actions button,
+  html[data-theme="dark"] .smart-ai-actions button,
+  html[data-theme="dark"] .smart-ai-suggestions button,
+  html[data-theme="dark"] .dashboard-actions .link-button,
+  body[data-theme="dark"] .smart-ai-strip-actions button,
+  body[data-theme="dark"] .smart-ai-actions button,
+  body[data-theme="dark"] .smart-ai-suggestions button,
+  body[data-theme="dark"] .dashboard-actions .link-button,
+  :root[data-theme="dark"] .smart-ai-strip-actions button,
+  :root[data-theme="dark"] .smart-ai-actions button,
+  :root[data-theme="dark"] .smart-ai-suggestions button,
+  :root[data-theme="dark"] .dashboard-actions .link-button {
+    color: #a78bfa !important;
+    border-color: rgba(139, 92, 246, 0.24) !important;
+    background: rgba(139, 92, 246, 0.16) !important;
+  }
+
+  html[data-theme="dark"] .smart-ai-spark,
+  html[data-theme="dark"] .smart-ai-inline span,
+  body[data-theme="dark"] .smart-ai-spark,
+  body[data-theme="dark"] .smart-ai-inline span,
+  :root[data-theme="dark"] .smart-ai-spark,
+  :root[data-theme="dark"] .smart-ai-inline span {
+    color: #ffffff !important;
+    border-color: rgba(255, 138, 61, 0.38) !important;
+    background: linear-gradient(135deg, #ff8a3d 0%, #f97316 100%) !important;
+  }
+}

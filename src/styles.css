@@ -8896,3 +8896,105 @@ body {
     color: var(--mobile-accent);
   }
 }
+
+/* Final mobile-dark color cleanup: remove emerald leftovers from all dashboards */
+@media (max-width: 768px) {
+  :root:not([data-theme="light"]),
+  [data-theme="dark"] {
+    --green: #8b5cf6;
+    --mobile-success: #a78bfa;
+    --chart-bg: #15121f;
+    --chart-border: #282238;
+    --chart-grid: rgba(169, 163, 181, 0.13);
+    --chart-axis: #a9a3b5;
+    --chart-applications: #8b5cf6;
+    --chart-shortlisted: #a78bfa;
+    --chart-interviews: #ff8a3d;
+    --chart-offers: #f59e0b;
+  }
+
+  :root:not([data-theme="light"]) .kpi-card.green .icon,
+  [data-theme="dark"] .kpi-card.green .icon,
+  :root:not([data-theme="light"]) .qa.green,
+  [data-theme="dark"] .qa.green,
+  :root:not([data-theme="light"]) .green-dot,
+  [data-theme="dark"] .green-dot,
+  :root:not([data-theme="light"]) .interview-date,
+  [data-theme="dark"] .interview-date,
+  :root:not([data-theme="light"]) .company-mark,
+  [data-theme="dark"] .company-mark,
+  :root:not([data-theme="light"]) .student-avatar,
+  [data-theme="dark"] .student-avatar,
+  :root:not([data-theme="light"]) .profile-avatar,
+  [data-theme="dark"] .profile-avatar {
+    background: var(--mobile-gradient) !important;
+    color: #ffffff !important;
+    border-color: rgba(139, 92, 246, 0.28) !important;
+  }
+
+  :root:not([data-theme="light"]) .status.success,
+  [data-theme="dark"] .status.success,
+  :root:not([data-theme="light"]) .badge.success,
+  [data-theme="dark"] .badge.success,
+  :root:not([data-theme="light"]) .status.eligible,
+  [data-theme="dark"] .status.eligible,
+  :root:not([data-theme="light"]) .badge.eligible,
+  [data-theme="dark"] .badge.eligible,
+  :root:not([data-theme="light"]) .status.selected,
+  [data-theme="dark"] .status.selected {
+    background: rgba(139, 92, 246, 0.16) !important;
+    color: var(--mobile-primary-light) !important;
+    border-color: rgba(139, 92, 246, 0.24) !important;
+  }
+
+  :root:not([data-theme="light"]) .skill-track,
+  [data-theme="dark"] .skill-track,
+  :root:not([data-theme="light"]) .skill-row b,
+  [data-theme="dark"] .skill-row b {
+    background: rgba(40, 34, 56, 0.94) !important;
+  }
+
+  :root:not([data-theme="light"]) .skill-track b,
+  [data-theme="dark"] .skill-track b,
+  :root:not([data-theme="light"]) .skill-row b::before,
+  [data-theme="dark"] .skill-row b::before {
+    background: linear-gradient(90deg, #8b5cf6 0%, #a78bfa 72%, #ff8a3d 100%) !important;
+    box-shadow: none !important;
+  }
+
+  :root:not([data-theme="light"]) .ai-insight-main > strong,
+  [data-theme="dark"] .ai-insight-main > strong,
+  :root:not([data-theme="light"]) .readiness-ring,
+  [data-theme="dark"] .readiness-ring,
+  :root:not([data-theme="light"]) .rate-ring,
+  [data-theme="dark"] .rate-ring {
+    color: var(--mobile-primary-light) !important;
+    background:
+      radial-gradient(circle, #15121f 0 52%, transparent 53%),
+      conic-gradient(#8b5cf6 0 64%, #ff8a3d 64% 82%, rgba(40, 34, 56, 0.95) 82% 100%) !important;
+    border-color: rgba(139, 92, 246, 0.28) !important;
+  }
+
+  :root:not([data-theme="light"]) .placement-chart-legend .shortlisted::before,
+  [data-theme="dark"] .placement-chart-legend .shortlisted::before {
+    background: var(--chart-shortlisted) !important;
+  }
+
+  :root:not([data-theme="light"]) .placement-bar.shortlisted,
+  [data-theme="dark"] .placement-bar.shortlisted,
+  :root:not([data-theme="light"]) .placement-bar.hired,
+  [data-theme="dark"] .placement-bar.hired {
+    background: var(--chart-shortlisted) !important;
+  }
+
+  :root:not([data-theme="light"]) .prepare-ai-btn,
+  [data-theme="dark"] .prepare-ai-btn,
+  :root:not([data-theme="light"]) .table-row em,
+  [data-theme="dark"] .table-row em,
+  :root:not([data-theme="light"]) .smart-row em,
+  [data-theme="dark"] .smart-row em {
+    color: var(--mobile-primary-light) !important;
+    background: rgba(139, 92, 246, 0.14) !important;
+    border-color: rgba(139, 92, 246, 0.2) !important;
+  }
+}

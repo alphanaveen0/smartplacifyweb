@@ -7870,3 +7870,38 @@ body {
     top: calc(4.05rem + env(safe-area-inset-top));
   }
 }
+
+/* Mobile/tablet spacing correction: avoid double visual offset below the header */
+@media (max-width: 900px) {
+  .dashboard-header {
+    padding-top: clamp(0.45rem, 1.4vw, 0.7rem);
+    padding-bottom: 0;
+    margin-bottom: 0;
+  }
+
+  .dashboard-header .topbar {
+    margin-bottom: 0;
+  }
+
+  .dashboard,
+  .dashboard-scroll {
+    padding-top: clamp(0.5rem, 1.5vw, 0.75rem);
+  }
+
+  .dashboard-scroll > .mobile-back-row:first-child {
+    margin-top: 0;
+  }
+
+  .dashboard-scroll > .hero-panel:first-child,
+  .dashboard-scroll > .mobile-back-row + .hero-panel {
+    margin-top: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .dashboard-header,
+  .dashboard,
+  .dashboard-scroll {
+    padding-top: 0.5rem;
+  }
+}

@@ -10985,3 +10985,382 @@ html[data-theme="light"] .readiness-ring {
     radial-gradient(circle, #FFFFFF 0 54%, transparent 55%),
     conic-gradient(#2563EB 0 10%, #DCEBFF 10% 100%) !important;
 }
+
+/* Exact Uploaded Light Theme Palette Lock */
+html[data-theme="light"] {
+  --page-bg: #EFF8FF;
+  --surface: #FFFFFF;
+  --text-heading: #102A56;
+  --text-primary: #102A56;
+  --text-secondary: #647C9C;
+  --active-bg: #DCEEFF;
+  --primary-blue: #2478F2;
+  --secondary-blue-bg: #E4F3FF;
+  --border-soft: #D6E8F8;
+  --table-head: #EAF5FF;
+  --search-bg: #F7FBFF;
+  --applications: #4B9AF7;
+  --shortlisted: #34C9B1;
+  --interviews: #FFAA70;
+  --offers: #FFC857;
+  --success: #22B8A0;
+  --danger: #F46B8A;
+}
+
+html[data-theme="light"],
+html[data-theme="light"] body,
+html[data-theme="light"] #root,
+html[data-theme="light"] .app-shell,
+html[data-theme="light"] .main-area,
+html[data-theme="light"] .dashboard,
+html[data-theme="light"] .dashboard-scroll,
+html[data-theme="light"] .auth-page {
+  background: #EFF8FF !important;
+  color: #102A56 !important;
+}
+
+html[data-theme="light"] .sidebar,
+html[data-theme="light"] .dashboard-header,
+html[data-theme="light"] .topbar,
+html[data-theme="light"] .mobile-sidebar-head,
+html[data-theme="light"] .mobile-bottom-nav,
+html[data-theme="light"] .mobile-nav-drawer {
+  background: #FFFFFF !important;
+  color: #102A56 !important;
+  border-color: #D6E8F8 !important;
+  box-shadow: 0 12px 32px rgba(36, 120, 242, 0.08) !important;
+}
+
+html[data-theme="light"] h1,
+html[data-theme="light"] h2,
+html[data-theme="light"] h3,
+html[data-theme="light"] h4,
+html[data-theme="light"] .page-header h1,
+html[data-theme="light"] .hero-panel h1,
+html[data-theme="light"] .panel-head h2,
+html[data-theme="light"] .auth-card h1,
+html[data-theme="light"] .brand strong,
+html[data-theme="light"] .brand strong span,
+html[data-theme="light"] .profile-card strong,
+html[data-theme="light"] .mobile-drawer-user strong,
+html[data-theme="light"] .kpi-card strong,
+html[data-theme="light"] .panel strong,
+html[data-theme="light"] .season-card strong,
+html[data-theme="light"] .application-card-row strong,
+html[data-theme="light"] .interview-card strong,
+html[data-theme="light"] .activity-mini strong,
+html[data-theme="light"] .details-grid strong,
+html[data-theme="light"] .summary-grid strong {
+  color: #102A56 !important;
+}
+
+html[data-theme="light"] p,
+html[data-theme="light"] small,
+html[data-theme="light"] label,
+html[data-theme="light"] .field,
+html[data-theme="light"] .hero-panel p,
+html[data-theme="light"] .page-header p,
+html[data-theme="light"] .dashboard-actions p,
+html[data-theme="light"] .panel-head small,
+html[data-theme="light"] .kpi-card small,
+html[data-theme="light"] .kpi-card em,
+html[data-theme="light"] .activity-list small,
+html[data-theme="light"] .application-card-row small,
+html[data-theme="light"] .interview-card small,
+html[data-theme="light"] .activity-mini small,
+html[data-theme="light"] .table-meta,
+html[data-theme="light"] .pagination,
+html[data-theme="light"] .details-grid small,
+html[data-theme="light"] .summary-grid small,
+html[data-theme="light"] .brand small,
+html[data-theme="light"] .profile-card small,
+html[data-theme="light"] .mobile-drawer-user small {
+  color: #647C9C !important;
+}
+
+html[data-theme="light"] .brand,
+html[data-theme="light"] .brand-button,
+html[data-theme="light"] .drawer-brand-card,
+html[data-theme="light"] .mobile-sidebar-head .brand-button,
+html[data-theme="light"] .mobile-drawer-head .drawer-brand-card {
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  color: #102A56 !important;
+}
+
+html[data-theme="light"] .brand-button strong::first-letter,
+html[data-theme="light"] .brand strong::first-letter,
+html[data-theme="light"] .drawer-brand-card strong::first-letter {
+  color: #102A56 !important;
+}
+
+html[data-theme="light"] .brand-mark,
+html[data-theme="light"] .avatar,
+html[data-theme="light"] .profile-dp,
+html[data-theme="light"] .user-pill,
+html[data-theme="light"] .company-mark,
+html[data-theme="light"] .mobile-drawer-user .avatar {
+  background: linear-gradient(135deg, #5BA7FF 0%, #2478F2 100%) !important;
+  color: #FFFFFF !important;
+  border-color: rgba(36, 120, 242, 0.18) !important;
+  box-shadow: 0 10px 22px rgba(36, 120, 242, 0.18) !important;
+}
+
+html[data-theme="light"] .brand-mark::after {
+  display: none !important;
+}
+
+html[data-theme="light"] .nav-list button,
+html[data-theme="light"] .nav-list a,
+html[data-theme="light"] .mobile-drawer-nav button,
+html[data-theme="light"] .mobile-drawer-actions button,
+html[data-theme="light"] .mobile-bottom-nav button {
+  background: transparent !important;
+  color: #102A56 !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+}
+
+html[data-theme="light"] .nav-list button.active,
+html[data-theme="light"] .nav-list a.active,
+html[data-theme="light"] .nav-list button:hover,
+html[data-theme="light"] .nav-list a:hover,
+html[data-theme="light"] .mobile-drawer-nav button.active,
+html[data-theme="light"] .mobile-drawer-nav button:hover,
+html[data-theme="light"] .mobile-bottom-nav button.active,
+html[data-theme="light"] .mobile-bottom-nav button:hover {
+  background: #DCEEFF !important;
+  color: #2478F2 !important;
+  border-color: #D6E8F8 !important;
+}
+
+html[data-theme="light"] .search,
+html[data-theme="light"] .search input,
+html[data-theme="light"] .field input,
+html[data-theme="light"] .field select,
+html[data-theme="light"] .field textarea,
+html[data-theme="light"] .auth-card input,
+html[data-theme="light"] .auth-card select,
+html[data-theme="light"] .password-field input,
+html[data-theme="light"] .form-grid input,
+html[data-theme="light"] .form-grid textarea,
+html[data-theme="light"] .form-grid select,
+html[data-theme="light"] .filter-bar select,
+html[data-theme="light"] .settings-form input,
+html[data-theme="light"] .settings-form select,
+html[data-theme="light"] .ai-upload-panel input,
+html[data-theme="light"] .panel select,
+html[data-theme="light"] .chat-input,
+html[data-theme="light"] .smart-ai-prompt input,
+html[data-theme="light"] .smart-ai-workspace-input input {
+  background: #F7FBFF !important;
+  color: #647C9C !important;
+  border-color: #C9DCF5 !important;
+}
+
+html[data-theme="light"] input::placeholder,
+html[data-theme="light"] textarea::placeholder {
+  color: #647C9C !important;
+}
+
+html[data-theme="light"] .hero-panel {
+  background: #DCEEFF !important;
+  color: #102A56 !important;
+  border-color: #D6E8F8 !important;
+  box-shadow: 0 14px 34px rgba(36, 120, 242, 0.08) !important;
+}
+
+html[data-theme="light"] .hero-panel::after {
+  background: linear-gradient(90deg, transparent, rgba(36, 120, 242, 0.14), transparent) !important;
+}
+
+html[data-theme="light"] .hero-panel h1,
+html[data-theme="light"] .hero-panel p {
+  color: #102A56 !important;
+}
+
+html[data-theme="light"] .season-card,
+html[data-theme="light"] .kpi-card,
+html[data-theme="light"] .panel,
+html[data-theme="light"] .auth-card,
+html[data-theme="light"] .modal-card,
+html[data-theme="light"] .confirm-card,
+html[data-theme="light"] .details-grid div,
+html[data-theme="light"] .summary-grid span,
+html[data-theme="light"] .api-box,
+html[data-theme="light"] .application-card-row,
+html[data-theme="light"] .interview-card,
+html[data-theme="light"] .activity-mini,
+html[data-theme="light"] .smart-row,
+html[data-theme="light"] .table-row,
+html[data-theme="light"] .notification-list li,
+html[data-theme="light"] .activity-list li,
+html[data-theme="light"] .mobile-drawer-user {
+  background: #FFFFFF !important;
+  color: #102A56 !important;
+  border-color: #D6E8F8 !important;
+  box-shadow: 0 12px 30px rgba(36, 120, 242, 0.06) !important;
+}
+
+html[data-theme="light"] .dashboard-actions.panel {
+  background: #FFFFFF !important;
+  color: #102A56 !important;
+  border-color: #D6E8F8 !important;
+}
+
+html[data-theme="light"] .student-ai-insight,
+html[data-theme="light"] .smart-ai-strip,
+html[data-theme="light"] .smart-ai-card,
+html[data-theme="light"] .smart-ai-main,
+html[data-theme="light"] .smart-ai-saved,
+html[data-theme="light"] .smart-ai-context {
+  background: #F7FBFF !important;
+  color: #2478F2 !important;
+  border-color: #D6E8F8 !important;
+}
+
+html[data-theme="light"] .kpi-card .icon,
+html[data-theme="light"] .season-card .brand-mark,
+html[data-theme="light"] .smart-ai-spark,
+html[data-theme="light"] .ai-insight-main .smart-ai-spark {
+  background: linear-gradient(135deg, #5BA7FF 0%, #2478F2 100%) !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 10px 22px rgba(36, 120, 242, 0.2) !important;
+}
+
+html[data-theme="light"] .primary-action,
+html[data-theme="light"] .btn:not(.secondary),
+html[data-theme="light"] .apply-action:not(:disabled),
+html[data-theme="light"] .segmented .selected {
+  background: #2478F2 !important;
+  color: #FFFFFF !important;
+  border-color: #2478F2 !important;
+}
+
+html[data-theme="light"] .link-button,
+html[data-theme="light"] .btn.secondary,
+html[data-theme="light"] .row-actions button,
+html[data-theme="light"] .chips button,
+html[data-theme="light"] .demo-grid button,
+html[data-theme="light"] .filter-bar button,
+html[data-theme="light"] .panel-head a,
+html[data-theme="light"] .panel-head button,
+html[data-theme="light"] .smart-ai-suggestions button,
+html[data-theme="light"] .smart-ai-actions button,
+html[data-theme="light"] .smart-ai-strip-actions button,
+html[data-theme="light"] .smart-ai-card-grid button,
+html[data-theme="light"] .prepare-ai-btn,
+html[data-theme="light"] .mobile-back-row button,
+html[data-theme="light"] .readiness-side-card button,
+html[data-theme="light"] .side-card button,
+html[data-theme="light"] .application-card-row button,
+html[data-theme="light"] .activity-list button,
+html[data-theme="light"] .interview-card button {
+  background: #E4F3FF !important;
+  color: #2478F2 !important;
+  border-color: #D6E8F8 !important;
+  box-shadow: none !important;
+}
+
+html[data-theme="light"] .smart-row.head,
+html[data-theme="light"] .table-row.head,
+html[data-theme="light"] .ai-table-head {
+  background: #EAF5FF !important;
+  color: #102A56 !important;
+  border-color: #D6E8F8 !important;
+}
+
+html[data-theme="light"] .smart-row:hover,
+html[data-theme="light"] .table-row:hover,
+html[data-theme="light"] .activity-list li:hover,
+html[data-theme="light"] .notification-list li:hover,
+html[data-theme="light"] .application-card-row:hover,
+html[data-theme="light"] .interview-card:hover {
+  background: #E4F3FF !important;
+  color: #2478F2 !important;
+}
+
+html[data-theme="light"] .placement-chart-shell,
+html[data-theme="light"] .smart-chart-frame,
+html[data-theme="light"] .line-chart,
+html[data-theme="light"] .bar-chart {
+  background: #FFFFFF !important;
+  color: #102A56 !important;
+  border-color: #D6E8F8 !important;
+}
+
+html[data-theme="light"] .placement-bar.applications,
+html[data-theme="light"] .placement-bar.applied,
+html[data-theme="light"] .placement-chart-legend .applications,
+html[data-theme="light"] .placement-chart-legend .applied {
+  background: #4B9AF7 !important;
+}
+
+html[data-theme="light"] .placement-bar.shortlisted,
+html[data-theme="light"] .placement-chart-legend .shortlisted {
+  background: #34C9B1 !important;
+}
+
+html[data-theme="light"] .placement-bar.interviews,
+html[data-theme="light"] .placement-bar.interviewed,
+html[data-theme="light"] .placement-chart-legend .interviews,
+html[data-theme="light"] .placement-chart-legend .interviewed {
+  background: #FFAA70 !important;
+}
+
+html[data-theme="light"] .placement-bar.offers,
+html[data-theme="light"] .placement-chart-legend .offers,
+html[data-theme="light"] .placement-bar.hired,
+html[data-theme="light"] .placement-chart-legend .hired {
+  background: #FFC857 !important;
+}
+
+html[data-theme="light"] .status-badge.success,
+html[data-theme="light"] .pass,
+html[data-theme="light"] .green-dot,
+html[data-theme="light"] .ai-decision.success {
+  background: rgba(34, 184, 160, 0.14) !important;
+  color: #22B8A0 !important;
+  border-color: rgba(34, 184, 160, 0.22) !important;
+}
+
+html[data-theme="light"] .status-badge.warning,
+html[data-theme="light"] .ai-decision.warning {
+  background: rgba(255, 170, 112, 0.16) !important;
+  color: #F59E0B !important;
+  border-color: rgba(255, 170, 112, 0.24) !important;
+}
+
+html[data-theme="light"] .status-badge.danger,
+html[data-theme="light"] .fail,
+html[data-theme="light"] .toast.error,
+html[data-theme="light"] .danger-action,
+html[data-theme="light"] .profile-card .logout-btn,
+html[data-theme="light"] .mobile-drawer-logout,
+html[data-theme="light"] .row-actions button:nth-child(4),
+html[data-theme="light"] .row-actions button:last-child {
+  background: rgba(244, 107, 138, 0.13) !important;
+  color: #F46B8A !important;
+  border-color: rgba(244, 107, 138, 0.24) !important;
+  box-shadow: none !important;
+}
+
+html[data-theme="light"] .smart-ai-fab,
+html[data-theme="light"] .smart-ai-inline {
+  background: #2478F2 !important;
+  color: #FFFFFF !important;
+}
+
+@media (max-width: 820px) {
+  html[data-theme="light"] .main-area,
+  html[data-theme="light"] .dashboard,
+  html[data-theme="light"] .dashboard-scroll {
+    background: #EFF8FF !important;
+  }
+
+  html[data-theme="light"] .mobile-bottom-nav {
+    background: #FFFFFF !important;
+    color: #2478F2 !important;
+  }
+}

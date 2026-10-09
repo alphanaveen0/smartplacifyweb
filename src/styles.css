@@ -12209,3 +12209,155 @@ html[data-theme="light"] .tpo-profile-details strong {
     flex-basis: 1.85rem !important;
   }
 }
+
+/* Final compact mobile header/search spacing */
+@media (max-width: 820px) {
+  .sidebar {
+    padding: calc(0.48rem + env(safe-area-inset-top)) 0.75rem 0.42rem !important;
+  }
+
+  .mobile-sidebar-head,
+  html[data-theme="light"] .mobile-sidebar-head {
+    grid-template-columns: 2.35rem minmax(0, 1fr) auto !important;
+    gap: 0.34rem !important;
+    min-height: 2.45rem !important;
+    padding-right: 6.75rem !important;
+  }
+
+  .mobile-menu-toggle,
+  html[data-theme="light"] .mobile-menu-toggle {
+    width: 2.32rem !important;
+    min-width: 2.32rem !important;
+    min-height: 2.32rem !important;
+  }
+
+  .mobile-menu-toggle span {
+    font-size: 1.02rem !important;
+  }
+
+  .mobile-sidebar-head .brand-button,
+  html[data-theme="light"] .mobile-sidebar-head .brand-button {
+    min-height: 2.32rem !important;
+    padding: 0.18rem 0.32rem !important;
+    gap: 0.36rem !important;
+  }
+
+  .mobile-sidebar-head .brand-mark,
+  html[data-theme="light"] .mobile-sidebar-head .brand-mark {
+    width: 1.78rem !important;
+    height: 1.78rem !important;
+    min-width: 1.78rem !important;
+    flex-basis: 1.78rem !important;
+    border-radius: 0.56rem !important;
+    font-size: 0.88rem !important;
+  }
+
+  .mobile-sidebar-head .brand strong,
+  html[data-theme="light"] .mobile-sidebar-head .brand strong {
+    font-size: 0.82rem !important;
+    line-height: 1 !important;
+  }
+
+  .mobile-sidebar-head .brand small,
+  html[data-theme="light"] .mobile-sidebar-head .brand small {
+    display: none !important;
+  }
+
+  .mobile-header-actions,
+  html[data-theme="light"] .mobile-header-actions {
+    top: calc(0.56rem + env(safe-area-inset-top)) !important;
+    right: max(0.75rem, env(safe-area-inset-right)) !important;
+    gap: 0.28rem !important;
+  }
+
+  .mobile-theme-toggle,
+  html[data-theme="light"] .mobile-theme-toggle {
+    width: 2.48rem !important;
+    min-width: 2.48rem !important;
+    height: 2.18rem !important;
+    min-height: 2.18rem !important;
+  }
+
+  .mobile-theme-toggle span {
+    width: 1.04rem !important;
+    height: 1.04rem !important;
+    font-size: 0.66rem !important;
+  }
+
+  .mobile-header-actions .notification-action,
+  .mobile-header-actions .profile-trigger,
+  html[data-theme="light"] .mobile-header-actions .notification-action,
+  html[data-theme="light"] .mobile-header-actions .profile-trigger {
+    width: 2.18rem !important;
+    min-width: 2.18rem !important;
+    height: 2.18rem !important;
+    min-height: 2.18rem !important;
+  }
+
+  .mobile-header-actions .profile-dp,
+  .mobile-header-actions .initials-avatar,
+  html[data-theme="light"] .mobile-header-actions .profile-dp,
+  html[data-theme="light"] .mobile-header-actions .initials-avatar {
+    width: 1.68rem !important;
+    height: 1.68rem !important;
+    flex-basis: 1.68rem !important;
+    font-size: 0.72rem !important;
+  }
+
+  .dashboard-header,
+  html[data-theme="light"] .dashboard-header {
+    min-height: 0 !important;
+    padding: 0.4rem 0.75rem 0.32rem !important;
+  }
+
+  .topbar,
+  html[data-theme="light"] .topbar {
+    gap: 0 !important;
+    margin: 0 !important;
+  }
+
+  .search,
+  html[data-theme="light"] .search {
+    min-height: 2.32rem !important;
+    height: 2.32rem !important;
+    max-width: 100% !important;
+    padding: 0 0.72rem !important;
+    border-radius: 0.78rem !important;
+  }
+
+  .search input,
+  html[data-theme="light"] .search input {
+    font-size: 0.82rem !important;
+    line-height: 1 !important;
+  }
+
+  .search svg,
+  .search > span:first-child {
+    flex: 0 0 auto !important;
+  }
+
+  .dashboard,
+  .dashboard-scroll,
+  html[data-theme="light"] .dashboard,
+  html[data-theme="light"] .dashboard-scroll {
+    padding-top: 0.55rem !important;
+  }
+}
+
+@media (max-width: 380px) {
+  .mobile-sidebar-head,
+  html[data-theme="light"] .mobile-sidebar-head {
+    padding-right: 6.35rem !important;
+  }
+
+  .mobile-sidebar-head .brand strong,
+  html[data-theme="light"] .mobile-sidebar-head .brand strong {
+    font-size: 0.76rem !important;
+  }
+
+  .mobile-theme-toggle,
+  html[data-theme="light"] .mobile-theme-toggle {
+    width: 2.28rem !important;
+    min-width: 2.28rem !important;
+  }
+}

@@ -11950,3 +11950,56 @@ html[data-theme="light"] .page-header .header-actions {
     display: none !important;
   }
 }
+
+/* TPO profile details in Settings/Profile panel */
+.tpo-profile-details {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin: 1rem 0;
+}
+
+.tpo-profile-details span {
+  display: grid;
+  gap: 0.25rem;
+  min-width: 0;
+  padding: 0.85rem 0.95rem;
+  border: 1px solid var(--border);
+  border-radius: 0.9rem;
+  background: var(--surface-muted);
+}
+
+.tpo-profile-details small {
+  color: var(--text-muted);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.035em;
+}
+
+.tpo-profile-details strong {
+  overflow-wrap: anywhere;
+  color: var(--text-primary);
+  font-size: 0.92rem;
+  line-height: 1.25;
+}
+
+html[data-theme="light"] .tpo-profile-details span {
+  background: #F7FBFF !important;
+  border-color: #D6E8F8 !important;
+}
+
+html[data-theme="light"] .tpo-profile-details small {
+  color: #647C9C !important;
+}
+
+html[data-theme="light"] .tpo-profile-details strong {
+  color: #102A56 !important;
+}
+
+@media (max-width: 640px) {
+  .tpo-profile-details {
+    grid-template-columns: 1fr;
+    gap: 0.6rem;
+  }
+}

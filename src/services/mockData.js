@@ -242,7 +242,10 @@ const seed = {
       name: "Dr. Anjali Sharma",
       email: "admin@test.com",
       password: "password123",
-      role: "tpo"
+      role: "tpo",
+      department: "Training & Placement",
+      location: "Gurugram, Haryana",
+      mobile: "+91 98765 43210"
     },
     {
       id: 2,

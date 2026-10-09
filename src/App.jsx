@@ -2187,12 +2187,30 @@ function StudentProfileView({ user, notify, openSmartAI }) {
 }
 
 function SettingsView({ user, updateProfile, notify, askConfirm }) {
-  const [form, setForm] = useState({ name: user.name, email: user.email, quietHours: "Off", compactTables: "Off" });
+  const isTpo = user.role === "tpo";
+  const tpoDefaults = {
+    department: "Training & Placement",
+    location: "Gurugram, Haryana",
+    mobile: "+91 98765 43210"
+  };
+  const [form, setForm] = useState({
+    name: user.name,
+    email: user.email,
+    department: user.department || tpoDefaults.department,
+    location: user.location || tpoDefaults.location,
+    mobile: user.mobile || user.phone || tpoDefaults.mobile,
+    quietHours: "Off",
+    compactTables: "Off"
+  });
   const showDeveloperSettings = localStorage.getItem("smartplacify_show_dev_settings") === "true";
 
   async function save(event) {
     event.preventDefault();
-    await updateProfile({ name: form.name, email: form.email });
+    await updateProfile({
+      name: form.name,
+      email: form.email,
+      ...(isTpo ? { department: form.department, location: form.location, mobile: form.mobile } : {})
+    });
     localStorage.setItem("smartplacify_settings", JSON.stringify(form));
     notify("Settings saved successfully.");
   }
@@ -2218,6 +2236,13 @@ function SettingsView({ user, updateProfile, notify, askConfirm }) {
           <div className="panel-head"><h2>Account</h2><Badge tone="info">{user.role.toUpperCase()}</Badge></div>
           <label><span>Name</span><input value={form.name} onChange={(event) => setForm({ ...form, name: event.target.value })} required /></label>
           <label><span>Email</span><input type="email" value={form.email} onChange={(event) => setForm({ ...form, email: event.target.value })} required /></label>
+          {isTpo ? (
+            <>
+              <label><span>Department</span><input value={form.department} onChange={(event) => setForm({ ...form, department: event.target.value })} required /></label>
+              <label><span>Location</span><input value={form.location} onChange={(event) => setForm({ ...form, location: event.target.value })} required /></label>
+              <label><span>Mobile Number</span><input value={form.mobile} onChange={(event) => setForm({ ...form, mobile: event.target.value })} required /></label>
+            </>
+          ) : null}
           <label><span>Quiet hours</span><select value={form.quietHours} onChange={(event) => setForm({ ...form, quietHours: event.target.value })}><option>Off</option><option>9 PM - 8 AM</option></select></label>
           <label><span>Compact tables</span><select value={form.compactTables} onChange={(event) => setForm({ ...form, compactTables: event.target.value })}><option>Off</option><option>On</option></select></label>
           <button className="primary-action" type="submit">Save Settings</button>
@@ -2225,6 +2250,14 @@ function SettingsView({ user, updateProfile, notify, askConfirm }) {
         <article className="panel settings-form">
           <div className="panel-head"><h2>Profile</h2><Badge tone="success">{user.role === "tpo" ? "Placement Officer" : user.role === "company" ? "Recruiter" : "Student"}</Badge></div>
           <p>Keep your SmartPlacify identity, communication preferences, and dashboard experience up to date.</p>
+          {isTpo ? (
+            <div className="tpo-profile-details" aria-label="TPO profile details">
+              <span><small>Email</small><strong>{form.email}</strong></span>
+              <span><small>Location</small><strong>{form.location}</strong></span>
+              <span><small>Department</small><strong>{form.department}</strong></span>
+              <span><small>Mobile Number</small><strong>{form.mobile}</strong></span>
+            </div>
+          ) : null}
           <div className="settings-option-list">
             <span><strong>Notifications</strong><small>Interview alerts, application updates, and AI recommendations.</small></span>
             <span><strong>Appearance</strong><small>Theme is controlled from the top navigation switch.</small></span>

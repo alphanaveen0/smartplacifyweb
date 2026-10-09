@@ -11826,3 +11826,127 @@ html[data-theme="light"] .readiness-side-card button:hover {
   background: #DCEEFF !important;
   color: #2478F2 !important;
 }
+
+/* Final section header polish: remove odd desktop back/breadcrumb presentation */
+.mobile-back-row {
+  display: none !important;
+}
+
+html[data-theme="light"] .page-header {
+  display: flex !important;
+  align-items: flex-end !important;
+  justify-content: space-between !important;
+  gap: 1rem !important;
+  margin: 0 0 0.85rem !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+html[data-theme="light"] .page-header > div {
+  display: grid !important;
+  gap: 0.24rem !important;
+  min-width: 0 !important;
+}
+
+html[data-theme="light"] .breadcrumb {
+  display: inline-flex !important;
+  width: fit-content !important;
+  max-width: 100% !important;
+  align-items: center !important;
+  min-height: 1.25rem !important;
+  padding: 0.12rem 0.45rem !important;
+  border-radius: 999px !important;
+  border: 1px solid #D6E8F8 !important;
+  background: #EAF5FF !important;
+  color: #2478F2 !important;
+  font-size: 0.66rem !important;
+  line-height: 1 !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.045em !important;
+  text-transform: uppercase !important;
+}
+
+html[data-theme="light"] .page-header h1 {
+  margin: 0 !important;
+  color: #102A56 !important;
+  font-size: clamp(1.6rem, 2vw, 2rem) !important;
+  line-height: 1.05 !important;
+  letter-spacing: -0.045em !important;
+}
+
+html[data-theme="light"] .page-header p {
+  margin: 0 !important;
+  max-width: 62rem !important;
+  color: #647C9C !important;
+  font-size: 0.94rem !important;
+  line-height: 1.35 !important;
+  font-weight: 500 !important;
+}
+
+html[data-theme="light"] .page-header .header-actions {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-end !important;
+  gap: 0.55rem !important;
+  flex-wrap: wrap !important;
+}
+
+@media (max-width: 820px) {
+  .mobile-back-row {
+    display: block !important;
+    margin: 0 0 0.7rem !important;
+  }
+
+  .mobile-back-row button {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 0.4rem !important;
+    min-height: 2.25rem !important;
+    max-width: 100% !important;
+    padding: 0 0.75rem !important;
+    border-radius: 0.8rem !important;
+    font-size: 0.9rem !important;
+    line-height: 1 !important;
+    white-space: nowrap !important;
+  }
+
+  html[data-theme="light"] .mobile-back-row button {
+    background: #E4F3FF !important;
+    color: #2478F2 !important;
+    border: 1px solid #D6E8F8 !important;
+    box-shadow: none !important;
+  }
+
+  :root:not([data-theme="light"]) .mobile-back-row button,
+  html[data-theme="dark"] .mobile-back-row button {
+    background: rgba(21, 18, 31, 0.92) !important;
+    color: #F5F3FA !important;
+    border: 1px solid #282238 !important;
+    box-shadow: none !important;
+  }
+
+  html[data-theme="light"] .page-header {
+    margin-bottom: 0.75rem !important;
+  }
+
+  html[data-theme="light"] .page-header h1 {
+    font-size: 1.55rem !important;
+  }
+
+  html[data-theme="light"] .page-header p {
+    font-size: 0.86rem !important;
+  }
+
+  html[data-theme="light"] .breadcrumb {
+    min-height: 1.18rem !important;
+    font-size: 0.6rem !important;
+  }
+}
+
+@media (min-width: 821px) {
+  .mobile-back-row {
+    display: none !important;
+  }
+}

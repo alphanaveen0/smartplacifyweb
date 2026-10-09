@@ -12033,3 +12033,54 @@ html[data-theme="light"] .tpo-profile-details strong {
     min-height: 0 !important;
   }
 }
+
+/* Strong mobile light-header correction: desktop sidebar cards must never occupy header space */
+@media (max-width: 820px) {
+  html[data-theme="light"] .sidebar {
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    padding: calc(0.55rem + env(safe-area-inset-top)) 0.75rem 0.5rem !important;
+    gap: 0 !important;
+    overflow: visible !important;
+  }
+
+  html[data-theme="light"] .sidebar > .side-card,
+  html[data-theme="light"] .sidebar > .side-card.readiness-side-card,
+  html[data-theme="light"] .sidebar > .readiness-side-card,
+  html[data-theme="light"] .sidebar > .profile-card,
+  html[data-theme="light"] .sidebar > .nav-list,
+  html[data-theme="light"] .sidebar > .sidebar-nav,
+  html[data-theme="light"] .sidebar > .desktop-sidebar-brand,
+  .app-shell .sidebar > .side-card,
+  .app-shell .sidebar > .side-card.readiness-side-card,
+  .app-shell .sidebar > .readiness-side-card,
+  .app-shell .sidebar > .profile-card,
+  .app-shell .sidebar > .nav-list,
+  .app-shell .sidebar > .sidebar-nav,
+  .app-shell .sidebar > .desktop-sidebar-brand {
+    display: none !important;
+    visibility: hidden !important;
+    height: 0 !important;
+    min-height: 0 !important;
+    max-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    overflow: hidden !important;
+  }
+
+  html[data-theme="light"] .sidebar > .mobile-sidebar-head,
+  .app-shell .sidebar > .mobile-sidebar-head {
+    display: grid !important;
+    visibility: visible !important;
+    height: auto !important;
+    max-height: none !important;
+    margin: 0 !important;
+  }
+
+  html[data-theme="light"] .main-area {
+    min-height: 0 !important;
+    height: auto !important;
+  }
+}

@@ -10489,3 +10489,203 @@ html[data-theme="light"] .smart-chart-frame {
     border-top-color: #D9E8FA !important;
   }
 }
+
+/* Exact Light Theme Color Spec Lock */
+html[data-theme="light"],
+html[data-theme="light"] body,
+html[data-theme="light"] #root {
+  background: #F8FAFD !important;
+  color: #112D4E !important;
+}
+
+html[data-theme="light"] .app-shell,
+html[data-theme="light"] .main-area,
+html[data-theme="light"] .dashboard,
+html[data-theme="light"] .dashboard-scroll {
+  background: #F8FAFD !important;
+  color: #112D4E !important;
+}
+
+html[data-theme="light"] .sidebar,
+html[data-theme="light"] .mobile-nav-drawer {
+  background: #FFFFFF !important;
+  color: #112D4E !important;
+  border-color: #DCE6F2 !important;
+}
+
+html[data-theme="light"] .dashboard-header,
+html[data-theme="light"] .topbar,
+html[data-theme="light"] .mobile-sidebar-head,
+html[data-theme="light"] .mobile-bottom-nav {
+  background: #FFFFFF !important;
+  color: #112D4E !important;
+  border-color: #DCE6F2 !important;
+}
+
+html[data-theme="light"] .nav-list button.active,
+html[data-theme="light"] .nav-list a.active,
+html[data-theme="light"] .mobile-drawer-nav button.active,
+html[data-theme="light"] .mobile-bottom-nav button.active {
+  background: #E3EFFF !important;
+  color: #2563EB !important;
+  border-color: #DCE6F2 !important;
+}
+
+html[data-theme="light"] .search,
+html[data-theme="light"] .search input,
+html[data-theme="light"] .field input,
+html[data-theme="light"] .field select,
+html[data-theme="light"] .field textarea,
+html[data-theme="light"] .auth-card input,
+html[data-theme="light"] .auth-card select,
+html[data-theme="light"] .password-field input,
+html[data-theme="light"] .form-grid input,
+html[data-theme="light"] .form-grid textarea,
+html[data-theme="light"] .form-grid select,
+html[data-theme="light"] .filter-bar select,
+html[data-theme="light"] .settings-form input,
+html[data-theme="light"] .settings-form select,
+html[data-theme="light"] .ai-upload-panel input,
+html[data-theme="light"] .panel select,
+html[data-theme="light"] .chat-input {
+  background: #FFFFFF !important;
+  color: #526783 !important;
+  border-color: #DCE6F2 !important;
+}
+
+html[data-theme="light"] input::placeholder,
+html[data-theme="light"] textarea::placeholder {
+  color: #526783 !important;
+}
+
+html[data-theme="light"] .hero-panel {
+  background: linear-gradient(135deg, #F0F7FF 0%, #C6DFFD 100%) !important;
+  color: #112D4E !important;
+  border-color: #DCE6F2 !important;
+}
+
+html[data-theme="light"] .hero-panel h1,
+html[data-theme="light"] .hero-panel p {
+  color: #112D4E !important;
+}
+
+html[data-theme="light"] .season-card,
+html[data-theme="light"] .kpi-card,
+html[data-theme="light"] .panel,
+html[data-theme="light"] .auth-card,
+html[data-theme="light"] .modal-card,
+html[data-theme="light"] .confirm-card,
+html[data-theme="light"] .details-grid div,
+html[data-theme="light"] .summary-grid span,
+html[data-theme="light"] .api-box,
+html[data-theme="light"] .application-card-row,
+html[data-theme="light"] .interview-card,
+html[data-theme="light"] .activity-mini,
+html[data-theme="light"] .smart-row,
+html[data-theme="light"] .table-row,
+html[data-theme="light"] .notification-list li,
+html[data-theme="light"] .activity-list li {
+  background: #FFFFFF !important;
+  color: #112D4E !important;
+  border-color: #DCE6F2 !important;
+}
+
+html[data-theme="light"] .student-ai-insight,
+html[data-theme="light"] .smart-ai-strip,
+html[data-theme="light"] .smart-ai-card,
+html[data-theme="light"] .smart-ai-main,
+html[data-theme="light"] .smart-ai-saved,
+html[data-theme="light"] .smart-ai-context {
+  background: #F3F8FF !important;
+  color: #2563EB !important;
+  border-color: #DCE6F2 !important;
+}
+
+html[data-theme="light"] .dashboard-actions.panel {
+  background: #F8FBFF !important;
+  color: #112D4E !important;
+  border-color: #DCE6F2 !important;
+}
+
+html[data-theme="light"] .placement-chart-shell,
+html[data-theme="light"] .smart-chart-frame,
+html[data-theme="light"] .line-chart,
+html[data-theme="light"] .bar-chart {
+  background: #FFFFFF !important;
+  color: #112D4E !important;
+  border-color: #DCE6F2 !important;
+}
+
+html[data-theme="light"] .primary-action,
+html[data-theme="light"] .btn:not(.secondary),
+html[data-theme="light"] .apply-action:not(:disabled),
+html[data-theme="light"] .segmented .selected {
+  background: #2563EB !important;
+  color: #FFFFFF !important;
+  border-color: #2563EB !important;
+}
+
+html[data-theme="light"] .link-button,
+html[data-theme="light"] .btn.secondary,
+html[data-theme="light"] .row-actions button:last-child,
+html[data-theme="light"] .chips button,
+html[data-theme="light"] .demo-grid button,
+html[data-theme="light"] .filter-bar button,
+html[data-theme="light"] .panel-head a,
+html[data-theme="light"] .panel-head button,
+html[data-theme="light"] .smart-ai-suggestions button,
+html[data-theme="light"] .smart-ai-actions button,
+html[data-theme="light"] .smart-ai-strip-actions button,
+html[data-theme="light"] .smart-ai-card-grid button,
+html[data-theme="light"] .prepare-ai-btn,
+html[data-theme="light"] .mobile-back-row button {
+  background: #EAF2FC !important;
+  color: #2563EB !important;
+  border-color: #DCE6F2 !important;
+}
+
+html[data-theme="light"] .profile-card .logout-btn,
+html[data-theme="light"] .mobile-drawer-logout {
+  background: #FEECEC !important;
+  color: #EF4444 !important;
+  border-color: #FECACA !important;
+}
+
+html[data-theme="light"] h1,
+html[data-theme="light"] h2,
+html[data-theme="light"] h3,
+html[data-theme="light"] .brand strong,
+html[data-theme="light"] .brand strong span,
+html[data-theme="light"] .profile-card strong,
+html[data-theme="light"] .mobile-drawer-user strong,
+html[data-theme="light"] .kpi-card strong,
+html[data-theme="light"] .panel strong,
+html[data-theme="light"] .season-card strong,
+html[data-theme="light"] .application-card-row strong,
+html[data-theme="light"] .interview-card strong,
+html[data-theme="light"] .activity-mini strong,
+html[data-theme="light"] .details-grid strong,
+html[data-theme="light"] .summary-grid strong {
+  color: #112D4E !important;
+}
+
+html[data-theme="light"] .brand small,
+html[data-theme="light"] .profile-card small,
+html[data-theme="light"] .mobile-drawer-user small,
+html[data-theme="light"] .page-header p,
+html[data-theme="light"] .dashboard-actions p,
+html[data-theme="light"] .panel-head small,
+html[data-theme="light"] .kpi-card small,
+html[data-theme="light"] .kpi-card em,
+html[data-theme="light"] .activity-list small,
+html[data-theme="light"] .application-card-row small,
+html[data-theme="light"] .interview-card small,
+html[data-theme="light"] .activity-mini small,
+html[data-theme="light"] .table-meta,
+html[data-theme="light"] .pagination,
+html[data-theme="light"] .field,
+html[data-theme="light"] label,
+html[data-theme="light"] .details-grid small,
+html[data-theme="light"] .summary-grid small {
+  color: #526783 !important;
+}

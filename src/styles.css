@@ -10287,3 +10287,205 @@ html[data-theme="light"] .mobile-nav-backdrop {
     border-radius: 0.9rem !important;
   }
 }
+
+/* Final Light Reference Cleanup: match clean white + royal blue reference */
+html[data-theme="light"] .brand-button strong::first-letter,
+html[data-theme="light"] .brand strong::first-letter,
+html[data-theme="light"] .drawer-brand-card strong::first-letter {
+  color: #071A3D !important;
+}
+
+html[data-theme="light"] .brand-button strong,
+html[data-theme="light"] .drawer-brand-card strong {
+  display: block !important;
+  white-space: nowrap !important;
+  letter-spacing: -0.03em !important;
+}
+
+html[data-theme="light"] .brand-button strong span,
+html[data-theme="light"] .drawer-brand-card strong span {
+  color: #071A3D !important;
+}
+
+html[data-theme="light"] .brand-button strong span:last-child,
+html[data-theme="light"] .drawer-brand-card strong span:last-child {
+  color: #071A3D !important;
+}
+
+html[data-theme="light"] .brand-button {
+  gap: 0.72rem !important;
+  padding: 0.45rem 0 !important;
+}
+
+html[data-theme="light"] .brand-mark {
+  border-radius: 0.72rem !important;
+}
+
+html[data-theme="light"] .sidebar {
+  background: #FFFFFF !important;
+  border-right: 1px solid #D9E8FA !important;
+  box-shadow: 10px 0 30px rgba(21, 80, 150, 0.06) !important;
+}
+
+html[data-theme="light"] .main-area,
+html[data-theme="light"] .dashboard,
+html[data-theme="light"] .dashboard-scroll {
+  background: linear-gradient(180deg, #F8FBFF 0%, #EEF6FF 100%) !important;
+}
+
+html[data-theme="light"] .dashboard {
+  padding-top: 1.15rem !important;
+}
+
+html[data-theme="light"] .dashboard-header {
+  background: rgba(255, 255, 255, 0.94) !important;
+  border-bottom: 1px solid #D9E8FA !important;
+  box-shadow: 0 10px 28px rgba(21, 80, 150, 0.06) !important;
+}
+
+html[data-theme="light"] .search {
+  background: #FFFFFF !important;
+  border-color: #D9E8FA !important;
+  box-shadow: 0 10px 24px rgba(21, 80, 150, 0.06) !important;
+}
+
+html[data-theme="light"] .top-action,
+html[data-theme="light"] .profile-trigger,
+html[data-theme="light"] .mobile-theme-toggle {
+  background: #FFFFFF !important;
+  border-color: #D9E8FA !important;
+  color: #0E2A52 !important;
+  box-shadow: 0 10px 22px rgba(21, 80, 150, 0.08) !important;
+}
+
+html[data-theme="light"] .theme-icon-toggle .theme-emoji.active,
+html[data-theme="light"] .mobile-theme-toggle span.active {
+  background: #E7F1FF !important;
+  color: #0B63E5 !important;
+}
+
+html[data-theme="light"] .hero-panel {
+  background:
+    radial-gradient(circle at 92% 16%, rgba(75, 148, 247, 0.22), transparent 8rem),
+    linear-gradient(135deg, #F8FCFF 0%, #E1F0FF 100%) !important;
+  border-color: #CFE2FA !important;
+  border-radius: 1.2rem !important;
+  box-shadow: 0 14px 34px rgba(21, 80, 150, 0.08) !important;
+}
+
+html[data-theme="light"] .hero-panel::after {
+  width: 18rem !important;
+  height: 100% !important;
+  inset: 0 22% 0 auto !important;
+  background: linear-gradient(90deg, transparent, rgba(63, 127, 220, 0.12), transparent) !important;
+  opacity: 0.7 !important;
+  transform: none !important;
+}
+
+html[data-theme="light"] .season-card {
+  background: #FFFFFF !important;
+  border-color: #D9E8FA !important;
+  border-radius: 1rem !important;
+  box-shadow: 0 12px 28px rgba(21, 80, 150, 0.08) !important;
+}
+
+html[data-theme="light"] .dashboard-actions.panel,
+html[data-theme="light"] .student-ai-insight,
+html[data-theme="light"] .smart-ai-strip,
+html[data-theme="light"] .kpi-card,
+html[data-theme="light"] .panel,
+html[data-theme="light"] .application-card-row,
+html[data-theme="light"] .interview-card,
+html[data-theme="light"] .activity-mini {
+  background: #FFFFFF !important;
+  border-color: #D9E8FA !important;
+  box-shadow: 0 12px 30px rgba(21, 80, 150, 0.07) !important;
+}
+
+html[data-theme="light"] .dashboard-actions.panel {
+  align-items: center !important;
+}
+
+html[data-theme="light"] .kpi-card .icon,
+html[data-theme="light"] .season-card .brand-mark,
+html[data-theme="light"] .smart-ai-spark,
+html[data-theme="light"] .ai-insight-main .smart-ai-spark {
+  background: linear-gradient(135deg, #5EA8FF 0%, #2563EB 100%) !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 12px 24px rgba(37, 99, 235, 0.2) !important;
+}
+
+html[data-theme="light"] .primary-action,
+html[data-theme="light"] .btn:not(.secondary),
+html[data-theme="light"] .apply-action:not(:disabled) {
+  background: #2563EB !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 12px 26px rgba(37, 99, 235, 0.24) !important;
+}
+
+html[data-theme="light"] .link-button,
+html[data-theme="light"] .btn.secondary,
+html[data-theme="light"] .panel-head button,
+html[data-theme="light"] .panel-head a,
+html[data-theme="light"] .smart-ai-strip-actions button,
+html[data-theme="light"] .smart-ai-actions button,
+html[data-theme="light"] .smart-ai-suggestions button,
+html[data-theme="light"] .chips button,
+html[data-theme="light"] .filter-bar button {
+  background: #EAF3FF !important;
+  color: #0B63E5 !important;
+  border-color: #CFE2FA !important;
+}
+
+html[data-theme="light"] .nav-list button.active,
+html[data-theme="light"] .nav-list a.active {
+  background: #DFECFF !important;
+  color: #005CE6 !important;
+  box-shadow: none !important;
+}
+
+html[data-theme="light"] .side-card.readiness-side-card {
+  background: #FFFFFF !important;
+  border-color: #D9E8FA !important;
+  box-shadow: 0 12px 28px rgba(21, 80, 150, 0.07) !important;
+}
+
+html[data-theme="light"] .readiness-ring {
+  background:
+    radial-gradient(circle, #FFFFFF 0 54%, transparent 55%),
+    conic-gradient(#2563EB 0 10%, #DCEBFF 10% 100%) !important;
+  color: #0B63E5 !important;
+}
+
+html[data-theme="light"] .profile-card .logout-btn {
+  background: #FFF1F1 !important;
+  color: #E11D48 !important;
+  border-color: #FFD0D7 !important;
+}
+
+html[data-theme="light"] .placement-chart-shell,
+html[data-theme="light"] .smart-chart-frame {
+  background: #FFFFFF !important;
+  border-color: #D9E8FA !important;
+}
+
+@media (max-width: 820px) {
+  html[data-theme="light"] .main-area,
+  html[data-theme="light"] .dashboard,
+  html[data-theme="light"] .dashboard-scroll {
+    background: #EEF6FF !important;
+  }
+
+  html[data-theme="light"] .mobile-sidebar-head {
+    background: #FFFFFF !important;
+  }
+
+  html[data-theme="light"] .mobile-nav-drawer {
+    background: #FFFFFF !important;
+  }
+
+  html[data-theme="light"] .mobile-bottom-nav {
+    background: #FFFFFF !important;
+    border-top-color: #D9E8FA !important;
+  }
+}

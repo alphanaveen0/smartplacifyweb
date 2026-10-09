@@ -12003,3 +12003,33 @@ html[data-theme="light"] .tpo-profile-details strong {
     gap: 0.6rem;
   }
 }
+
+/* Final mobile shell fix: hide desktop sidebar-only content in the mobile topbar */
+@media (max-width: 820px) {
+  .sidebar > .side-card,
+  .sidebar > .readiness-side-card,
+  .sidebar > .profile-card,
+  .sidebar > .sidebar-nav,
+  .sidebar > .desktop-sidebar-brand {
+    display: none !important;
+  }
+
+  .sidebar > .mobile-sidebar-head,
+  .sidebar > .mobile-nav-drawer,
+  .sidebar > .mobile-nav-backdrop {
+    display: grid !important;
+  }
+
+  .sidebar > .mobile-nav-backdrop {
+    display: block !important;
+  }
+
+  .sidebar:not(:has(.mobile-nav-drawer.open)) > .mobile-nav-backdrop {
+    display: none !important;
+  }
+
+  .main-area {
+    flex: 1 1 auto !important;
+    min-height: 0 !important;
+  }
+}

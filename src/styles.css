@@ -12361,3 +12361,22 @@ html[data-theme="light"] .tpo-profile-details strong {
     min-width: 2.28rem !important;
   }
 }
+
+/* Mobile final: topbar search is desktop-only, maximize mobile content space */
+@media (max-width: 820px) {
+  .dashboard-header {
+    display: none !important;
+  }
+
+  .dashboard,
+  .dashboard-scroll,
+  html[data-theme="light"] .dashboard,
+  html[data-theme="light"] .dashboard-scroll {
+    padding-top: 0.5rem !important;
+  }
+
+  .sidebar,
+  html[data-theme="light"] .sidebar {
+    margin: 0 !important;
+  }
+}

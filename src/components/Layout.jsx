@@ -191,7 +191,7 @@ export function Layout({ navItems, activeRoute, onNavigate, header, mobileAction
         ) : null}
       </aside>
       <main className="main-area">
-        {header ? <div className="dashboard-header">{header}</div> : null}
+        {header && !isMobile ? <div className="dashboard-header">{header}</div> : null}
         <div className="dashboard dashboard-scroll">
           {showMobileBack ? (
             <nav className="mobile-back-row" aria-label="Mobile back navigation">

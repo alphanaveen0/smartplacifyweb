@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext.jsx";
 import { MobileNavDrawer } from "./MobileNavDrawer.jsx";
@@ -51,11 +51,35 @@ function singularLabel(label) {
   return labels[label] || label.replace(/s$/, "");
 }
 
+function getIsMobileViewport() {
+  if (typeof window === "undefined") return false;
+  return window.matchMedia("(max-width: 820px)").matches;
+}
+
+function useMobileViewport() {
+  const [isMobile, setIsMobile] = useState(getIsMobileViewport);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return undefined;
+
+    const query = window.matchMedia("(max-width: 820px)");
+    const update = () => setIsMobile(query.matches);
+
+    update();
+    query.addEventListener("change", update);
+
+    return () => query.removeEventListener("change", update);
+  }, []);
+
+  return isMobile;
+}
+
 export function Layout({ navItems, activeRoute, onNavigate, header, mobileActions, children }) {
   const { user, logout } = useAuth();
   const routerNavigate = useNavigate();
   const location = useLocation();
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
+  const isMobile = useMobileViewport();
   const card = roleCard(user);
   const activeLabel = navItems.find((item) => item.id === activeRoute)?.label || "Dashboard";
   const pathParts = location.pathname.split("/").filter(Boolean);
@@ -94,67 +118,77 @@ export function Layout({ navItems, activeRoute, onNavigate, header, mobileAction
   return (
     <div className={`app-shell${mobileNavOpen ? " mobile-nav-open" : ""}`}>
       <aside className="sidebar">
-        <button className="brand brand-button desktop-sidebar-brand" type="button" onClick={() => navigateTo("dashboard")}>
-          <span className="brand-mark" aria-hidden="true">S</span>
-          <span>
-            <strong><span>Smart</span><span>Placify</span></strong>
-            <small>Smarter Placements. Brighter Futures.</small>
-          </span>
-        </button>
-        <div className="mobile-sidebar-head">
-          <button
-            className="mobile-menu-toggle"
-            type="button"
-            aria-label="Open navigation menu"
-            aria-expanded={mobileNavOpen}
-            onClick={() => setMobileNavOpen(true)}
-          >
-            <span aria-hidden="true">☰</span>
-          </button>
-          <button className="brand brand-button" type="button" onClick={() => navigateTo("dashboard")}>
+        {!isMobile ? (
+          <button className="brand brand-button desktop-sidebar-brand" type="button" onClick={() => navigateTo("dashboard")}>
             <span className="brand-mark" aria-hidden="true">S</span>
             <span>
               <strong><span>Smart</span><span>Placify</span></strong>
               <small>Smarter Placements. Brighter Futures.</small>
             </span>
           </button>
-          {mobileActions ? <div className="mobile-header-actions">{mobileActions}</div> : null}
-        </div>
-        <MobileNavDrawer
-          user={user}
-          navItems={navItems}
-          activeRoute={activeRoute}
-          isOpen={mobileNavOpen}
-          onClose={closeMobileNav}
-          onNavigate={onNavigate}
-          onLogout={logoutAndRedirect}
-        />
-        <nav className="nav-list sidebar-nav" aria-label="Primary navigation">
-          {navItems.map((item) => (
-            <button key={item.id} className={activeRoute === item.id ? "active" : ""} onClick={() => navigateTo(item.id)} type="button">
-              <span>{item.icon}</span> {item.label}
-            </button>
-          ))}
-        </nav>
-        <section className="side-card readiness-side-card">
-          <div className="readiness-ring" aria-label={card.aria}>
-            <strong>{card.value}</strong>
-            {card.suffix ? <small>{card.suffix}</small> : null}
-          </div>
-          <div>
-            <strong>{card.title}</strong>
-            <small>{card.description}</small>
-          </div>
-          <button type="button" onClick={() => navigateTo(card.route)}>{card.action}</button>
-        </section>
-        <section className="profile-card">
-          <span className="avatar">{user?.name?.slice(0, 2).toUpperCase() || "SP"}</span>
-          <span>
-            <strong>{user?.name}</strong>
-            <small>{user?.role?.toUpperCase()}</small>
-          </span>
-          <button className="logout-btn" onClick={logout}>Logout</button>
-        </section>
+        ) : null}
+        {isMobile ? (
+          <>
+            <div className="mobile-sidebar-head">
+              <button
+                className="mobile-menu-toggle"
+                type="button"
+                aria-label="Open navigation menu"
+                aria-expanded={mobileNavOpen}
+                onClick={() => setMobileNavOpen(true)}
+              >
+                <span aria-hidden="true">☰</span>
+              </button>
+              <button className="brand brand-button" type="button" onClick={() => navigateTo("dashboard")}>
+                <span className="brand-mark" aria-hidden="true">S</span>
+                <span>
+                  <strong><span>Smart</span><span>Placify</span></strong>
+                  <small>Smarter Placements. Brighter Futures.</small>
+                </span>
+              </button>
+              {mobileActions ? <div className="mobile-header-actions">{mobileActions}</div> : null}
+            </div>
+            <MobileNavDrawer
+              user={user}
+              navItems={navItems}
+              activeRoute={activeRoute}
+              isOpen={mobileNavOpen}
+              onClose={closeMobileNav}
+              onNavigate={onNavigate}
+              onLogout={logoutAndRedirect}
+            />
+          </>
+        ) : null}
+        {!isMobile ? (
+          <>
+            <nav className="nav-list sidebar-nav" aria-label="Primary navigation">
+              {navItems.map((item) => (
+                <button key={item.id} className={activeRoute === item.id ? "active" : ""} onClick={() => navigateTo(item.id)} type="button">
+                  <span>{item.icon}</span> {item.label}
+                </button>
+              ))}
+            </nav>
+            <section className="side-card readiness-side-card">
+              <div className="readiness-ring" aria-label={card.aria}>
+                <strong>{card.value}</strong>
+                {card.suffix ? <small>{card.suffix}</small> : null}
+              </div>
+              <div>
+                <strong>{card.title}</strong>
+                <small>{card.description}</small>
+              </div>
+              <button type="button" onClick={() => navigateTo(card.route)}>{card.action}</button>
+            </section>
+            <section className="profile-card">
+              <span className="avatar">{user?.name?.slice(0, 2).toUpperCase() || "SP"}</span>
+              <span>
+                <strong>{user?.name}</strong>
+                <small>{user?.role?.toUpperCase()}</small>
+              </span>
+              <button className="logout-btn" onClick={logout}>Logout</button>
+            </section>
+          </>
+        ) : null}
       </aside>
       <main className="main-area">
         {header ? <div className="dashboard-header">{header}</div> : null}

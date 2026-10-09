@@ -11733,3 +11733,96 @@ html[data-theme="light"] .smart-ai-fab {
     min-height: 3.6rem !important;
   }
 }
+
+/* Fix sidebar Placement Progress / Readiness card presentation */
+html[data-theme="light"] .side-card.readiness-side-card,
+html[data-theme="light"] .readiness-side-card {
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  gap: 0.72rem !important;
+  min-height: auto !important;
+  padding: 0.9rem !important;
+  overflow: hidden !important;
+  border-radius: 1rem !important;
+  background: #FFFFFF !important;
+  border: 1px solid #D6E8F8 !important;
+  box-shadow: 0 12px 28px rgba(36, 120, 242, 0.06) !important;
+}
+
+html[data-theme="light"] .readiness-side-card .readiness-ring {
+  position: relative !important;
+  display: flex !important;
+  width: 100% !important;
+  height: 2.25rem !important;
+  min-height: 2.25rem !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0 0.85rem !important;
+  border-radius: 999px !important;
+  background: #E4F3FF !important;
+  color: #2478F2 !important;
+  border: 1px solid #D6E8F8 !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.85) !important;
+}
+
+html[data-theme="light"] .readiness-side-card .readiness-ring::before,
+html[data-theme="light"] .readiness-side-card .readiness-ring::after {
+  display: none !important;
+  content: none !important;
+}
+
+html[data-theme="light"] .readiness-side-card .readiness-ring strong {
+  position: static !important;
+  width: auto !important;
+  color: #2478F2 !important;
+  font-size: 0.96rem !important;
+  font-weight: 900 !important;
+  line-height: 1 !important;
+}
+
+html[data-theme="light"] .readiness-side-card .readiness-ring small {
+  position: static !important;
+  width: auto !important;
+  margin-left: 0.08rem !important;
+  color: #2478F2 !important;
+  font-size: 0.72rem !important;
+  font-weight: 800 !important;
+  line-height: 1 !important;
+}
+
+html[data-theme="light"] .readiness-side-card > div:not(.readiness-ring) {
+  display: grid !important;
+  gap: 0.25rem !important;
+}
+
+html[data-theme="light"] .readiness-side-card > div:not(.readiness-ring) strong {
+  color: #102A56 !important;
+  font-size: 0.88rem !important;
+  line-height: 1.15 !important;
+  letter-spacing: -0.02em !important;
+}
+
+html[data-theme="light"] .readiness-side-card > div:not(.readiness-ring) small {
+  margin: 0 !important;
+  color: #526783 !important;
+  font-size: 0.72rem !important;
+  line-height: 1.28 !important;
+}
+
+html[data-theme="light"] .readiness-side-card button {
+  justify-self: start !important;
+  min-height: 2rem !important;
+  padding: 0 0.78rem !important;
+  border-radius: 999px !important;
+  background: #E4F3FF !important;
+  color: #2478F2 !important;
+  border: 1px solid #D6E8F8 !important;
+  box-shadow: none !important;
+  font-size: 0.72rem !important;
+  font-weight: 900 !important;
+}
+
+html[data-theme="light"] .readiness-side-card button:hover {
+  background: #DCEEFF !important;
+  color: #2478F2 !important;
+}

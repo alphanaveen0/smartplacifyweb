@@ -13026,3 +13026,300 @@ html[data-theme="dark"] .auth-card {
     border-color: rgba(51, 65, 85, 0.82) !important;
   }
 }
+
+/* Dark reference lock: match modern teal dashboard reference, dark mode only */
+html[data-theme="dark"] {
+  --bg: #081220 !important;
+  --surface: #0F172A !important;
+  --card: #111827 !important;
+  --surface-muted: #1F2937 !important;
+  --border: #334155 !important;
+  --accent: #14B8A6 !important;
+  --accent-strong: #22D3EE !important;
+  --accent-blue: #3B82F6 !important;
+  --warning: #F59E0B !important;
+  --danger: #EF4444 !important;
+  --success: #22C55E !important;
+  --text-primary: #F8FAFC !important;
+  --text-secondary: #94A3B8 !important;
+}
+
+html[data-theme="dark"] body,
+html[data-theme="dark"] .app-shell,
+html[data-theme="dark"] .main-area,
+html[data-theme="dark"] .dashboard,
+html[data-theme="dark"] .dashboard-scroll {
+  background:
+    radial-gradient(circle at 92% -10%, rgba(34, 211, 238, 0.16), transparent 24rem),
+    radial-gradient(circle at 8% 104%, rgba(20, 184, 166, 0.2), transparent 24rem),
+    #081220 !important;
+}
+
+html[data-theme="dark"] .sidebar {
+  background:
+    radial-gradient(circle at -20% 106%, rgba(245, 158, 11, 0.34), transparent 9rem),
+    radial-gradient(circle at 96% 86%, rgba(34, 197, 94, 0.2), transparent 11rem),
+    linear-gradient(180deg, #0F172A 0%, #07111F 100%) !important;
+  border-right: 1px solid rgba(51, 65, 85, 0.74) !important;
+}
+
+html[data-theme="dark"] .brand-button {
+  background: transparent !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+}
+
+html[data-theme="dark"] .brand-mark,
+html[data-theme="dark"] .mobile-sidebar-head .brand-mark {
+  background: linear-gradient(135deg, #0891B2 0%, #14B8A6 100%) !important;
+  border: 1px solid rgba(34, 211, 238, 0.35) !important;
+  color: #F8FAFC !important;
+}
+
+html[data-theme="dark"] .nav-list button,
+html[data-theme="dark"] .nav-list a {
+  min-height: 2.5rem !important;
+  border-radius: 0.75rem !important;
+  color: #F8FAFC !important;
+  border: 1px solid transparent !important;
+}
+
+html[data-theme="dark"] .nav-list button.active,
+html[data-theme="dark"] .nav-list a.active {
+  background: linear-gradient(135deg, rgba(20, 184, 166, 0.92), rgba(15, 118, 110, 0.92)) !important;
+  color: #F8FAFC !important;
+  border-color: rgba(34, 211, 238, 0.32) !important;
+  box-shadow: 0 14px 28px rgba(20, 184, 166, 0.2) !important;
+}
+
+html[data-theme="dark"] .dashboard-header,
+html[data-theme="dark"] .topbar {
+  background: rgba(8, 18, 32, 0.8) !important;
+  border-bottom: 1px solid rgba(51, 65, 85, 0.5) !important;
+  box-shadow: none !important;
+}
+
+html[data-theme="dark"] .search {
+  background: #111E2F !important;
+  border: 1px solid #334155 !important;
+  border-radius: 0.65rem !important;
+  color: #F8FAFC !important;
+}
+
+html[data-theme="dark"] .top-action,
+html[data-theme="dark"] .theme-icon-toggle,
+html[data-theme="dark"] .profile-trigger,
+html[data-theme="dark"] .notification-action {
+  background: #111E2F !important;
+  border: 1px solid #334155 !important;
+  color: #F8FAFC !important;
+}
+
+html[data-theme="dark"] .theme-emoji.active,
+html[data-theme="dark"] .mobile-theme-toggle span.active {
+  background: rgba(20, 184, 166, 0.18) !important;
+  color: #22D3EE !important;
+}
+
+html[data-theme="dark"] .hero-panel {
+  position: relative !important;
+  overflow: hidden !important;
+  background:
+    radial-gradient(circle at 92% 22%, rgba(34, 211, 238, 0.32), transparent 14rem),
+    linear-gradient(135deg, #0B1626 0%, #0E2432 56%, #0B1626 100%) !important;
+  border: 1px solid rgba(34, 211, 238, 0.22) !important;
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.28) !important;
+}
+
+html[data-theme="dark"] .hero-panel::before {
+  content: "" !important;
+  position: absolute !important;
+  inset: auto -8% -38% 28% !important;
+  height: 120% !important;
+  background:
+    radial-gradient(ellipse at 25% 60%, rgba(20, 184, 166, 0.55), transparent 42%),
+    radial-gradient(ellipse at 58% 42%, rgba(34, 211, 238, 0.32), transparent 36%),
+    linear-gradient(135deg, transparent 26%, rgba(20, 184, 166, 0.22) 40%, rgba(34, 211, 238, 0.18) 54%, transparent 68%) !important;
+  transform: rotate(-7deg) !important;
+  opacity: 0.82 !important;
+  pointer-events: none !important;
+}
+
+html[data-theme="dark"] .hero-panel > * {
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+html[data-theme="dark"] .panel,
+html[data-theme="dark"] .kpi-card,
+html[data-theme="dark"] .dashboard-actions,
+html[data-theme="dark"] .season-card,
+html[data-theme="dark"] .side-card,
+html[data-theme="dark"] .profile-card,
+html[data-theme="dark"] .student-card,
+html[data-theme="dark"] .job-card,
+html[data-theme="dark"] .company-card,
+html[data-theme="dark"] .application-card-row,
+html[data-theme="dark"] .interview-card,
+html[data-theme="dark"] .activity-list li,
+html[data-theme="dark"] .notification-list li,
+html[data-theme="dark"] .settings-option-list span,
+html[data-theme="dark"] .details-grid > div,
+html[data-theme="dark"] .summary-grid > div {
+  background: #111827 !important;
+  border: 1px solid #334155 !important;
+  border-radius: 0.85rem !important;
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.22) !important;
+}
+
+html[data-theme="dark"] .kpi-card:nth-child(3n + 1) .kpi-icon,
+html[data-theme="dark"] .metric-card:nth-child(3n + 1) .kpi-icon {
+  background: linear-gradient(135deg, #0891B2, #14B8A6) !important;
+}
+
+html[data-theme="dark"] .kpi-card:nth-child(3n + 2) .kpi-icon,
+html[data-theme="dark"] .metric-card:nth-child(3n + 2) .kpi-icon {
+  background: linear-gradient(135deg, #2563EB, #3B82F6) !important;
+}
+
+html[data-theme="dark"] .kpi-card:nth-child(3n) .kpi-icon,
+html[data-theme="dark"] .metric-card:nth-child(3n) .kpi-icon {
+  background: linear-gradient(135deg, #D97706, #F59E0B) !important;
+}
+
+html[data-theme="dark"] .panel-head,
+html[data-theme="dark"] .smart-row.head {
+  border-color: rgba(51, 65, 85, 0.68) !important;
+}
+
+html[data-theme="dark"] .filter-bar,
+html[data-theme="dark"] .chips,
+html[data-theme="dark"] .quick-actions,
+html[data-theme="dark"] .header-actions {
+  gap: 0.65rem !important;
+}
+
+html[data-theme="dark"] .primary-action,
+html[data-theme="dark"] .btn.primary,
+html[data-theme="dark"] .filter-bar button,
+html[data-theme="dark"] .pagination button.active,
+html[data-theme="dark"] .row-actions button:not(:last-child),
+html[data-theme="dark"] .smart-ai-fab,
+html[data-theme="dark"] .smart-ai-inline {
+  background: linear-gradient(135deg, #0D9488 0%, #14B8A6 100%) !important;
+  border-color: rgba(34, 211, 238, 0.28) !important;
+  color: #F8FAFC !important;
+}
+
+html[data-theme="dark"] .link-button,
+html[data-theme="dark"] .btn.secondary,
+html[data-theme="dark"] .chips button,
+html[data-theme="dark"] .panel-head button,
+html[data-theme="dark"] .pagination button:not(.active) {
+  background: #172937 !important;
+  border-color: #334155 !important;
+  color: #F8FAFC !important;
+}
+
+html[data-theme="dark"] .chips button.active,
+html[data-theme="dark"] .link-button.active {
+  background: rgba(20, 184, 166, 0.18) !important;
+  color: #22D3EE !important;
+  border-color: rgba(34, 211, 238, 0.3) !important;
+}
+
+html[data-theme="dark"] .table-shell,
+html[data-theme="dark"] .data-table,
+html[data-theme="dark"] table {
+  background: #111827 !important;
+  border: 1px solid #334155 !important;
+  border-radius: 0.85rem !important;
+}
+
+html[data-theme="dark"] th,
+html[data-theme="dark"] .table-head,
+html[data-theme="dark"] .table-header {
+  background: #172937 !important;
+  color: #94A3B8 !important;
+}
+
+html[data-theme="dark"] td,
+html[data-theme="dark"] .table-row {
+  color: #F8FAFC !important;
+  border-color: rgba(51, 65, 85, 0.58) !important;
+}
+
+html[data-theme="dark"] .status-badge,
+html[data-theme="dark"] .badge {
+  border-radius: 999px !important;
+  font-weight: 800 !important;
+}
+
+html[data-theme="dark"] .chart-area,
+html[data-theme="dark"] .placement-chart,
+html[data-theme="dark"] .bar-chart,
+html[data-theme="dark"] .analytics-chart,
+html[data-theme="dark"] .donut-wrap {
+  background: #0B1626 !important;
+  border: 1px solid #334155 !important;
+  border-radius: 0.85rem !important;
+}
+
+html[data-theme="dark"] .placement-bar.applications,
+html[data-theme="dark"] .placement-bar.applied,
+html[data-theme="dark"] .placement-chart-legend .applications,
+html[data-theme="dark"] .placement-chart-legend .applied {
+  background: #3B82F6 !important;
+}
+
+html[data-theme="dark"] .placement-bar.shortlisted,
+html[data-theme="dark"] .placement-chart-legend .shortlisted,
+html[data-theme="dark"] .skill-fill {
+  background: #14B8A6 !important;
+}
+
+html[data-theme="dark"] .placement-bar.interviews,
+html[data-theme="dark"] .placement-bar.interviewed,
+html[data-theme="dark"] .placement-chart-legend .interviews,
+html[data-theme="dark"] .placement-chart-legend .interviewed {
+  background: #F59E0B !important;
+}
+
+html[data-theme="dark"] .placement-bar.offers,
+html[data-theme="dark"] .placement-chart-legend .offers,
+html[data-theme="dark"] .placement-bar.hired,
+html[data-theme="dark"] .placement-chart-legend .hired {
+  background: #8B5CF6 !important;
+}
+
+html[data-theme="dark"] .mobile-nav-drawer {
+  background:
+    radial-gradient(circle at -12% 100%, rgba(245, 158, 11, 0.28), transparent 10rem),
+    linear-gradient(180deg, #0F172A 0%, #081220 100%) !important;
+}
+
+html[data-theme="dark"] .mobile-drawer-head,
+html[data-theme="dark"] .mobile-drawer-user {
+  background: rgba(17, 24, 39, 0.88) !important;
+  border-color: #334155 !important;
+}
+
+@media (max-width: 820px) {
+  html[data-theme="dark"] .sidebar,
+  html[data-theme="dark"] .mobile-sidebar-head {
+    background: #081220 !important;
+    box-shadow: none !important;
+  }
+
+  html[data-theme="dark"] .mobile-header-actions .notification-action,
+  html[data-theme="dark"] .mobile-header-actions .profile-trigger,
+  html[data-theme="dark"] .mobile-theme-toggle,
+  html[data-theme="dark"] .mobile-menu-toggle {
+    background: #111E2F !important;
+    border-color: #334155 !important;
+  }
+
+  html[data-theme="dark"] .hero-panel::before {
+    inset: auto -20% -40% 20% !important;
+  }
+}

@@ -361,7 +361,7 @@ function AuthScreen({ initialMode = "login" }) {
       return;
     }
     if (mode === "register" && !otpToken) {
-      setError("Verify your mobile number with OTP before registering.");
+      setError("Verify your email and mobile number with OTP before registering.");
       return;
     }
 
@@ -424,7 +424,7 @@ function AuthScreen({ initialMode = "login" }) {
     }
     try {
       setOtpLoading(true);
-      const result = await authService.verifyRegisterOtp({ phone: form.phone, otp: otpCode });
+      const result = await authService.verifyRegisterOtp({ email: form.email, phone: form.phone, otp: otpCode });
       setOtpToken(result.otpToken);
       setOtpMessage(result.message);
     } catch (err) {
@@ -450,7 +450,7 @@ function AuthScreen({ initialMode = "login" }) {
           <>
             <input placeholder="Mobile number" type="tel" value={form.phone} onChange={(event) => updateForm({ phone: event.target.value })} />
             <div className="otp-row">
-              <input placeholder="Enter OTP" inputMode="numeric" maxLength={6} value={otpCode} onChange={(event) => setOtpCode(event.target.value.replace(/\D/g, "").slice(0, 6))} />
+              <input placeholder="Email/Mobile OTP" inputMode="numeric" maxLength={6} value={otpCode} onChange={(event) => setOtpCode(event.target.value.replace(/\D/g, "").slice(0, 6))} />
               <button type="button" onClick={sendOtp} disabled={otpLoading}>{otpLoading ? "Sending..." : "Send OTP"}</button>
               <button type="button" onClick={verifyOtp} disabled={otpLoading || otpToken}>{otpToken ? "Verified" : "Verify"}</button>
             </div>

@@ -5,7 +5,7 @@ import { query, transaction } from "../config/db.js";
 import { AppError } from "../utils/AppError.js";
 import { requireFields, pick } from "../utils/validators.js";
 import { insertSql } from "../models/common.js";
-import { generateOtp, sendOtpSms } from "../services/otpService.js";
+import { generateOtp, sendRegisterOtp as deliverRegisterOtp } from "../services/otpService.js";
 
 function publicUser(user) {
   const { password_hash: _passwordHash, is_active: _isActive, ...safeUser } = user;
@@ -16,8 +16,8 @@ function sign(user) {
   return jwt.sign({ id: user.id, role: user.role }, env.jwtSecret, { expiresIn: env.jwtExpiresIn });
 }
 
-function signOtpToken(phone, purpose = "register") {
-  return jwt.sign({ type: "phone_verification", phone, purpose }, env.jwtSecret, { expiresIn: "15m" });
+function signOtpToken(email, phone, purpose = "register") {
+  return jwt.sign({ type: "contact_verification", email, phone, purpose }, env.jwtSecret, { expiresIn: "15m" });
 }
 
 function normalizeEmail(email = "") {
@@ -25,7 +25,10 @@ function normalizeEmail(email = "") {
 }
 
 function normalizePhone(phone = "") {
-  return String(phone).trim().replace(/[^\d+]/g, "");
+  const value = String(phone).trim().replace(/[^\d+]/g, "");
+  const digits = value.replace(/\D/g, "");
+  if (!value.startsWith("+") && digits.length === 10) return `+91${digits}`;
+  return value;
 }
 
 function assertValidEmail(email) {
@@ -72,59 +75,56 @@ async function ensureUniqueEmailAndPhone(email, phone) {
   }
 }
 
-function verifyOtpToken(token, phone, purpose = "register") {
-  if (!token) throw new AppError("Verify your mobile number before registering.", 400);
+function verifyOtpToken(token, email, phone, purpose = "register") {
+  if (!token) throw new AppError("Verify your email and mobile number before registering.", 400);
   try {
     const decoded = jwt.verify(token, env.jwtSecret);
-    if (decoded.type !== "phone_verification" || decoded.phone !== phone || decoded.purpose !== purpose) {
+    if (decoded.type !== "contact_verification" || decoded.email !== email || decoded.phone !== phone || decoded.purpose !== purpose) {
       throw new Error("Invalid token scope.");
     }
   } catch (_error) {
-    throw new AppError("Mobile verification expired. Please verify again.", 400);
+    throw new AppError("Email/mobile verification expired. Please verify again.", 400);
   }
 }
 
 export async function sendRegisterOtp(req, res) {
-  requireFields(req.body, ["phone"]);
-  const email = req.body.email ? normalizeEmail(req.body.email) : "";
+  requireFields(req.body, ["email", "phone"]);
+  const email = normalizeEmail(req.body.email);
   const phone = normalizePhone(req.body.phone);
-  if (email) assertValidEmail(email);
+  assertValidEmail(email);
   assertValidPhone(phone);
-  if (email) {
-    await ensureUniqueEmailAndPhone(email, phone);
-  } else {
-    const [existingUser] = await query("SELECT id FROM users WHERE phone = :phone LIMIT 1", { phone });
-    if (existingUser) throw new AppError("An account with this mobile number already exists.", 409);
-  }
+  await ensureUniqueEmailAndPhone(email, phone);
 
   const otp = generateOtp();
   const otp_hash = await bcrypt.hash(otp, env.bcryptRounds);
   await query(
-    `INSERT INTO otp_verifications (phone, purpose, otp_hash, expires_at)
-     VALUES (:phone, 'register', :otp_hash, NOW() + (:expires * INTERVAL '1 minute'))`,
-    { phone, otp_hash, expires: env.otpExpiresMinutes }
+    `INSERT INTO otp_verifications (email, phone, purpose, otp_hash, expires_at)
+     VALUES (:email, :phone, 'register', :otp_hash, NOW() + (:expires * INTERVAL '1 minute'))`,
+    { email, phone, otp_hash, expires: env.otpExpiresMinutes }
   );
-  await sendOtpSms(phone, otp);
+  await deliverRegisterOtp({ email, phone, otp });
 
   res.json({
-    message: "OTP sent to your mobile number.",
+    message: "OTP sent to your email and mobile number.",
     expiresInMinutes: env.otpExpiresMinutes,
     ...(env.nodeEnv !== "production" && env.otpDevResponse ? { devOtp: otp } : {})
   });
 }
 
 export async function verifyRegisterOtp(req, res) {
-  requireFields(req.body, ["phone", "otp"]);
+  requireFields(req.body, ["email", "phone", "otp"]);
+  const email = normalizeEmail(req.body.email);
   const phone = normalizePhone(req.body.phone);
   const otp = String(req.body.otp).trim();
+  assertValidEmail(email);
   assertValidPhone(phone);
   if (!/^\d{6}$/.test(otp)) throw new AppError("Enter the 6-digit OTP.", 400);
 
   const rows = await query(
     `SELECT * FROM otp_verifications
-     WHERE phone = :phone AND purpose = 'register' AND verified_at IS NULL
+     WHERE email = :email AND phone = :phone AND purpose = 'register' AND verified_at IS NULL
      ORDER BY id DESC LIMIT 1`,
-    { phone }
+    { email, phone }
   );
   const record = rows[0];
   if (!record) throw new AppError("OTP not found. Please request a new OTP.", 400);
@@ -138,7 +138,7 @@ export async function verifyRegisterOtp(req, res) {
   }
 
   await query("UPDATE otp_verifications SET verified_at = NOW() WHERE id = :id", { id: record.id });
-  res.json({ message: "Mobile number verified.", otpToken: signOtpToken(phone) });
+  res.json({ message: "Email and mobile number verified.", otpToken: signOtpToken(email, phone) });
 }
 
 export async function login(req, res) {
@@ -162,7 +162,7 @@ export async function register(req, res) {
   assertValidEmail(email);
   assertValidPhone(phone);
   if (String(req.body.password).length < 8) throw new AppError("Password must be at least 8 characters.", 400);
-  verifyOtpToken(req.body.otpToken, phone);
+  verifyOtpToken(req.body.otpToken, email, phone);
   await ensureUniqueEmailAndPhone(email, phone);
 
   const password_hash = await bcrypt.hash(req.body.password, env.bcryptRounds);

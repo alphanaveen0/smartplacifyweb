@@ -30,6 +30,12 @@ export const env = {
   jwtExpiresIn: process.env.JWT_EXPIRES_IN || "7d",
   otpExpiresMinutes: Number(process.env.OTP_EXPIRES_MINUTES || 10),
   otpDevResponse: process.env.OTP_DEV_RESPONSE === "true",
+  brevo: {
+    apiKey: process.env.BREVO_API_KEY || "",
+    senderEmail: process.env.BREVO_SENDER_EMAIL || "",
+    senderName: process.env.BREVO_SENDER_NAME || "SmartPlacify",
+    smsSender: process.env.BREVO_SMS_SENDER || "SMARTPLC"
+  },
   bcryptRounds: Number(process.env.BCRYPT_ROUNDS || 12),
   uploadDir: process.env.UPLOAD_DIR || "uploads/resumes",
   maxUploadMb: Number(process.env.MAX_UPLOAD_MB || 5)

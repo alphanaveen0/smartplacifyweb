@@ -65,6 +65,7 @@ CREATE INDEX IF NOT EXISTS idx_users_role ON users (role);
 
 CREATE TABLE IF NOT EXISTS otp_verifications (
   id BIGSERIAL PRIMARY KEY,
+  email VARCHAR(160),
   phone VARCHAR(40) NOT NULL,
   purpose VARCHAR(40) NOT NULL DEFAULT 'register',
   otp_hash VARCHAR(255) NOT NULL,
@@ -74,7 +75,10 @@ CREATE TABLE IF NOT EXISTS otp_verifications (
   created_at TIMESTAMPTZ DEFAULT NOW()
 );
 
+ALTER TABLE otp_verifications ADD COLUMN IF NOT EXISTS email VARCHAR(160);
+
 CREATE INDEX IF NOT EXISTS idx_otp_phone_purpose ON otp_verifications (phone, purpose);
+CREATE INDEX IF NOT EXISTS idx_otp_email_purpose ON otp_verifications (email, purpose);
 CREATE INDEX IF NOT EXISTS idx_otp_expires_at ON otp_verifications (expires_at);
 
 CREATE TABLE IF NOT EXISTS jobs (

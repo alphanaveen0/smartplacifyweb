@@ -15,7 +15,10 @@ function normalizeEmail(email = "") {
 }
 
 function normalizePhone(phone = "") {
-  return String(phone).trim().replace(/[^\d+]/g, "");
+  const value = String(phone).trim().replace(/[^\d+]/g, "");
+  const digits = value.replace(/\D/g, "");
+  if (!value.startsWith("+") && digits.length === 10) return `+91${digits}`;
+  return value;
 }
 
 function validateEmail(email) {
@@ -191,15 +194,17 @@ export const authService = {
       throw new Error("An account with this email or mobile number already exists.");
     }
 
-    return delay({ message: "Demo OTP sent. Use 123456.", devOtp: "123456", expiresInMinutes: 10 });
+    return delay({ message: "Demo OTP sent to email and mobile. Use 123456.", devOtp: "123456", expiresInMinutes: 10 });
   },
 
   async verifyRegisterOtp(payload) {
     const phone = normalizePhone(payload.phone);
+    const email = normalizeEmail(payload.email || "");
+    if (email) validateEmail(email);
     validatePhone(phone);
 
     if (!USE_MOCKS) {
-      return apiClient("/auth/otp/verify", { method: "POST", body: { phone, otp: payload.otp } });
+      return apiClient("/auth/otp/verify", { method: "POST", body: { email, phone, otp: payload.otp } });
     }
 
     if (String(payload.otp).trim() !== "123456") {

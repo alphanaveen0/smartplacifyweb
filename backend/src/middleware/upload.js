@@ -1,7 +1,10 @@
 import path from "path";
+import fs from "fs";
 import multer from "multer";
 import { env } from "../config/env.js";
 import { AppError } from "../utils/AppError.js";
+
+fs.mkdirSync(env.uploadDir, { recursive: true });
 
 const storage = multer.diskStorage({
   destination: env.uploadDir,

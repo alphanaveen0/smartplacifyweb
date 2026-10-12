@@ -34,6 +34,45 @@ function responseText(response) {
   return response.insight || response.text || response.summary || response.title || "";
 }
 
+function splitInsightBullets(text = "") {
+  const normalized = String(text)
+    .replace(/\\n/g, "\n")
+    .replace(/^["']|["']$/g, "")
+    .trim();
+
+  if (!normalized) return [];
+
+  const headingChunks = normalized
+    .split(/(?=\*\*[^*]+\*\*:)/g)
+    .map((item) => item.trim())
+    .filter(Boolean);
+
+  const lines = (headingChunks.length > 1 ? headingChunks : normalized.split(/\n+/))
+    .map((item) => item
+      .replace(/^\s*[-*•]\s*/, "")
+      .replace(/\*\*/g, "")
+      .trim())
+    .filter(Boolean);
+
+  if (lines.length > 1) return lines;
+
+  return normalized
+    .split(/(?<=[.!?])\s+(?=[A-Z0-9])/)
+    .map((item) => item.replace(/\*\*/g, "").trim())
+    .filter(Boolean)
+    .slice(0, 7);
+}
+
+function InsightBullets({ text }) {
+  const bullets = splitInsightBullets(text);
+  if (!bullets.length) return null;
+  return (
+    <ul className="ai-bullet-list">
+      {bullets.map((bullet, index) => <li key={`${bullet}-${index}`}>{bullet}</li>)}
+    </ul>
+  );
+}
+
 function welcomeMessage(user) {
   if (user.role === "tpo") {
     return "Hi, I can help with student risk, eligible candidates, placement reports, interviews, and job posting strategy.";
@@ -142,7 +181,7 @@ function EligibilityCard({ response }) {
       <ul className="ai-check-list">
         {response.checks?.map((check) => <li key={check.label} className={check.passed ? "pass" : "fail"}>{check.passed ? "✓" : "!"} {check.message}</li>)}
       </ul>
-      <p className="ai-insight-text">{response.insight}</p>
+      <InsightBullets text={response.insight} />
     </SmartAIInsightCard>
   );
 }
@@ -162,7 +201,7 @@ function StudentList({ response }) {
           </div>
         ))}
       </div>
-      <p className="ai-insight-text">{response.insight}</p>
+      <InsightBullets text={response.insight} />
     </SmartAIInsightCard>
   );
 }
@@ -196,7 +235,7 @@ function ReportSummary({ response }) {
       <div className="ai-mini-metrics">
         {response.metrics?.map((metric) => <span key={metric.label}><strong>{metric.value}</strong><small>{metric.label}</small></span>)}
       </div>
-      <p className="ai-insight-text">{response.insight}</p>
+      <InsightBullets text={response.insight} />
     </SmartAIInsightCard>
   );
 }
@@ -230,7 +269,7 @@ export function SmartAIResponse({ response }) {
   return (
     <SmartAIInsightCard title={response.title || "Smart AI Insight"} summary={response.summary} actions={response.actions}>
       <SourceIndicator />
-      <p className="ai-insight-text">{response.insight || response.text}</p>
+      <InsightBullets text={response.insight || response.text} />
     </SmartAIInsightCard>
   );
 }

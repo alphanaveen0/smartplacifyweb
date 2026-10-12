@@ -3731,6 +3731,23 @@ mark {
   font-size: 0.9rem;
 }
 
+.ai-bullet-list {
+  display: grid;
+  gap: 0.55rem;
+  margin: 0;
+  padding-left: 1.1rem;
+  color: var(--text);
+  line-height: 1.55;
+}
+
+.ai-bullet-list li {
+  padding-left: 0.15rem;
+}
+
+.ai-bullet-list li::marker {
+  color: var(--primary);
+}
+
 .smart-ai-card,
 .smart-ai-strip {
   border: 1px solid rgba(217, 154, 43, 0.18);

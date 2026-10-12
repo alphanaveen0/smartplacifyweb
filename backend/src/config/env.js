@@ -38,7 +38,7 @@ export const env = {
   },
   groq: {
     apiKey: process.env.GROQ_API_KEY || "",
-    model: process.env.GROQ_MODEL || "llama-3.1-8b-instant"
+    model: process.env.GROQ_MODEL || "openai/gpt-oss-20b"
   },
   bcryptRounds: Number(process.env.BCRYPT_ROUNDS || 12),
   uploadDir: process.env.UPLOAD_DIR || "uploads/resumes",

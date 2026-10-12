@@ -333,9 +333,9 @@ export const smartAIService = {
     return delay({ page, context, response }, 420);
   },
 
-  async askAI({ user, page, prompt, context = {} }) {
+  async askAI({ user, page, prompt, context = {}, history = [] }) {
     if (!USE_MOCKS) {
-      return apiClient("/smart-ai/ask", { method: "POST", body: { page, prompt, context } });
+      return apiClient("/smart-ai/ask", { method: "POST", body: { page, prompt, context, history } });
     }
 
     const db = loadDb();

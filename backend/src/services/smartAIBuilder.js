@@ -1,5 +1,6 @@
 import { query } from "../config/db.js";
 import { calculateEligibility } from "../utils/eligibility.js";
+import { askGroq } from "./groqService.js";
 
 function splitList(value = "") {
   return String(value)
@@ -345,8 +346,29 @@ export async function getContextualSmartAI({ user, page, context = {} }) {
   return { page, context, response: defaultResponse(user, data, context) };
 }
 
-export async function askSmartAI({ user, page, prompt, context = {} }) {
+export async function askSmartAI({ user, page, prompt, context = {}, history = [] }) {
   const data = await loadPlacementData();
+  if (prompt) {
+    try {
+      const groqText = await askGroq({ user, prompt, data, context, history });
+      if (groqText) {
+        return {
+          type: "chat",
+          title: "Smart AI Answer",
+          summary: `${user.role === "tpo" ? "Placement Officer" : user.role === "company" ? "Recruiter" : "Student"} assistant`,
+          insight: groqText,
+          source: "groq",
+          actions: user.role === "student"
+            ? ["Analyze Resume", "Find Matching Jobs", "Practice Interview"]
+            : user.role === "company"
+              ? ["Rank Applicants", "Find Matching Candidates", "Ask Smart AI"]
+              : ["Students at risk", "Eligible students", "Generate report"]
+        };
+      }
+    } catch (error) {
+      console.warn("Smart AI Groq fallback:", error.message);
+    }
+  }
   return routePrompt(user, prompt || page, data, context);
 }
 

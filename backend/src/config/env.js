@@ -36,6 +36,10 @@ export const env = {
     senderName: process.env.BREVO_SENDER_NAME || "SmartPlacify",
     smsSender: process.env.BREVO_SMS_SENDER || "SMARTPLC"
   },
+  groq: {
+    apiKey: process.env.GROQ_API_KEY || "",
+    model: process.env.GROQ_MODEL || "llama-3.1-8b-instant"
+  },
   bcryptRounds: Number(process.env.BCRYPT_ROUNDS || 12),
   uploadDir: process.env.UPLOAD_DIR || "uploads/resumes",
   maxUploadMb: Number(process.env.MAX_UPLOAD_MB || 5)

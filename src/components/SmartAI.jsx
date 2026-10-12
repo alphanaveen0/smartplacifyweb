@@ -29,6 +29,21 @@ function contextLabel(user, page, context) {
   return `${roleLabel(user.role)} • ${page || "Dashboard"}`;
 }
 
+function responseText(response) {
+  if (!response) return "";
+  return response.insight || response.text || response.summary || response.title || "";
+}
+
+function welcomeMessage(user) {
+  if (user.role === "tpo") {
+    return "Hi, I can help with student risk, eligible candidates, placement reports, interviews, and job posting strategy.";
+  }
+  if (user.role === "company") {
+    return "Hi, I can help rank applicants, find matching candidates, improve job descriptions, and plan interviews.";
+  }
+  return "Hi, I can help analyze your resume readiness, suggest jobs, explain eligibility, and prepare you for interviews.";
+}
+
 export function SmartAIButton({ onClick, compact = false }) {
   return (
     <button className={compact ? "smart-ai-inline" : "smart-ai-fab"} type="button" onClick={onClick} aria-label="Open Smart AI">
@@ -224,33 +239,54 @@ export function SmartAIDrawer({ user, page, context, initialPrompt = "", open, o
   const [prompt, setPrompt] = useState("");
   const [response, setResponse] = useState(null);
   const [history, setHistory] = useState([]);
+  const [messages, setMessages] = useState([]);
+  const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const suggestions = useMemo(() => defaultSuggestions(user.role, page), [user.role, page]);
 
   useEffect(() => {
     if (!open) return;
+    setError("");
+    setMessages([{ role: "assistant", content: welcomeMessage(user) }]);
     setLoading(true);
     const request = initialPrompt
-      ? smartAIService.askAI({ user, page, prompt: initialPrompt, context })
+      ? smartAIService.askAI({ user, page, prompt: initialPrompt, context, history: [] })
       : smartAIService.getContextualInsights({ user, page, context }).then((result) => result.response);
     request
       .then((result) => {
         setResponse(result);
+        const text = responseText(result);
+        if (text) {
+          setMessages((current) => [
+            ...current,
+            ...(initialPrompt ? [{ role: "user", content: initialPrompt }] : []),
+            { role: "assistant", content: text }
+          ]);
+        }
         if (initialPrompt) {
           setHistory((current) => [{ prompt: initialPrompt, response: result }, ...current].slice(0, 5));
         }
       })
+      .catch((apiError) => setError(apiError.message || "Smart AI is unavailable right now."))
       .finally(() => setLoading(false));
   }, [context, initialPrompt, open, page, user]);
 
   async function ask(text = prompt) {
     if (!text.trim()) return;
+    const question = text.trim();
     setPrompt("");
+    setError("");
+    const nextMessages = [...messages, { role: "user", content: question }];
+    setMessages(nextMessages);
     setLoading(true);
     try {
-      const result = await smartAIService.askAI({ user, page, prompt: text, context });
+      const result = await smartAIService.askAI({ user, page, prompt: question, context, history: nextMessages });
       setResponse(result);
-      setHistory((current) => [{ prompt: text, response: result }, ...current].slice(0, 5));
+      setMessages((current) => [...current, { role: "assistant", content: responseText(result) || "I found an insight for this page." }]);
+      setHistory((current) => [{ prompt: question, response: result }, ...current].slice(0, 5));
+    } catch (apiError) {
+      setError(apiError.message || "Smart AI is unavailable right now.");
+      setMessages((current) => [...current, { role: "assistant", content: "I could not reach Smart AI right now. Please try again after checking the backend configuration." }]);
     } finally {
       setLoading(false);
     }
@@ -272,6 +308,16 @@ export function SmartAIDrawer({ user, page, context, initialPrompt = "", open, o
 
         <section className="smart-ai-suggestions" aria-label="Suggested Smart AI actions">
           {suggestions.map((suggestion) => <button type="button" key={suggestion} onClick={() => ask(suggestion)}>{suggestion}</button>)}
+        </section>
+
+        <section className="smart-ai-chat" aria-label="Smart AI conversation">
+          {messages.map((message, index) => (
+            <div className={`chat-message ${message.role === "user" ? "user" : "assistant"}`} key={`${message.role}-${index}`}>
+              <span>{message.role === "user" ? "You" : "AI"}</span>
+              <p>{message.content}</p>
+            </div>
+          ))}
+          {error ? <div className="ai-error">{error}</div> : null}
         </section>
 
         {loading ? <div className="ai-thinking">Smart AI is analyzing verified placement data...</div> : <SmartAIResponse response={response} />}

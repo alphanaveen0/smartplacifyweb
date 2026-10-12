@@ -14,7 +14,13 @@ export async function contextualInsights(req, res) {
 }
 
 export async function ask(req, res) {
-  res.json(await askSmartAI({ user: req.user, page: req.body.page, prompt: req.body.prompt, context: req.body.context || {} }));
+  res.json(await askSmartAI({
+    user: req.user,
+    page: req.body.page,
+    prompt: req.body.prompt,
+    context: req.body.context || {},
+    history: req.body.history || []
+  }));
 }
 
 export async function studentInsights(req, res) {

@@ -68,7 +68,7 @@ export const interviewColumns = [
 export function insertSql(table, payload) {
   const columns = Object.keys(payload);
   return {
-    sql: `INSERT INTO ${table} (${columns.join(", ")}) VALUES (${columns.map((column) => `:${column}`).join(", ")})`,
+    sql: `INSERT INTO ${table} (${columns.join(", ")}) VALUES (${columns.map((column) => `:${column}`).join(", ")}) RETURNING id`,
     params: payload
   };
 }

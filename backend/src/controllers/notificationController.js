@@ -21,7 +21,8 @@ export async function createNotificationController(req, res) {
   requireFields(req.body, ["role", "type", "title", "message"]);
   const result = await query(
     `INSERT INTO notifications (role, type, title, message, user_id)
-     VALUES (:role, :type, :title, :message, :user_id)`,
+     VALUES (:role, :type, :title, :message, :user_id)
+     RETURNING id`,
     {
       role: req.body.role,
       type: req.body.type,

@@ -33,7 +33,7 @@ export async function createInterview(req, res) {
   const { sql, params } = insertSql("interviews", payload);
   const result = await query(sql, params);
   await query(
-    "UPDATE applications SET status = IF(:status = 'COMPLETED', status, 'INTERVIEW_SCHEDULED') WHERE id = :id",
+    "UPDATE applications SET status = CASE WHEN :status = 'COMPLETED' THEN status ELSE 'INTERVIEW_SCHEDULED' END WHERE id = :id",
     { id: payload.application_id, status: payload.status || "SCHEDULED" }
   );
   await createNotification({

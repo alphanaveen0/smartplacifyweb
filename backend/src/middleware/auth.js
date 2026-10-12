@@ -11,7 +11,7 @@ export async function authenticate(req, _res, next) {
 
     const decoded = jwt.verify(token, env.jwtSecret);
     const rows = await query(
-      `SELECT id, name, email, role, student_id, company_id, is_active
+      `SELECT id, name, email, phone, role, student_id, company_id, is_active
        FROM users WHERE id = :id LIMIT 1`,
       { id: decoded.id }
     );

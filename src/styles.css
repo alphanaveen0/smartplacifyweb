@@ -13747,3 +13747,64 @@ html[data-theme="dark"] .placement-month small {
   fill: #CBD5E1 !important;
   font-weight: 700 !important;
 }
+
+.otp-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.otp-row input {
+  min-width: 0;
+}
+
+.otp-row button {
+  min-height: 2.75rem;
+  border: 1px solid var(--border, #DCE6F2);
+  border-radius: 0.8rem;
+  background: var(--surface-muted, #EAF2FC);
+  color: var(--text-primary, #112D4E);
+  font-weight: 800;
+  padding: 0 0.8rem;
+  cursor: pointer;
+}
+
+.otp-row button:last-child {
+  background: var(--primary, #2563EB);
+  color: white;
+}
+
+.otp-row button:disabled {
+  cursor: not-allowed;
+  opacity: 0.72;
+}
+
+.toast.success {
+  border-color: rgba(34, 197, 94, 0.35);
+  background: rgba(34, 197, 94, 0.12);
+  color: #15803D;
+}
+
+html[data-theme="dark"] .otp-row button {
+  background: #172937;
+  border-color: #334155;
+  color: #F8FAFC;
+}
+
+html[data-theme="dark"] .otp-row button:last-child {
+  background: linear-gradient(135deg, #14B8A6, #3B82F6);
+  color: #F8FAFC;
+}
+
+html[data-theme="dark"] .toast.success {
+  border-color: rgba(34, 197, 94, 0.45);
+  background: rgba(34, 197, 94, 0.14);
+  color: #86EFAC;
+}
+
+@media (max-width: 520px) {
+  .otp-row {
+    grid-template-columns: 1fr;
+  }
+}

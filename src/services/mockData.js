@@ -241,6 +241,7 @@ const seed = {
       id: 1,
       name: "Dr. Anjali Sharma",
       email: "admin@test.com",
+      phone: "+91 98765 43210",
       password: "password123",
       role: "tpo",
       department: "Training & Placement",
@@ -251,6 +252,8 @@ const seed = {
       id: 2,
       name: "Aarav Mehta",
       email: "student@test.com",
+      phone: "+91 98765 43211",
+      mobile: "+91 98765 43211",
       password: "password123",
       role: "student",
       student_id: 1
@@ -259,6 +262,8 @@ const seed = {
       id: 3,
       name: "Priya Kapoor",
       email: "company@test.com",
+      phone: "+91 98765 43212",
+      mobile: "+91 98765 43212",
       password: "password123",
       role: "company",
       company_id: 1

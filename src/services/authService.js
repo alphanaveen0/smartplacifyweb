@@ -10,9 +10,36 @@ function publicUser(user) {
   return safeUser;
 }
 
+function normalizeEmail(email = "") {
+  return String(email).trim().toLowerCase();
+}
+
+function normalizePhone(phone = "") {
+  return String(phone).trim().replace(/[^\d+]/g, "");
+}
+
+function validateEmail(email) {
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    throw new Error("Enter a valid email address.");
+  }
+}
+
+function validatePhone(phone) {
+  const digits = phone.replace(/\D/g, "");
+  if (digits.length < 10 || digits.length > 15) {
+    throw new Error("Enter a valid mobile number.");
+  }
+}
+
+function createOtpToken(phone) {
+  return `mock-otp-${normalizePhone(phone)}-${Date.now()}`;
+}
+
 async function loginMock(email, password) {
   const db = loadDb();
-  const user = db.users.find((item) => item.email.toLowerCase() === email.toLowerCase());
+  const normalizedEmail = normalizeEmail(email);
+  validateEmail(normalizedEmail);
+  const user = db.users.find((item) => item.email.toLowerCase() === normalizedEmail);
 
   if (!user || user.password !== password) {
     throw new Error("Invalid email or password.");
@@ -29,19 +56,38 @@ async function loginMock(email, password) {
 
 async function registerMock(payload) {
   const db = loadDb();
+  const email = normalizeEmail(payload.email);
+  const phone = normalizePhone(payload.phone || payload.mobile);
+  validateEmail(email);
+  validatePhone(phone);
 
   if (!roles.includes(payload.role)) {
     throw new Error("Choose a valid role.");
   }
 
-  if (db.users.some((user) => user.email.toLowerCase() === payload.email.toLowerCase())) {
-    throw new Error("An account with this email already exists.");
+  if (String(payload.password || "").length < 8) {
+    throw new Error("Password must be at least 8 characters.");
+  }
+
+  if (!payload.otpToken || !String(payload.otpToken).includes(phone)) {
+    throw new Error("Verify your mobile number before registering.");
+  }
+
+  const phoneMatches = (value = "") => normalizePhone(value) === phone;
+  if (
+    db.users.some((user) => user.email.toLowerCase() === email || phoneMatches(user.phone || user.mobile)) ||
+    db.students.some((student) => student.email.toLowerCase() === email || phoneMatches(student.phone)) ||
+    db.companies.some((company) => company.email.toLowerCase() === email || phoneMatches(company.phone))
+  ) {
+    throw new Error("An account with this email or mobile number already exists.");
   }
 
   const user = {
     id: nextId(db.users),
     name: payload.name,
-    email: payload.email,
+    email,
+    phone,
+    mobile: phone,
     password: payload.password,
     role: payload.role
   };
@@ -50,8 +96,8 @@ async function registerMock(payload) {
     const student = {
       id: nextId(db.students),
       full_name: payload.name,
-      email: payload.email,
-      phone: "",
+      email,
+      phone,
       college: "Gurugram University",
       course: "",
       branch: "",
@@ -75,8 +121,8 @@ async function registerMock(payload) {
     const company = {
       id: nextId(db.companies),
       name: payload.name,
-      email: payload.email,
-      phone: "",
+      email,
+      phone,
       website: "",
       industry: "",
       location: "",
@@ -123,6 +169,43 @@ export const authService = {
     }
 
     return registerMock(payload);
+  },
+
+  async sendRegisterOtp(payload) {
+    const phone = normalizePhone(payload.phone);
+    const email = normalizeEmail(payload.email || "");
+    if (email) validateEmail(email);
+    validatePhone(phone);
+
+    if (!USE_MOCKS) {
+      return apiClient("/auth/otp/send", { method: "POST", body: { email, phone } });
+    }
+
+    const db = loadDb();
+    const phoneMatches = (value = "") => normalizePhone(value) === phone;
+    if (
+      db.users.some((user) => user.email.toLowerCase() === email || phoneMatches(user.phone || user.mobile)) ||
+      db.students.some((student) => student.email.toLowerCase() === email || phoneMatches(student.phone)) ||
+      db.companies.some((company) => company.email.toLowerCase() === email || phoneMatches(company.phone))
+    ) {
+      throw new Error("An account with this email or mobile number already exists.");
+    }
+
+    return delay({ message: "Demo OTP sent. Use 123456.", devOtp: "123456", expiresInMinutes: 10 });
+  },
+
+  async verifyRegisterOtp(payload) {
+    const phone = normalizePhone(payload.phone);
+    validatePhone(phone);
+
+    if (!USE_MOCKS) {
+      return apiClient("/auth/otp/verify", { method: "POST", body: { phone, otp: payload.otp } });
+    }
+
+    if (String(payload.otp).trim() !== "123456") {
+      throw new Error("Invalid OTP.");
+    }
+    return delay({ message: "Mobile number verified.", otpToken: createOtpToken(phone) });
   },
 
   async updateProfile(user, updates) {

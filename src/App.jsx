@@ -327,6 +327,7 @@ function AuthScreen({ initialMode = "login" }) {
   const [mode, setMode] = useState(initialMode);
   const [form, setForm] = useState({
     email: "admin@test.com",
+    phone: "+91 98765 43210",
     password: "password123",
     name: "Dr. Anjali Sharma",
     role: "tpo"
@@ -334,13 +335,33 @@ function AuthScreen({ initialMode = "login" }) {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [otpCode, setOtpCode] = useState("");
+  const [otpToken, setOtpToken] = useState("");
+  const [otpMessage, setOtpMessage] = useState("");
+  const [otpLoading, setOtpLoading] = useState(false);
 
   async function submit(event) {
     event.preventDefault();
     setError("");
 
-    if (!form.email || !form.password || (mode === "register" && !form.name)) {
+    if (!form.email || !form.password || (mode === "register" && (!form.name || !form.phone))) {
       setError("Complete all required fields.");
+      return;
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.trim())) {
+      setError("Enter a valid email address.");
+      return;
+    }
+    if (mode === "register" && form.phone.replace(/\D/g, "").length < 10) {
+      setError("Enter a valid mobile number.");
+      return;
+    }
+    if (mode === "register" && form.password.length < 8) {
+      setError("Password must be at least 8 characters.");
+      return;
+    }
+    if (mode === "register" && !otpToken) {
+      setError("Verify your mobile number with OTP before registering.");
       return;
     }
 
@@ -350,7 +371,7 @@ function AuthScreen({ initialMode = "login" }) {
         const loggedInUser = await login(form.email, form.password);
         navigate(`/${loggedInUser.role}/dashboard`, { replace: true });
       } else {
-        const registeredUser = await register(form);
+        const registeredUser = await register({ ...form, otpToken });
         navigate(`/${registeredUser.role}/dashboard`, { replace: true });
       }
     } catch (err) {
@@ -360,9 +381,57 @@ function AuthScreen({ initialMode = "login" }) {
     }
   }
 
-  function useDemo(email, name, role) {
+  function useDemo(email, name, role, phone) {
     setMode("login");
-    setForm({ email, password: "password123", name, role });
+    setForm({ email, phone, password: "password123", name, role });
+    setOtpCode("");
+    setOtpToken("");
+    setOtpMessage("");
+  }
+
+  function updateForm(updates) {
+    setForm({ ...form, ...updates });
+    if ("email" in updates || "phone" in updates) {
+      setOtpToken("");
+      setOtpMessage("");
+    }
+  }
+
+  async function sendOtp() {
+    setError("");
+    setOtpMessage("");
+    if (!form.email || !form.phone) {
+      setError("Enter email and mobile number first.");
+      return;
+    }
+    try {
+      setOtpLoading(true);
+      const result = await authService.sendRegisterOtp({ email: form.email, phone: form.phone });
+      setOtpMessage(result.devOtp ? `${result.message} OTP: ${result.devOtp}` : result.message);
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setOtpLoading(false);
+    }
+  }
+
+  async function verifyOtp() {
+    setError("");
+    setOtpMessage("");
+    if (!otpCode) {
+      setError("Enter the OTP sent to your mobile.");
+      return;
+    }
+    try {
+      setOtpLoading(true);
+      const result = await authService.verifyRegisterOtp({ phone: form.phone, otp: otpCode });
+      setOtpToken(result.otpToken);
+      setOtpMessage(result.message);
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setOtpLoading(false);
+    }
   }
 
   return (
@@ -374,15 +443,26 @@ function AuthScreen({ initialMode = "login" }) {
           <p>Sign in with a role-based demo account or create a local account.</p>
         </div>
         {mode === "register" ? (
-          <input placeholder="Name" value={form.name} onChange={(event) => setForm({ ...form, name: event.target.value })} />
+          <input placeholder="Name" value={form.name} onChange={(event) => updateForm({ name: event.target.value })} />
         ) : null}
-        <input placeholder="Email" type="email" value={form.email} onChange={(event) => setForm({ ...form, email: event.target.value })} />
+        <input placeholder="Email" type="email" value={form.email} onChange={(event) => updateForm({ email: event.target.value })} />
+        {mode === "register" ? (
+          <>
+            <input placeholder="Mobile number" type="tel" value={form.phone} onChange={(event) => updateForm({ phone: event.target.value })} />
+            <div className="otp-row">
+              <input placeholder="Enter OTP" inputMode="numeric" maxLength={6} value={otpCode} onChange={(event) => setOtpCode(event.target.value.replace(/\D/g, "").slice(0, 6))} />
+              <button type="button" onClick={sendOtp} disabled={otpLoading}>{otpLoading ? "Sending..." : "Send OTP"}</button>
+              <button type="button" onClick={verifyOtp} disabled={otpLoading || otpToken}>{otpToken ? "Verified" : "Verify"}</button>
+            </div>
+            {otpMessage ? <div className={`toast ${otpToken ? "success" : ""}`}>{otpMessage}</div> : null}
+          </>
+        ) : null}
         <label className="password-field">
-          <input placeholder="Password" type={showPassword ? "text" : "password"} value={form.password} onChange={(event) => setForm({ ...form, password: event.target.value })} />
+          <input placeholder="Password" type={showPassword ? "text" : "password"} value={form.password} onChange={(event) => updateForm({ password: event.target.value })} />
           <button type="button" onClick={() => setShowPassword((current) => !current)}>{showPassword ? "Hide" : "Show"}</button>
         </label>
         {mode === "register" ? (
-          <select value={form.role} onChange={(event) => setForm({ ...form, role: event.target.value })}>
+          <select value={form.role} onChange={(event) => updateForm({ role: event.target.value })}>
             <option value="student">Student</option>
             <option value="company">Company</option>
             <option value="tpo">TPO/Admin</option>
@@ -390,14 +470,20 @@ function AuthScreen({ initialMode = "login" }) {
         ) : null}
         {error ? <div className="toast error">{error}</div> : null}
         <button className="primary-action" disabled={loading}>{loading ? "Please wait..." : mode === "login" ? "Login" : "Register"}</button>
-        <button className="link-button" type="button" onClick={() => setMode(mode === "login" ? "register" : "login")}>
+        <button className="link-button" type="button" onClick={() => {
+          setMode(mode === "login" ? "register" : "login");
+          setOtpCode("");
+          setOtpToken("");
+          setOtpMessage("");
+          setError("");
+        }}>
           {mode === "login" ? "Create account" : "Already have an account?"}
         </button>
         <Link className="auth-link" to="/forgot-password">Forgot password?</Link>
         <div className="demo-grid">
-          <button type="button" onClick={() => useDemo("admin@test.com", "Dr. Anjali Sharma", "tpo")}>TPO demo</button>
-          <button type="button" onClick={() => useDemo("student@test.com", "Aarav Mehta", "student")}>Student demo</button>
-          <button type="button" onClick={() => useDemo("company@test.com", "Priya Kapoor", "company")}>Company demo</button>
+          <button type="button" onClick={() => useDemo("admin@test.com", "Dr. Anjali Sharma", "tpo", "+91 98765 43210")}>TPO demo</button>
+          <button type="button" onClick={() => useDemo("student@test.com", "Aarav Mehta", "student", "+91 98765 43211")}>Student demo</button>
+          <button type="button" onClick={() => useDemo("company@test.com", "Priya Kapoor", "company", "+91 98765 43212")}>Company demo</button>
         </div>
         <small>Password for demo accounts: <strong>password123</strong></small>
       </form>

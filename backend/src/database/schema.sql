@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS students (
-  id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+  id BIGSERIAL PRIMARY KEY,
   full_name VARCHAR(160) NOT NULL,
   email VARCHAR(190) NOT NULL UNIQUE,
   college_roll_no VARCHAR(80) UNIQUE,
@@ -8,8 +8,8 @@ CREATE TABLE IF NOT EXISTS students (
   course VARCHAR(100),
   branch VARCHAR(120),
   graduation_year INT,
-  cgpa DECIMAL(4,2) DEFAULT 0,
-  percentage DECIMAL(5,2) DEFAULT 0,
+  cgpa NUMERIC(4,2) DEFAULT 0,
+  percentage NUMERIC(5,2) DEFAULT 0,
   backlogs INT DEFAULT 0,
   skills TEXT,
   certifications TEXT,
@@ -19,15 +19,16 @@ CREATE TABLE IF NOT EXISTS students (
   resume_name VARCHAR(255),
   resume_path VARCHAR(500),
   resume_updated_at DATE,
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  INDEX idx_students_branch (branch),
-  INDEX idx_students_roll_no (college_roll_no),
-  INDEX idx_students_status (placement_status)
+  created_at TIMESTAMPTZ DEFAULT NOW(),
+  updated_at TIMESTAMPTZ DEFAULT NOW()
 );
 
+CREATE INDEX IF NOT EXISTS idx_students_branch ON students (branch);
+CREATE INDEX IF NOT EXISTS idx_students_roll_no ON students (college_roll_no);
+CREATE INDEX IF NOT EXISTS idx_students_status ON students (placement_status);
+
 CREATE TABLE IF NOT EXISTS companies (
-  id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+  id BIGSERIAL PRIMARY KEY,
   name VARCHAR(180) NOT NULL,
   email VARCHAR(190) NOT NULL UNIQUE,
   phone VARCHAR(40),
@@ -37,31 +38,48 @@ CREATE TABLE IF NOT EXISTS companies (
   description TEXT,
   logo VARCHAR(20),
   verified BOOLEAN DEFAULT FALSE,
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  INDEX idx_companies_verified (verified),
-  INDEX idx_companies_industry (industry)
+  created_at TIMESTAMPTZ DEFAULT NOW(),
+  updated_at TIMESTAMPTZ DEFAULT NOW()
 );
+
+CREATE INDEX IF NOT EXISTS idx_companies_verified ON companies (verified);
+CREATE INDEX IF NOT EXISTS idx_companies_industry ON companies (industry);
 
 CREATE TABLE IF NOT EXISTS users (
-  id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+  id BIGSERIAL PRIMARY KEY,
   name VARCHAR(160) NOT NULL,
   email VARCHAR(190) NOT NULL UNIQUE,
+  phone VARCHAR(40) UNIQUE,
   password_hash VARCHAR(255) NOT NULL,
-  role ENUM('student','company','tpo') NOT NULL,
-  student_id BIGINT UNSIGNED NULL,
-  company_id BIGINT UNSIGNED NULL,
+  role VARCHAR(20) NOT NULL CHECK (role IN ('student','company','tpo')),
+  student_id BIGINT NULL,
+  company_id BIGINT NULL,
   is_active BOOLEAN DEFAULT TRUE,
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  created_at TIMESTAMPTZ DEFAULT NOW(),
+  updated_at TIMESTAMPTZ DEFAULT NOW(),
   CONSTRAINT fk_users_student FOREIGN KEY (student_id) REFERENCES students(id) ON DELETE SET NULL,
-  CONSTRAINT fk_users_company FOREIGN KEY (company_id) REFERENCES companies(id) ON DELETE SET NULL,
-  INDEX idx_users_role (role)
+  CONSTRAINT fk_users_company FOREIGN KEY (company_id) REFERENCES companies(id) ON DELETE SET NULL
 );
 
+CREATE INDEX IF NOT EXISTS idx_users_role ON users (role);
+
+CREATE TABLE IF NOT EXISTS otp_verifications (
+  id BIGSERIAL PRIMARY KEY,
+  phone VARCHAR(40) NOT NULL,
+  purpose VARCHAR(40) NOT NULL DEFAULT 'register',
+  otp_hash VARCHAR(255) NOT NULL,
+  expires_at TIMESTAMPTZ NOT NULL,
+  attempts INT DEFAULT 0,
+  verified_at TIMESTAMPTZ NULL,
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+CREATE INDEX IF NOT EXISTS idx_otp_phone_purpose ON otp_verifications (phone, purpose);
+CREATE INDEX IF NOT EXISTS idx_otp_expires_at ON otp_verifications (expires_at);
+
 CREATE TABLE IF NOT EXISTS jobs (
-  id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
-  company_id BIGINT UNSIGNED NOT NULL,
+  id BIGSERIAL PRIMARY KEY,
+  company_id BIGINT NOT NULL,
   title VARCHAR(180) NOT NULL,
   description TEXT NOT NULL,
   location VARCHAR(160),
@@ -70,72 +88,76 @@ CREATE TABLE IF NOT EXISTS jobs (
   experience VARCHAR(160),
   experience_years INT DEFAULT 0,
   required_skills TEXT,
-  minimum_cgpa DECIMAL(4,2) DEFAULT 0,
+  minimum_cgpa NUMERIC(4,2) DEFAULT 0,
   maximum_backlogs INT DEFAULT 0,
   eligible_branches TEXT,
   graduation_year INT,
   application_deadline DATE,
   openings INT DEFAULT 1,
-  status ENUM('ACTIVE','CLOSED','DRAFT') DEFAULT 'ACTIVE',
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  status VARCHAR(20) DEFAULT 'ACTIVE' CHECK (status IN ('ACTIVE','CLOSED','DRAFT')),
+  created_at TIMESTAMPTZ DEFAULT NOW(),
+  updated_at TIMESTAMPTZ DEFAULT NOW(),
   CONSTRAINT fk_jobs_company FOREIGN KEY (company_id) REFERENCES companies(id) ON DELETE CASCADE,
-  UNIQUE KEY uq_jobs_company_title (company_id, title),
-  INDEX idx_jobs_company_status (company_id, status),
-  INDEX idx_jobs_deadline (application_deadline)
+  CONSTRAINT uq_jobs_company_title UNIQUE (company_id, title)
 );
 
+CREATE INDEX IF NOT EXISTS idx_jobs_company_status ON jobs (company_id, status);
+CREATE INDEX IF NOT EXISTS idx_jobs_deadline ON jobs (application_deadline);
+
 CREATE TABLE IF NOT EXISTS applications (
-  id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
-  student_id BIGINT UNSIGNED NOT NULL,
-  job_id BIGINT UNSIGNED NOT NULL,
-  status ENUM('APPLIED','SHORTLISTED','INTERVIEW_SCHEDULED','SELECTED','REJECTED','ON_HOLD') DEFAULT 'APPLIED',
+  id BIGSERIAL PRIMARY KEY,
+  student_id BIGINT NOT NULL,
+  job_id BIGINT NOT NULL,
+  status VARCHAR(30) DEFAULT 'APPLIED' CHECK (status IN ('APPLIED','SHORTLISTED','INTERVIEW_SCHEDULED','SELECTED','REJECTED','ON_HOLD')),
   eligibility_score INT DEFAULT 0,
   applied_at DATE NOT NULL,
   result VARCHAR(80),
   package_offered VARCHAR(80),
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  created_at TIMESTAMPTZ DEFAULT NOW(),
+  updated_at TIMESTAMPTZ DEFAULT NOW(),
   CONSTRAINT fk_applications_student FOREIGN KEY (student_id) REFERENCES students(id) ON DELETE CASCADE,
   CONSTRAINT fk_applications_job FOREIGN KEY (job_id) REFERENCES jobs(id) ON DELETE CASCADE,
-  UNIQUE KEY uq_application_student_job (student_id, job_id),
-  INDEX idx_applications_status (status),
-  INDEX idx_applications_applied_at (applied_at)
+  CONSTRAINT uq_application_student_job UNIQUE (student_id, job_id)
 );
 
+CREATE INDEX IF NOT EXISTS idx_applications_status ON applications (status);
+CREATE INDEX IF NOT EXISTS idx_applications_applied_at ON applications (applied_at);
+
 CREATE TABLE IF NOT EXISTS interviews (
-  id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
-  application_id BIGINT UNSIGNED NOT NULL,
-  student_id BIGINT UNSIGNED NOT NULL,
-  company_id BIGINT UNSIGNED NOT NULL,
-  job_id BIGINT UNSIGNED NOT NULL,
+  id BIGSERIAL PRIMARY KEY,
+  application_id BIGINT NOT NULL,
+  student_id BIGINT NOT NULL,
+  company_id BIGINT NOT NULL,
+  job_id BIGINT NOT NULL,
   interview_date DATE NOT NULL,
   interview_time TIME NOT NULL,
-  mode ENUM('Online','Offline','Hybrid') DEFAULT 'Online',
+  mode VARCHAR(20) DEFAULT 'Online' CHECK (mode IN ('Online','Offline','Hybrid')),
   location_or_link VARCHAR(500),
   round_name VARCHAR(160),
-  status ENUM('SCHEDULED','COMPLETED','CANCELLED') DEFAULT 'SCHEDULED',
+  status VARCHAR(20) DEFAULT 'SCHEDULED' CHECK (status IN ('SCHEDULED','COMPLETED','CANCELLED')),
   notes TEXT,
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  created_at TIMESTAMPTZ DEFAULT NOW(),
+  updated_at TIMESTAMPTZ DEFAULT NOW(),
   CONSTRAINT fk_interviews_application FOREIGN KEY (application_id) REFERENCES applications(id) ON DELETE CASCADE,
   CONSTRAINT fk_interviews_student FOREIGN KEY (student_id) REFERENCES students(id) ON DELETE CASCADE,
   CONSTRAINT fk_interviews_company FOREIGN KEY (company_id) REFERENCES companies(id) ON DELETE CASCADE,
   CONSTRAINT fk_interviews_job FOREIGN KEY (job_id) REFERENCES jobs(id) ON DELETE CASCADE,
-  UNIQUE KEY uq_interviews_application_round (application_id, round_name),
-  INDEX idx_interviews_status_date (status, interview_date)
+  CONSTRAINT uq_interviews_application_round UNIQUE (application_id, round_name)
 );
 
+CREATE INDEX IF NOT EXISTS idx_interviews_status_date ON interviews (status, interview_date);
+
 CREATE TABLE IF NOT EXISTS notifications (
-  id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
-  role ENUM('all','student','company','tpo') DEFAULT 'all',
-  user_id BIGINT UNSIGNED NULL,
+  id BIGSERIAL PRIMARY KEY,
+  role VARCHAR(20) DEFAULT 'all' CHECK (role IN ('all','student','company','tpo')),
+  user_id BIGINT NULL,
   title VARCHAR(180) NOT NULL,
   message TEXT NOT NULL,
   type VARCHAR(80) DEFAULT 'Announcement',
   is_read BOOLEAN DEFAULT FALSE,
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  CONSTRAINT fk_notifications_user FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
-  INDEX idx_notifications_role_read (role, is_read),
-  INDEX idx_notifications_created_at (created_at)
+  created_at TIMESTAMPTZ DEFAULT NOW(),
+  CONSTRAINT fk_notifications_user FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
+
+CREATE INDEX IF NOT EXISTS idx_notifications_role_read ON notifications (role, is_read);
+CREATE INDEX IF NOT EXISTS idx_notifications_created_at ON notifications (created_at);

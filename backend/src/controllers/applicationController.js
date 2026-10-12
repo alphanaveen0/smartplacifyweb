@@ -49,7 +49,8 @@ export async function createApplication(req, res) {
   try {
     const result = await query(
       `INSERT INTO applications (student_id, job_id, status, eligibility_score, applied_at)
-       VALUES (:student_id, :job_id, 'APPLIED', :eligibility_score, :applied_at)`,
+       VALUES (:student_id, :job_id, 'APPLIED', :eligibility_score, :applied_at)
+       RETURNING id`,
       { student_id: studentId, job_id: jobId, eligibility_score: eligibility.score, applied_at: today() }
     );
     await createNotification({
@@ -61,7 +62,7 @@ export async function createApplication(req, res) {
     const rows = await allApplications();
     res.status(201).json(rows.find((row) => Number(row.id) === Number(result.insertId)));
   } catch (error) {
-    if (error.code === "ER_DUP_ENTRY") throw new AppError("Application already submitted for this job.", 409);
+    if (error.code === "23505") throw new AppError("Application already submitted for this job.", 409);
     throw error;
   }
 }

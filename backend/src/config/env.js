@@ -19,16 +19,17 @@ export const env = {
     .filter(Boolean),
   db: {
     host: required("DB_HOST", "localhost"),
-    port: Number(process.env.DB_PORT || 3306),
-    user: required("DB_USER", "root"),
+    port: Number(process.env.DB_PORT || 5432),
+    user: required("DB_USER", "postgres"),
     password: process.env.DB_PASSWORD || "",
-    database: required("DB_NAME", "smartplacify"),
-    waitForConnections: true,
-    connectionLimit: 10,
-    namedPlaceholders: true
+    database: required("DB_NAME", "postgres"),
+    max: Number(process.env.DB_POOL_MAX || 10),
+    ssl: process.env.DB_SSL === "true" ? { rejectUnauthorized: false } : false
   },
   jwtSecret: required("JWT_SECRET"),
   jwtExpiresIn: process.env.JWT_EXPIRES_IN || "7d",
+  otpExpiresMinutes: Number(process.env.OTP_EXPIRES_MINUTES || 10),
+  otpDevResponse: process.env.OTP_DEV_RESPONSE === "true",
   bcryptRounds: Number(process.env.BCRYPT_ROUNDS || 12),
   uploadDir: process.env.UPLOAD_DIR || "uploads/resumes",
   maxUploadMb: Number(process.env.MAX_UPLOAD_MB || 5)

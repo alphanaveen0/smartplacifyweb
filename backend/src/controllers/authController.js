@@ -102,10 +102,10 @@ export async function sendRegisterOtp(req, res) {
      VALUES (:email, :phone, 'register', :otp_hash, NOW() + (:expires * INTERVAL '1 minute'))`,
     { email, phone, otp_hash, expires: env.otpExpiresMinutes }
   );
-  await deliverRegisterOtp({ email, phone, otp });
+  const delivery = await deliverRegisterOtp({ email, phone, otp });
 
   res.json({
-    message: "OTP sent to your email and mobile number.",
+    message: delivery.smsDelivered ? "OTP sent to your email and mobile number." : "OTP sent to your email. SMS is not enabled for this Brevo account.",
     expiresInMinutes: env.otpExpiresMinutes,
     ...(env.nodeEnv !== "production" && env.otpDevResponse ? { devOtp: otp } : {})
   });

@@ -70,9 +70,22 @@ export async function sendOtpSms(phone, otp) {
 }
 
 export async function sendRegisterOtp({ email, phone, otp }) {
-  await Promise.all([
+  const [emailResult, smsResult] = await Promise.allSettled([
     sendOtpEmail(email, otp),
     sendOtpSms(phone, otp)
   ]);
-  return { delivered: true };
+
+  if (emailResult.status === "rejected") {
+    throw emailResult.reason;
+  }
+
+  if (smsResult.status === "rejected") {
+    console.warn(`[SmartPlacify OTP] SMS delivery skipped: ${smsResult.reason.message}`);
+  }
+
+  return {
+    delivered: true,
+    emailDelivered: true,
+    smsDelivered: smsResult.status === "fulfilled"
+  };
 }

@@ -13949,3 +13949,335 @@ html[data-theme="dark"] .toast.success {
     align-items: flex-start;
   }
 }
+
+/* Student dashboard final containment polish */
+.student-ai-insight,
+.student-ai-insight *,
+.kpi-grid,
+.kpi-card,
+.kpi-card *,
+.content-grid,
+.content-grid *,
+.season-card,
+.season-card *,
+.application-card-row,
+.application-card-row *,
+.polished-interviews .interview-card,
+.polished-interviews .interview-card *,
+.skill-demand-row,
+.skill-demand-row * {
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+.hero-panel,
+.student-ai-insight,
+.kpi-card,
+.season-card,
+.application-card-row,
+.polished-interviews .interview-card {
+  overflow: hidden;
+}
+
+.season-card {
+  max-width: 100%;
+}
+
+.season-card strong,
+.season-card small {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.student-ai-insight .ai-insight-main {
+  display: grid;
+  grid-template-columns: 2.2rem minmax(0, 1fr) auto;
+  align-items: start;
+  gap: 0.72rem;
+}
+
+.student-ai-insight .ai-insight-main h2 {
+  font-size: clamp(0.95rem, 1.2vw, 1.08rem);
+  line-height: 1.18;
+}
+
+.student-ai-insight .ai-insight-main p {
+  display: -webkit-box;
+  max-width: 100%;
+  max-height: 3.85rem;
+  overflow: hidden;
+  color: var(--muted);
+  font-size: clamp(0.82rem, 1vw, 0.94rem);
+  line-height: 1.38;
+  overflow-wrap: anywhere;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+.student-ai-insight .ai-insight-main > strong {
+  width: auto;
+  min-width: 3.4rem;
+  height: auto;
+  min-height: 2rem;
+  padding: 0.38rem 0.62rem;
+  border-radius: 999px;
+  font-size: 0.76rem;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.readiness-mini-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.readiness-mini-grid button {
+  align-content: center;
+  min-height: 3.25rem;
+  padding: 0.58rem 0.68rem;
+}
+
+.readiness-mini-grid span {
+  font-size: clamp(0.92rem, 1.4vw, 1.08rem);
+  line-height: 1.05;
+}
+
+.readiness-mini-grid small {
+  display: block;
+  overflow: hidden;
+  font-size: 0.7rem;
+  line-height: 1.18;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.kpi-card {
+  min-height: 5.85rem;
+}
+
+.kpi-card > div {
+  display: grid;
+  gap: 0.12rem;
+  min-width: 0;
+}
+
+.kpi-card strong {
+  max-width: 100%;
+  overflow: hidden;
+  font-size: clamp(1.2rem, 2.2vw, 1.65rem);
+  line-height: 1.05;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.kpi-card small,
+.kpi-card em {
+  max-width: 100%;
+  overflow: hidden;
+  font-size: 0.72rem;
+  line-height: 1.22;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.placement-chart-shell,
+.smart-chart-frame {
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.placement-chart-wrap {
+  max-width: 100%;
+}
+
+.placement-chart-legend {
+  justify-content: flex-start;
+  gap: 0.42rem 0.7rem;
+}
+
+.placement-chart-legend span {
+  max-width: 100%;
+  overflow: hidden;
+  font-size: 0.72rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.skill-demand-row {
+  grid-template-columns: minmax(4.6rem, 0.82fr) minmax(5rem, 1fr) minmax(2.1rem, auto);
+  gap: 0.58rem;
+}
+
+.skill-demand-row strong,
+.skill-demand-row small,
+.skill-demand-row em {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.application-card-row {
+  grid-template-columns: auto minmax(0, 1fr) minmax(4.6rem, auto) auto;
+}
+
+.application-card-row > span {
+  max-width: 7rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.application-card-row .status-badge {
+  max-width: 7.4rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.polished-interviews .interview-card {
+  grid-template-columns: auto auto minmax(0, 1fr) auto;
+}
+
+.prepare-ai-btn {
+  max-width: 8.8rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media (max-width: 1180px) {
+  .student-ai-insight .ai-insight-main {
+    grid-template-columns: 2.2rem minmax(0, 1fr);
+  }
+
+  .student-ai-insight .ai-insight-main > strong {
+    grid-column: 2;
+    justify-self: start;
+  }
+
+  .application-card-row {
+    grid-template-columns: auto minmax(0, 1fr) auto;
+  }
+
+  .application-card-row > span {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-panel h1 {
+    max-width: 100%;
+    font-size: clamp(1.2rem, 5.2vw, 1.55rem);
+    line-height: 1.14;
+  }
+
+  .hero-panel p {
+    max-width: 100%;
+    font-size: 0.82rem;
+    line-height: 1.34;
+  }
+
+  .season-card {
+    padding: 0.72rem;
+  }
+
+  .season-card strong {
+    font-size: 0.82rem;
+    line-height: 1.16;
+  }
+
+  .season-card small {
+    font-size: 0.68rem;
+  }
+
+  .student-ai-insight {
+    padding: 0.82rem;
+  }
+
+  .student-ai-insight .ai-insight-main p {
+    font-size: 0.78rem;
+    line-height: 1.32;
+    -webkit-line-clamp: 3;
+  }
+
+  .readiness-mini-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.5rem;
+  }
+
+  .readiness-mini-grid button {
+    min-height: 2.9rem;
+    padding: 0.48rem;
+  }
+
+  .readiness-mini-grid small {
+    font-size: 0.62rem;
+  }
+
+  .kpi-card {
+    min-height: 5rem;
+    gap: 0.58rem;
+    padding: 0.68rem;
+  }
+
+  .kpi-card strong {
+    font-size: clamp(1.05rem, 4.6vw, 1.32rem);
+  }
+
+  .kpi-card small,
+  .kpi-card em {
+    font-size: 0.64rem;
+  }
+
+  .skill-demand-row {
+    grid-template-columns: minmax(4.2rem, 0.8fr) minmax(4.4rem, 1fr) 2rem;
+    gap: 0.45rem;
+  }
+
+  .skill-demand-row strong {
+    font-size: 0.76rem;
+  }
+
+  .skill-demand-row small,
+  .skill-demand-row em {
+    font-size: 0.64rem;
+  }
+
+  .application-card-row,
+  .polished-interviews .interview-card {
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: start;
+  }
+
+  .application-card-row .status-badge,
+  .prepare-ai-btn {
+    grid-column: 2;
+    justify-self: start;
+  }
+
+  .polished-interviews .interview-date {
+    grid-row: span 2;
+  }
+}
+
+@media (max-width: 430px) {
+  .readiness-mini-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .readiness-mini-grid small {
+    white-space: normal;
+  }
+
+  .kpi-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .kpi-card {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  .kpi-card .icon {
+    width: 2.2rem;
+    height: 2.2rem;
+    font-size: 0.82rem;
+  }
+}

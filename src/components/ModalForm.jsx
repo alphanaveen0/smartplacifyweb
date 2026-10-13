@@ -79,6 +79,8 @@ export function ModalForm({ title, fields, values, setValues, onSubmit, onClose,
                   type={field.type || "text"}
                   min={field.min}
                   max={field.max}
+                  step={field.step}
+                  inputMode={field.inputMode}
                   value={values[field.name] ?? ""}
                   onChange={(event) => updateValue(field, field.type === "number" ? event.target.value : event.target.value)}
                   placeholder={field.placeholder}

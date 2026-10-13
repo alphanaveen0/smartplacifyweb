@@ -14470,3 +14470,139 @@ html[data-theme="dark"] .toast.success {
     padding: 0.7rem;
   }
 }
+
+/* Smart AI readiness result shape and text polish */
+.smart-ai-main .smart-ai-card {
+  display: grid;
+  grid-template-columns: minmax(5.4rem, auto) minmax(0, 1fr);
+  gap: 0.72rem 0.95rem;
+  padding: 0.92rem;
+  border-radius: 1rem;
+}
+
+.smart-ai-main .smart-ai-card-head,
+.smart-ai-main .ai-source-row,
+.smart-ai-main .ai-insight-text,
+.smart-ai-main .smart-ai-actions {
+  grid-column: 1 / -1;
+}
+
+.smart-ai-main .smart-ai-card-head {
+  display: grid;
+  grid-template-columns: 2.45rem minmax(0, 1fr);
+  align-items: center;
+  gap: 0.32rem 0.68rem;
+}
+
+.smart-ai-main .smart-ai-card-head .smart-ai-spark {
+  grid-row: span 2;
+  width: 2.45rem;
+  height: 2.45rem;
+  border-radius: 0.72rem;
+  font-size: 0.78rem;
+}
+
+.smart-ai-main .smart-ai-card-head h3 {
+  font-size: clamp(1.08rem, 1.65vw, 1.3rem) !important;
+  line-height: 1.12 !important;
+  letter-spacing: -0.025em;
+}
+
+.smart-ai-main .smart-ai-card-head p {
+  font-size: clamp(0.82rem, 1.05vw, 0.95rem) !important;
+  line-height: 1.22 !important;
+}
+
+.smart-ai-main .ai-source-row {
+  gap: 0.45rem;
+}
+
+.smart-ai-main .ai-source-row span {
+  min-height: 1.55rem;
+  padding: 0.22rem 0.56rem;
+  font-size: 0.68rem;
+  line-height: 1;
+}
+
+.smart-ai-main .ai-score-ring {
+  align-self: center;
+  justify-self: center;
+  width: clamp(5.25rem, 8vw, 6.1rem) !important;
+  height: clamp(5.25rem, 8vw, 6.1rem) !important;
+}
+
+.smart-ai-main .ai-score-ring strong {
+  width: calc(100% - 1.35rem) !important;
+  height: calc(100% - 1.35rem) !important;
+  padding-top: clamp(0.92rem, 1.65vw, 1.18rem) !important;
+  font-size: clamp(1.38rem, 2.1vw, 1.75rem) !important;
+}
+
+.smart-ai-main .ai-score-ring small {
+  margin-top: -1.9rem;
+  font-size: 0.72rem !important;
+}
+
+.smart-ai-main .ai-metric-list {
+  align-self: center;
+  gap: 0.44rem;
+}
+
+.smart-ai-main .ai-metric-list div {
+  grid-template-columns: minmax(5.9rem, 0.85fr) minmax(5rem, 1.25fr) minmax(2rem, auto);
+  gap: 0.48rem;
+  font-size: 0.78rem !important;
+}
+
+.smart-ai-main .ai-metric-list b {
+  height: 0.42rem;
+}
+
+.smart-ai-main .ai-insight-text {
+  padding: 0.64rem 0.75rem;
+  border-radius: 0.72rem;
+  font-size: 0.82rem !important;
+  line-height: 1.36 !important;
+}
+
+.smart-ai-main .smart-ai-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.52rem;
+}
+
+.smart-ai-main .smart-ai-actions button {
+  min-height: 2.1rem;
+  padding: 0 0.72rem;
+  font-size: 0.72rem;
+}
+
+@media (max-width: 980px) {
+  .smart-ai-main .smart-ai-card {
+    grid-template-columns: 1fr;
+  }
+
+  .smart-ai-main .ai-score-ring {
+    justify-self: start;
+  }
+}
+
+@media (max-width: 520px) {
+  .smart-ai-main .smart-ai-card {
+    padding: 0.78rem;
+  }
+
+  .smart-ai-main .smart-ai-card-head {
+    grid-template-columns: 2.15rem minmax(0, 1fr);
+  }
+
+  .smart-ai-main .smart-ai-card-head .smart-ai-spark {
+    width: 2.15rem;
+    height: 2.15rem;
+  }
+
+  .smart-ai-main .ai-metric-list div {
+    grid-template-columns: minmax(5.2rem, 0.9fr) minmax(4.4rem, 1fr) minmax(1.8rem, auto);
+    font-size: 0.7rem !important;
+  }
+}

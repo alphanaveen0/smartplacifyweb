@@ -42,7 +42,8 @@ const allowedProfileImageTypes = ["image/jpeg", "image/png", "image/webp"];
 const THEME_KEY = "smartplacify_theme";
 
 function getStoredTheme() {
-  return localStorage.getItem(THEME_KEY) === "light" ? "light" : "dark";
+  const savedTheme = localStorage.getItem(THEME_KEY);
+  return savedTheme === "dark" || savedTheme === "light" ? savedTheme : "light";
 }
 
 const navByRole = {

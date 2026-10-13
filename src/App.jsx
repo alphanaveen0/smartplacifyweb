@@ -46,6 +46,22 @@ function getStoredTheme() {
   return savedTheme === "dark" || savedTheme === "light" ? savedTheme : "light";
 }
 
+function formatInterviewBadgeDate(value) {
+  if (!value) return { day: "—", month: "TBA" };
+  const rawDate = String(value).slice(0, 10);
+  const match = rawDate.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+  if (match) {
+    const monthNames = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
+    return { day: match[3], month: monthNames[Number(match[2]) - 1] || "TBA" };
+  }
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return { day: "—", month: "TBA" };
+  return {
+    day: String(date.getDate()).padStart(2, "0"),
+    month: date.toLocaleString("en-US", { month: "short" }).toUpperCase()
+  };
+}
+
 const navByRole = {
   student: [
     { id: "dashboard", label: "Dashboard", icon: "D" },
@@ -789,20 +805,23 @@ function StudentInterviewsPanel({ interviews = [], onViewAll, onPrepare }) {
         <button type="button" onClick={onViewAll}>View All</button>
       </div>
       <ul className="activity-list interview-list polished-interviews">
-        {interviews.length ? interviews.map((interview) => (
-          <li className="interview-card" key={interview.id}>
-            <span className="interview-date">
-              <strong>{interview.interview_date?.slice(-2) || "—"}</strong>
-              <small>{interview.interview_date?.slice(5, 7) || "OCT"}</small>
-            </span>
-            <CompanyMark logo={interview.company_logo} name={interview.company_name} />
-            <p>
-              <strong>{interview.company_name}</strong>
-              <small>{interview.round_name} • {interview.interview_time || "Time TBA"} • {interview.mode || "Online"}</small>
-            </p>
-            <button type="button" className="prepare-ai-btn" onClick={() => onPrepare(interview)}>Prepare with AI</button>
-          </li>
-        )) : <li className="empty-state">No interviews scheduled.</li>}
+        {interviews.length ? interviews.map((interview) => {
+          const dateBadge = formatInterviewBadgeDate(interview.interview_date);
+          return (
+            <li className="interview-card" key={interview.id}>
+              <span className="interview-date">
+                <strong>{dateBadge.day}</strong>
+                <small>{dateBadge.month}</small>
+              </span>
+              <CompanyMark logo={interview.company_logo} name={interview.company_name} />
+              <p>
+                <strong>{interview.company_name}</strong>
+                <small>{interview.round_name} • {interview.interview_time || "Time TBA"} • {interview.mode || "Online"}</small>
+              </p>
+              <button type="button" className="prepare-ai-btn" onClick={() => onPrepare(interview)}>Prepare with AI</button>
+            </li>
+          );
+        }) : <li className="empty-state">No interviews scheduled.</li>}
       </ul>
     </article>
   );
@@ -932,16 +951,22 @@ function Dashboard({ user, navigate, notify, openSmartAI }) {
                 <button type="button" onClick={() => navigate("interviews")}>View All</button>
               </div>
               <ul className="activity-list interview-list">
-                {(data.interviews || []).length ? data.interviews.map((interview) => (
-                  <li className="interview-card" key={interview.id}>
-                    <span className="interview-date">{interview.interview_date?.slice(-2) || "I"}</span>
-                    <p>
-                      <strong>{interview.student_name}</strong>
-                      <small>{interview.company_name} • {interview.round_name}</small>
-                    </p>
-                    <Badge tone={statusTone(interview.status)}>{interview.status}</Badge>
-                  </li>
-                )) : <li className="empty-state">No interviews scheduled.</li>}
+                {(data.interviews || []).length ? data.interviews.map((interview) => {
+                  const dateBadge = formatInterviewBadgeDate(interview.interview_date);
+                  return (
+                    <li className="interview-card" key={interview.id}>
+                      <span className="interview-date">
+                        <strong>{dateBadge.day}</strong>
+                        <small>{dateBadge.month}</small>
+                      </span>
+                      <p>
+                        <strong>{interview.student_name}</strong>
+                        <small>{interview.company_name} • {interview.round_name}</small>
+                      </p>
+                      <Badge tone={statusTone(interview.status)}>{interview.status}</Badge>
+                    </li>
+                  );
+                }) : <li className="empty-state">No interviews scheduled.</li>}
               </ul>
             </article>
           </>

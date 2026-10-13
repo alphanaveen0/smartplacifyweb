@@ -14717,3 +14717,145 @@ html[data-theme="dark"] .smart-ai-main .ai-score-ring small,
 html[data-theme="dark"] .smart-ai-card .ai-score-ring small {
   color: #94A3B8 !important;
 }
+
+/* Final polish for dashboard upcoming interview tiles */
+.upcoming-interviews-panel .interview-list {
+  gap: 0.65rem;
+}
+
+.upcoming-interviews-panel .interview-card,
+.polished-interviews .interview-card {
+  grid-template-columns: 3.15rem 2.45rem minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.68rem;
+  min-height: 4.35rem;
+  padding: 0.64rem 0.72rem;
+  overflow: hidden;
+}
+
+.upcoming-interviews-panel .interview-date,
+.polished-interviews .interview-date {
+  display: grid;
+  width: 3.05rem;
+  height: 3.05rem;
+  place-items: center;
+  align-content: center;
+  gap: 0.05rem;
+  border-radius: 0.9rem;
+  background: linear-gradient(135deg, #EAF5FF, #DCEEFF);
+  border: 1px solid #D6E8F8;
+  color: #2478F2;
+  box-shadow: 0 8px 18px rgba(36, 120, 242, 0.1);
+}
+
+.upcoming-interviews-panel .interview-date strong,
+.polished-interviews .interview-date strong {
+  display: block;
+  max-width: 100%;
+  color: #102A56;
+  font-size: 1.02rem;
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.upcoming-interviews-panel .interview-date small,
+.polished-interviews .interview-date small {
+  display: block;
+  max-width: 100%;
+  color: #2478F2;
+  font-size: 0.58rem;
+  font-weight: 900;
+  letter-spacing: 0.03em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.upcoming-interviews-panel .company-mark,
+.polished-interviews .company-mark {
+  width: 2.3rem;
+  height: 2.3rem;
+  border-radius: 0.75rem;
+  background: #FFFFFF;
+  border-color: #D6E8F8;
+  color: #2478F2;
+  box-shadow: 0 8px 18px rgba(16, 42, 86, 0.06);
+  font-size: 0.72rem;
+}
+
+.upcoming-interviews-panel .interview-card p,
+.polished-interviews .interview-card p {
+  gap: 0.18rem;
+  min-width: 0;
+}
+
+.upcoming-interviews-panel .interview-card p strong,
+.polished-interviews .interview-card p strong {
+  max-width: 100%;
+  color: #102A56;
+  font-size: 0.9rem;
+  line-height: 1.15;
+}
+
+.upcoming-interviews-panel .interview-card p small,
+.polished-interviews .interview-card p small {
+  max-width: 100%;
+  overflow: hidden;
+  color: #526783;
+  font-size: 0.72rem;
+  line-height: 1.25;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.upcoming-interviews-panel .prepare-ai-btn,
+.polished-interviews .prepare-ai-btn {
+  max-width: 8.4rem;
+  min-height: 2.1rem;
+  padding: 0 0.78rem;
+  border-radius: 0.72rem;
+  color: #2478F2;
+  background: #E4F3FF;
+  border: 1px solid #D6E8F8;
+  box-shadow: none;
+  white-space: nowrap;
+}
+
+html[data-theme="dark"] .upcoming-interviews-panel .interview-date,
+html[data-theme="dark"] .polished-interviews .interview-date {
+  background: linear-gradient(135deg, rgba(20, 184, 166, 0.18), rgba(59, 130, 246, 0.18));
+  border-color: rgba(34, 211, 238, 0.24);
+  box-shadow: none;
+}
+
+html[data-theme="dark"] .upcoming-interviews-panel .interview-date strong,
+html[data-theme="dark"] .polished-interviews .interview-date strong {
+  color: #F8FAFC;
+}
+
+html[data-theme="dark"] .upcoming-interviews-panel .interview-date small,
+html[data-theme="dark"] .polished-interviews .interview-date small {
+  color: #22D3EE;
+}
+
+html[data-theme="dark"] .upcoming-interviews-panel .company-mark,
+html[data-theme="dark"] .polished-interviews .company-mark {
+  background: #172937;
+  border-color: rgba(51, 65, 85, 0.9);
+  color: #22D3EE;
+  box-shadow: none;
+}
+
+@media (max-width: 768px) {
+  .upcoming-interviews-panel .interview-card,
+  .polished-interviews .interview-card {
+    grid-template-columns: 3rem 2.3rem minmax(0, 1fr);
+  }
+
+  .upcoming-interviews-panel .prepare-ai-btn,
+  .polished-interviews .prepare-ai-btn,
+  .upcoming-interviews-panel .status-badge {
+    grid-column: 3;
+    justify-self: start;
+  }
+}

@@ -6,6 +6,7 @@ import { AppError } from "../utils/AppError.js";
 import { requireFields, pick } from "../utils/validators.js";
 import { insertSql } from "../models/common.js";
 import { generateOtp, sendRegisterOtp as deliverRegisterOtp } from "../services/otpService.js";
+import { uploadProfileImage } from "../services/cloudinaryService.js";
 
 function publicUser(user) {
   const { password_hash: _passwordHash, is_active: _isActive, ...safeUser } = user;
@@ -197,7 +198,9 @@ export async function register(req, res) {
       password_hash,
       role: req.body.role,
       student_id,
-      company_id
+      company_id,
+      profile_image_url: req.body.profile_image_url || null,
+      profile_image_public_id: req.body.profile_image_public_id || null
     });
     const [result] = await connection.execute(sql, params);
     const [rows] = await connection.execute("SELECT * FROM users WHERE id = :id", { id: result.insertId });
@@ -234,8 +237,19 @@ export async function updateMe(req, res) {
     `UPDATE users SET ${Object.keys(payload).map((key) => `${key} = :${key}`).join(", ")} WHERE id = :id`,
     { ...payload, id: req.user.id }
   );
-  const rows = await query("SELECT id, name, email, phone, role, student_id, company_id, is_active FROM users WHERE id = :id", { id: req.user.id });
+  const rows = await query("SELECT id, name, email, phone, role, student_id, company_id, profile_image_url, profile_image_public_id, is_active FROM users WHERE id = :id", { id: req.user.id });
   res.json(publicUser(rows[0]));
+}
+
+export async function uploadAvatar(req, res) {
+  if (!req.file) throw new AppError("Profile image is required.", 400);
+  const uploaded = await uploadProfileImage(req.file, req.user.id);
+  await query(
+    "UPDATE users SET profile_image_url = :url, profile_image_public_id = :publicId, updated_at = NOW() WHERE id = :id",
+    { id: req.user.id, url: uploaded.url, publicId: uploaded.publicId }
+  );
+  const rows = await query("SELECT id, name, email, phone, role, student_id, company_id, profile_image_url, profile_image_public_id, is_active FROM users WHERE id = :id", { id: req.user.id });
+  res.json({ user: publicUser(rows[0]), imageUrl: uploaded.url });
 }
 
 export async function forgotPassword(req, res) {

@@ -10,6 +10,15 @@ function publicUser(user) {
   return safeUser;
 }
 
+function fileToDataUrl(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = () => reject(new Error("Unable to read profile image."));
+    reader.readAsDataURL(file);
+  });
+}
+
 function normalizeEmail(email = "") {
   return String(email).trim().toLowerCase();
 }
@@ -92,7 +101,8 @@ async function registerMock(payload) {
     phone,
     mobile: phone,
     password: payload.password,
-    role: payload.role
+    role: payload.role,
+    profile_image_url: payload.profile_image_url || ""
   };
 
   if (payload.role === "student") {
@@ -165,13 +175,30 @@ export const authService = {
   },
 
   async register(payload) {
+    const { avatar, ...registrationPayload } = payload;
+
     if (!USE_MOCKS) {
-      const session = await apiClient("/auth/register", { method: "POST", body: payload });
+      const session = await apiClient("/auth/register", { method: "POST", body: registrationPayload });
       setSession(session);
+      if (avatar) {
+        try {
+          const uploadedUser = await this.uploadAvatar(avatar);
+          return { ...session, user: uploadedUser };
+        } catch (error) {
+          console.warn("Profile image upload failed after registration:", error);
+        }
+      }
       return session;
     }
 
-    return registerMock(payload);
+    const session = await registerMock(registrationPayload);
+    if (avatar) {
+      const imageUrl = await fileToDataUrl(avatar);
+      const updatedUser = { ...session.user, profile_image_url: imageUrl };
+      updateStoredUser(updatedUser);
+      return delay({ ...session, user: updatedUser });
+    }
+    return session;
   },
 
   async sendRegisterOtp(payload) {
@@ -217,13 +244,36 @@ export const authService = {
     const updatedUser = { ...user, ...updates };
 
     if (!USE_MOCKS) {
-      await apiClient("/auth/me", { method: "PUT", body: updates });
-      updateStoredUser(updatedUser);
-      return updatedUser;
+      const serverUser = await apiClient("/auth/me", { method: "PUT", body: updates });
+      updateStoredUser(serverUser);
+      return serverUser;
     }
 
     const db = loadDb();
     db.users = db.users.map((item) => (item.id === user.id ? { ...item, ...updates } : item));
+    saveDb(db);
+    updateStoredUser(updatedUser);
+    return delay(updatedUser);
+  },
+
+  async uploadAvatar(file) {
+    if (!file) {
+      throw new Error("Choose a profile image.");
+    }
+
+    if (!USE_MOCKS) {
+      const formData = new FormData();
+      formData.append("avatar", file);
+      const result = await apiClient("/auth/me/avatar", { method: "POST", body: formData });
+      updateStoredUser(result.user);
+      return result.user;
+    }
+
+    const currentUser = getStoredUser();
+    const imageUrl = await fileToDataUrl(file);
+    const updatedUser = { ...currentUser, profile_image_url: imageUrl, profileImage: imageUrl };
+    const db = loadDb();
+    db.users = db.users.map((item) => (item.id === currentUser.id ? { ...item, profile_image_url: imageUrl, profileImage: imageUrl } : item));
     saveDb(db);
     updateStoredUser(updatedUser);
     return delay(updatedUser);

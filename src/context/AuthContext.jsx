@@ -24,12 +24,18 @@ export function AuthProvider({ children }) {
     return updatedUser;
   }
 
+  async function uploadAvatar(file) {
+    const updatedUser = await authService.uploadAvatar(file);
+    setUser(updatedUser);
+    return updatedUser;
+  }
+
   function logout() {
     authService.logout();
     setUser(null);
   }
 
-  const value = useMemo(() => ({ user, login, register, updateProfile, logout }), [user]);
+  const value = useMemo(() => ({ user, login, register, updateProfile, uploadAvatar, logout }), [user]);
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }

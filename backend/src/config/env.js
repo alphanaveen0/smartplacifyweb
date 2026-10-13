@@ -40,6 +40,12 @@ export const env = {
     apiKey: process.env.GROQ_API_KEY || "",
     model: process.env.GROQ_MODEL || "openai/gpt-oss-20b"
   },
+  cloudinary: {
+    cloudName: process.env.CLOUDINARY_CLOUD_NAME || "",
+    apiKey: process.env.CLOUDINARY_API_KEY || "",
+    apiSecret: process.env.CLOUDINARY_API_SECRET || "",
+    folder: process.env.CLOUDINARY_FOLDER || "smartplacify/profiles"
+  },
   bcryptRounds: Number(process.env.BCRYPT_ROUNDS || 12),
   uploadDir: process.env.UPLOAD_DIR || "uploads/resumes",
   maxUploadMb: Number(process.env.MAX_UPLOAD_MB || 5)

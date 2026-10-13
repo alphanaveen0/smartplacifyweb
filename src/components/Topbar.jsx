@@ -17,7 +17,7 @@ function roleLabel(role) {
 }
 
 function profileImage(user) {
-  return user?.profile_image || user?.profileImage || user?.avatar_url || user?.avatarUrl || user?.photo_url || user?.photoUrl || user?.image || "";
+  return user?.profile_image_url || user?.profileImageUrl || user?.profile_image || user?.profileImage || user?.avatar_url || user?.avatarUrl || user?.photo_url || user?.photoUrl || user?.image || "";
 }
 
 export function Topbar({

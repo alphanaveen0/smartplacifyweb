@@ -54,6 +54,8 @@ CREATE TABLE IF NOT EXISTS users (
   role VARCHAR(20) NOT NULL CHECK (role IN ('student','company','tpo')),
   student_id BIGINT NULL,
   company_id BIGINT NULL,
+  profile_image_url TEXT,
+  profile_image_public_id VARCHAR(255),
   is_active BOOLEAN DEFAULT TRUE,
   created_at TIMESTAMPTZ DEFAULT NOW(),
   updated_at TIMESTAMPTZ DEFAULT NOW(),
@@ -62,6 +64,9 @@ CREATE TABLE IF NOT EXISTS users (
 );
 
 CREATE INDEX IF NOT EXISTS idx_users_role ON users (role);
+
+ALTER TABLE users ADD COLUMN IF NOT EXISTS profile_image_url TEXT;
+ALTER TABLE users ADD COLUMN IF NOT EXISTS profile_image_public_id VARCHAR(255);
 
 CREATE TABLE IF NOT EXISTS otp_verifications (
   id BIGSERIAL PRIMARY KEY,

@@ -13798,6 +13798,100 @@ html[data-theme="dark"] .placement-month small {
   width: 100%;
 }
 
+.avatar-upload-field {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 0.85rem;
+  width: 100%;
+  min-height: 4.65rem;
+  padding: 0.72rem 0.85rem;
+  border: 1px dashed var(--border, #DCE6F2);
+  border-radius: 1rem;
+  background: var(--surface-muted, #EAF2FC);
+  color: var(--text-primary, #112D4E);
+  cursor: pointer;
+}
+
+.avatar-upload-field span:not(.profile-dp) {
+  display: grid;
+  gap: 0.18rem;
+  min-width: 0;
+}
+
+.avatar-upload-field strong {
+  font-size: 0.92rem;
+  line-height: 1.15;
+}
+
+.avatar-upload-field small {
+  color: var(--text-muted, #647C9C);
+  font-size: 0.78rem;
+  line-height: 1.25;
+}
+
+.avatar-upload-field input,
+.avatar-change-button input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  clip-path: inset(50%);
+}
+
+.avatar-preview {
+  width: 3.1rem;
+  height: 3.1rem;
+  flex-basis: 3.1rem;
+}
+
+.profile-photo-editor {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  border: 1px solid var(--line);
+  border-radius: 1rem;
+  background: color-mix(in srgb, var(--card), var(--surface) 38%);
+}
+
+.profile-photo-editor > div {
+  display: grid;
+  gap: 0.35rem;
+  min-width: 0;
+}
+
+.profile-photo-editor small {
+  color: var(--muted);
+}
+
+.profile-photo-large {
+  width: 4.5rem;
+  height: 4.5rem;
+  flex-basis: 4.5rem;
+  font-size: 1.15rem;
+  box-shadow: 0 14px 28px rgba(15, 23, 42, 0.12);
+}
+
+.avatar-change-button {
+  width: fit-content;
+  cursor: pointer;
+}
+
+html[data-theme="dark"] .avatar-upload-field,
+html[data-theme="dark"] .profile-photo-editor {
+  background: #172937;
+  border-color: #334155;
+  color: #F8FAFC;
+}
+
+html[data-theme="dark"] .avatar-upload-field small,
+html[data-theme="dark"] .profile-photo-editor small {
+  color: #94A3B8;
+}
+
 .otp-row input {
   min-width: 0;
 }
@@ -13849,5 +13943,9 @@ html[data-theme="dark"] .toast.success {
 @media (max-width: 520px) {
   .otp-row {
     grid-template-columns: 1fr;
+  }
+
+  .profile-photo-editor {
+    align-items: flex-start;
   }
 }

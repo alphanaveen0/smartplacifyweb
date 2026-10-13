@@ -38,6 +38,7 @@ const interviewStatusOptions = ["SCHEDULED", "COMPLETED", "CANCELLED"];
 const interviewModeOptions = ["Online", "Offline", "Hybrid"];
 const notificationRoles = ["all", "student", "company", "tpo"];
 const allowedResumeTypes = [".pdf", ".doc", ".docx"];
+const allowedProfileImageTypes = ["image/jpeg", "image/png", "image/webp"];
 const THEME_KEY = "smartplacify_theme";
 
 function getStoredTheme() {
@@ -199,6 +200,35 @@ function validateResume(file) {
   return "";
 }
 
+function validateProfileImage(file) {
+  if (!file) return "";
+
+  if (!allowedProfileImageTypes.includes(file.type)) {
+    return "Profile photo must be JPG, PNG, or WebP.";
+  }
+
+  if (file.size > 2 * 1024 * 1024) {
+    return "Profile photo must be under 2 MB.";
+  }
+
+  return "";
+}
+
+function profileImageUrl(user) {
+  return user?.profile_image_url || user?.profileImageUrl || user?.profile_image || user?.profileImage || user?.avatar_url || user?.avatarUrl || user?.photo_url || user?.photoUrl || user?.image || "";
+}
+
+function UserAvatar({ user, className = "" }) {
+  const image = profileImageUrl(user);
+  const name = user?.name || user?.full_name || user?.email || "SmartPlacify User";
+
+  if (image) {
+    return <img className={`profile-dp ${className}`.trim()} src={image} alt={`${name} profile`} />;
+  }
+
+  return <span className={`profile-dp initials-avatar ${className}`.trim()}>{compactInitials(name)}</span>;
+}
+
 function Badge({ children, tone = "neutral" }) {
   return <span className={`status-badge ${tone}`}>{children}</span>;
 }
@@ -330,8 +360,10 @@ function AuthScreen({ initialMode = "login" }) {
     phone: "+91 98765 43210",
     password: "password123",
     name: "Dr. Anjali Sharma",
-    role: "tpo"
+    role: "tpo",
+    avatar: null
   });
+  const [avatarPreview, setAvatarPreview] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
@@ -339,6 +371,17 @@ function AuthScreen({ initialMode = "login" }) {
   const [otpToken, setOtpToken] = useState("");
   const [otpMessage, setOtpMessage] = useState("");
   const [otpLoading, setOtpLoading] = useState(false);
+
+  useEffect(() => {
+    if (!form.avatar) {
+      setAvatarPreview("");
+      return undefined;
+    }
+
+    const previewUrl = URL.createObjectURL(form.avatar);
+    setAvatarPreview(previewUrl);
+    return () => URL.revokeObjectURL(previewUrl);
+  }, [form.avatar]);
 
   async function submit(event) {
     event.preventDefault();
@@ -359,6 +402,13 @@ function AuthScreen({ initialMode = "login" }) {
     if (mode === "register" && form.password.length < 8) {
       setError("Password must be at least 8 characters.");
       return;
+    }
+    if (mode === "register") {
+      const imageError = validateProfileImage(form.avatar);
+      if (imageError) {
+        setError(imageError);
+        return;
+      }
     }
     if (mode === "register" && !otpToken) {
       setError("Verify your email and mobile number with OTP before registering.");
@@ -383,7 +433,7 @@ function AuthScreen({ initialMode = "login" }) {
 
   function useDemo(email, name, role, phone) {
     setMode("login");
-    setForm({ email, phone, password: "password123", name, role });
+    setForm({ email, phone, password: "password123", name, role, avatar: null });
     setOtpCode("");
     setOtpToken("");
     setOtpMessage("");
@@ -443,7 +493,25 @@ function AuthScreen({ initialMode = "login" }) {
           <p>Sign in with a role-based demo account or create a local account.</p>
         </div>
         {mode === "register" ? (
-          <input placeholder="Name" value={form.name} onChange={(event) => updateForm({ name: event.target.value })} />
+          <>
+            <input placeholder="Name" value={form.name} onChange={(event) => updateForm({ name: event.target.value })} />
+            <label className="avatar-upload-field">
+              {avatarPreview ? (
+                <img className="profile-dp avatar-preview" src={avatarPreview} alt="Profile preview" />
+              ) : (
+                <span className="profile-dp initials-avatar avatar-preview">{compactInitials(form.name || form.email)}</span>
+              )}
+              <span>
+                <strong>Profile photo</strong>
+                <small>Optional JPG, PNG, or WebP under 2 MB</small>
+              </span>
+              <input
+                type="file"
+                accept="image/jpeg,image/png,image/webp"
+                onChange={(event) => updateForm({ avatar: event.target.files?.[0] || null })}
+              />
+            </label>
+          </>
         ) : null}
         <input placeholder="Email" type="email" value={form.email} onChange={(event) => updateForm({ email: event.target.value })} />
         {mode === "register" ? (
@@ -476,6 +544,7 @@ function AuthScreen({ initialMode = "login" }) {
           setOtpToken("");
           setOtpMessage("");
           setError("");
+          updateForm({ avatar: null });
         }}>
           {mode === "login" ? "Create account" : "Already have an account?"}
         </button>
@@ -2272,7 +2341,7 @@ function StudentProfileView({ user, notify, openSmartAI }) {
   );
 }
 
-function SettingsView({ user, updateProfile, notify, askConfirm }) {
+function SettingsView({ user, updateProfile, uploadAvatar, notify, askConfirm }) {
   const isTpo = user.role === "tpo";
   const tpoDefaults = {
     department: "Training & Placement",
@@ -2288,6 +2357,8 @@ function SettingsView({ user, updateProfile, notify, askConfirm }) {
     quietHours: "Off",
     compactTables: "Off"
   });
+  const [avatarBusy, setAvatarBusy] = useState(false);
+  const [avatarError, setAvatarError] = useState("");
   const showDeveloperSettings = localStorage.getItem("smartplacify_show_dev_settings") === "true";
 
   async function save(event) {
@@ -2314,6 +2385,30 @@ function SettingsView({ user, updateProfile, notify, askConfirm }) {
     notify("Local demo data reset.");
   }
 
+  async function changeAvatar(event) {
+    const file = event.target.files?.[0];
+    event.target.value = "";
+    setAvatarError("");
+
+    const imageError = validateProfileImage(file);
+    if (imageError) {
+      setAvatarError(imageError);
+      notify(imageError, "error");
+      return;
+    }
+
+    try {
+      setAvatarBusy(true);
+      await uploadAvatar(file);
+      notify("Profile photo updated.");
+    } catch (err) {
+      setAvatarError(err.message);
+      notify(err.message, "error");
+    } finally {
+      setAvatarBusy(false);
+    }
+  }
+
   return (
     <>
       <PageHeader title="Settings" subtitle="Manage account, notifications, appearance, privacy, placement preferences, and security." />
@@ -2336,6 +2431,18 @@ function SettingsView({ user, updateProfile, notify, askConfirm }) {
         <article className="panel settings-form">
           <div className="panel-head"><h2>Profile</h2><Badge tone="success">{user.role === "tpo" ? "Placement Officer" : user.role === "company" ? "Recruiter" : "Student"}</Badge></div>
           <p>Keep your SmartPlacify identity, communication preferences, and dashboard experience up to date.</p>
+          <div className="profile-photo-editor">
+            <UserAvatar user={user} className="profile-photo-large" />
+            <div>
+              <strong>{user.name || user.email}</strong>
+              <small>Upload a square JPG, PNG, or WebP under 2 MB.</small>
+              <label className="link-button avatar-change-button">
+                {avatarBusy ? "Uploading..." : "Change Profile Photo"}
+                <input type="file" accept="image/jpeg,image/png,image/webp" onChange={changeAvatar} disabled={avatarBusy} />
+              </label>
+              {avatarError ? <small className="field-error">{avatarError}</small> : null}
+            </div>
+          </div>
           {isTpo ? (
             <div className="tpo-profile-details" aria-label="TPO profile details">
               <span><small>Email</small><strong>{form.email}</strong></span>
@@ -2547,7 +2654,7 @@ function NotFound() {
 }
 
 function RoleShell({ children }) {
-  const { user, updateProfile, logout } = useAuth();
+  const { user, updateProfile, uploadAvatar, logout } = useAuth();
   const routerNavigate = useNavigate();
   const location = useLocation();
   const [search, setSearch] = useState("");
@@ -2603,6 +2710,7 @@ function RoleShell({ children }) {
     navigate,
     goTo: routerNavigate,
     updateProfile,
+    uploadAvatar,
     openSmartAI
   };
 
@@ -2640,7 +2748,7 @@ function RoleShell({ children }) {
         {unreadCount > 0 ? <sup>{unreadCount}</sup> : null}
       </button>
       <button className="profile-trigger" type="button" aria-label="Open profile" onClick={navigateProfile}>
-        <span className="profile-dp initials-avatar">{compactInitials(user?.name || user?.email)}</span>
+        <UserAvatar user={user} />
       </button>
     </>
   );

@@ -5,6 +5,8 @@ import { env } from "../config/env.js";
 import { AppError } from "../utils/AppError.js";
 
 fs.mkdirSync(env.uploadDir, { recursive: true });
+const tempImageDir = "uploads/profile-temp";
+fs.mkdirSync(tempImageDir, { recursive: true });
 
 const storage = multer.diskStorage({
   destination: env.uploadDir,
@@ -26,6 +28,25 @@ export const resumeUpload = multer({
     ]);
     if (!allowed.has(file.mimetype)) {
       callback(new AppError("Resume must be a PDF, DOC, or DOCX file.", 400));
+      return;
+    }
+    callback(null, true);
+  }
+});
+
+export const profileImageUpload = multer({
+  storage: multer.diskStorage({
+    destination: tempImageDir,
+    filename: (_req, file, callback) => {
+      const extension = path.extname(file.originalname) || ".jpg";
+      callback(null, `${Date.now()}-profile${extension.toLowerCase()}`);
+    }
+  }),
+  limits: { fileSize: 2 * 1024 * 1024 },
+  fileFilter: (_req, file, callback) => {
+    const allowed = new Set(["image/jpeg", "image/png", "image/webp"]);
+    if (!allowed.has(file.mimetype)) {
+      callback(new AppError("Profile image must be JPG, PNG, or WebP.", 400));
       return;
     }
     callback(null, true);
